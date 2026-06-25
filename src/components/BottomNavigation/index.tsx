@@ -20,7 +20,7 @@ interface BottomNavigationProps {
 }
 
 export function BottomNavigation({ activeTab, onTabChange, mobile = false }: BottomNavigationProps) {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, mode } = useTheme();
 
   const openResume = useCallback(() => {
     window.open(RESUME_URL, "_blank", "noopener,noreferrer");
@@ -97,7 +97,7 @@ export function BottomNavigation({ activeTab, onTabChange, mobile = false }: Bot
               lineHeight: 1,
             }}
           >
-            <Icon name="dark_mode" size={20} weight={400} />
+            <Icon name={mode === "dark" ? "light_mode" : "dark_mode"} size={20} weight={400} />
           </button>
         ) : (
           <button
