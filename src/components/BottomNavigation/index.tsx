@@ -8,7 +8,6 @@ import { MobileTabSwitch } from "@/components/MobileTabSwitch";
 import { Icon } from "@/components/Icon";
 import { TabType } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
-import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { BOTTOM_NAV_GRID } from "@/theme/tokens";
 
 const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view";
@@ -25,9 +24,6 @@ export function BottomNavigation({ activeTab, onTabChange, mobile = false }: Bot
   const openResume = useCallback(() => {
     window.open(RESUME_URL, "_blank", "noopener,noreferrer");
   }, []);
-
-  useKeyboardShortcut("r", openResume);
-  useKeyboardShortcut("d", toggleTheme);
 
   return (
     <motion.nav
