@@ -5,7 +5,7 @@ import { TabType } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
 import { tabTransition } from "@/animations/variants";
 
-interface TabSwitchProps {
+interface MobileTabSwitchProps {
   activeTab: TabType;
   onTabChange: (tab: TabType) => void;
 }
@@ -15,7 +15,7 @@ const TABS: { id: TabType; label: string }[] = [
   { id: "works", label: "WORKS" },
 ];
 
-export function TabSwitch({ activeTab, onTabChange }: TabSwitchProps) {
+export function MobileTabSwitch({ activeTab, onTabChange }: MobileTabSwitchProps) {
   const { theme } = useTheme();
   return (
     <div
@@ -28,7 +28,7 @@ export function TabSwitch({ activeTab, onTabChange }: TabSwitchProps) {
         <button
           key={tab.id}
           onClick={() => onTabChange(tab.id)}
-          className="relative z-10 px-6 py-3 text-[16px] font-medium cursor-pointer"
+          className="relative z-10 px-4 py-2 text-[12px] font-medium cursor-pointer"
           style={{
             letterSpacing: "-0.04em",
             color: activeTab === tab.id ? theme.surface : theme.text,
@@ -36,7 +36,7 @@ export function TabSwitch({ activeTab, onTabChange }: TabSwitchProps) {
         >
           {activeTab === tab.id && (
             <motion.div
-              layoutId="activeTabPill"
+              layoutId="activeTabPillMobile"
               className="absolute inset-0 rounded-full"
               style={{ backgroundColor: theme.text }}
               transition={tabTransition}

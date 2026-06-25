@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/animations/variants";
 import { TabSwitch } from "@/components/TabSwitch";
+import { MobileTabSwitch } from "@/components/MobileTabSwitch";
 import { Icon } from "@/components/Icon";
 import { TabType } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
@@ -75,7 +76,11 @@ export function BottomNavigation({ activeTab, onTabChange, mobile = false }: Bot
 
       {/* Center: Tab switch */}
       <div className="flex items-center justify-center">
-        <TabSwitch activeTab={activeTab} onTabChange={onTabChange} compact={mobile} />
+        {mobile ? (
+          <MobileTabSwitch activeTab={activeTab} onTabChange={onTabChange} />
+        ) : (
+          <TabSwitch activeTab={activeTab} onTabChange={onTabChange} />
+        )}
       </div>
 
       {/* Right: Dark mode toggle hint */}
