@@ -46,9 +46,9 @@ export function BottomNavigation({ activeTab, onTabChange }: BottomNavigationPro
             letterSpacing: "-0.04em",
           }}
         >
-          Press{" "}
-          <span style={{ color: theme.accent }}>&quot;R&quot;</span>{" "}
-          View Resume
+          {"Press "}
+          <span style={{ color: theme.accent }}>{"\u0022R\u0022"}</span>
+          {" View Resume"}
         </a>
       </div>
 
@@ -68,11 +68,11 @@ export function BottomNavigation({ activeTab, onTabChange }: BottomNavigationPro
           border: "none",
           padding: 0,
         }}
-      >
-        Press{" "}
-        <span style={{ color: theme.accent }}>&quot;D&quot;</span>{" "}
-        Toggle Dark
-      </button>
+        >
+          {"Press "}
+          <span style={{ color: theme.accent }}>{"\u0022D\u0022"}</span>
+          {" Toggle Dark"}
+        </button>
     </motion.nav>
   );
 }

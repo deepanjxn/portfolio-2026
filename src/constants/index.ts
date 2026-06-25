@@ -15,22 +15,22 @@ export const PORTFOLIO_LINKS: LinkItem[] = [
   },
   {
     label: "Case Studies (3)",
-    href: "#",
+    href: "https://www.behance.net/moodboard/219892841/Case-Studies-Deepanjan-Sen",
   },
   {
     label: "Visual Designs",
-    href: "#",
+    href: "https://rebrand.ly/myworks-dsen",
   },
 ];
 
 export const UX_LINKS: LinkItem[] = [
   {
     label: "UX Breakdown - FinTech (Live)",
-    href: "#",
+    href: "https://supercut.ai/share/kriva/_L6v9yBk2mlh0rmaMoYZMH",
   },
   {
     label: "UX Breakdown - HealthTech (Live)",
-    href: "#",
+    href: "https://supercut.ai/share/kriva/9-naqcny94PD8chyPN65HY",
   },
 ];
 
