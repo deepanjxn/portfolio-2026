@@ -17,7 +17,7 @@ export function ExperienceSummary() {
       className="text-[16px] leading-[1.6] font-medium"
       style={{
         maxWidth: MAX_BODY_WIDTH,
-        marginTop: 16,
+        marginTop: 0,
         color: theme.text,
         letterSpacing: "-0.04em",
       }}

@@ -5,7 +5,7 @@ import { fadeInUp } from "@/animations/variants";
 import { LOGO_TEXT } from "@/constants";
 import { useTheme } from "@/context/ThemeContext";
 
-export function Logo() {
+export function Logo({ size = 112 }: { size?: number }) {
   const { theme } = useTheme();
   return (
     <motion.h1
@@ -14,7 +14,7 @@ export function Logo() {
       animate="visible"
       className="font-medium leading-none"
       style={{
-        fontSize: 112,
+        fontSize: size,
         letterSpacing: "-0.04em",
         color: theme.text,
       }}
