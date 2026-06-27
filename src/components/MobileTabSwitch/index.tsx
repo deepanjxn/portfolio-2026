@@ -19,7 +19,7 @@ export function MobileTabSwitch({ activeTab, onTabChange }: MobileTabSwitchProps
   const { theme } = useTheme();
   return (
       <div
-        className="relative inline-flex items-center rounded-full h-[40px] p-[2px] gap-0"
+        className="relative inline-flex items-center rounded-full h-[48px] p-[4px] gap-0"
         style={{
           backgroundColor: theme.gray,
         }}
@@ -28,7 +28,7 @@ export function MobileTabSwitch({ activeTab, onTabChange }: MobileTabSwitchProps
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
-            className="relative z-10 px-5 h-full text-[12px] font-medium cursor-pointer flex items-center"
+            className="relative z-10 px-5 py-2 h-full text-[16px] font-medium cursor-pointer flex items-center"
             style={{
               letterSpacing: "-0.04em",
               color: activeTab === tab.id ? theme.surface : theme.text,
