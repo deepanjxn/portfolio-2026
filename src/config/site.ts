@@ -3,15 +3,15 @@ export const siteConfig = {
 
   name: "Deepanjan Sen",
 
-  title: "Deepanjan Sen — Product Designer",
+  title: "Deepanjan Sen — Lead Product Designer | AI, SaaS & FinTech",
 
   titleTemplate: {
-    default: "Deepanjan Sen — Product Designer",
+    default: "Deepanjan Sen — Lead Product Designer | AI, SaaS & FinTech",
     template: "%s | Deepanjan Sen",
   },
 
   description:
-    "Product designer and design lead helping companies build thoughtful, design-driven solutions.",
+    "Deepanjan Sen is a Lead Product Designer specializing in AI, SaaS, and FinTech. Explore product design, UX, UI, design systems, branding, and interactive digital experiences.",
 
   keywords: [
     "Deepanjan Sen",
