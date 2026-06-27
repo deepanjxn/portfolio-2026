@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Hero } from "@/components/Hero";
+import { Works } from "@/components/Works";
 import { MobileLayout } from "@/components/MobileLayout";
+import { MobileWorks } from "@/components/MobileWorks";
 import { BottomNavigation } from "@/components/BottomNavigation";
 import { TabType } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
@@ -11,9 +14,26 @@ import { OUTER_PADDING, HERO_BOTTOM_GAP } from "@/theme/tokens";
 
 const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view";
 
+const slideVariants = {
+  enter: (dir: number) => ({ x: dir > 0 ? "100%" : "-100%" }),
+  center: { x: 0 },
+  exit: (dir: number) => ({ x: dir > 0 ? "-100%" : "100%" }),
+};
+
+const slideTransition = {
+  duration: 0.35,
+  ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
+};
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabType>("about");
+  const [direction, setDirection] = useState(1);
   const { theme, toggleTheme } = useTheme();
+
+  const handleTabChange = useCallback((tab: TabType) => {
+    setDirection(tab === "works" ? 1 : -1);
+    setActiveTab(tab);
+  }, []);
 
   const openResume = useCallback(() => {
     window.open(RESUME_URL, "_blank", "noopener,noreferrer");
@@ -33,10 +53,38 @@ export default function Home() {
           gap: HERO_BOTTOM_GAP,
         }}
       >
-        <div className="flex-1 min-h-0">
-          <Hero />
+        <div className="flex-1 min-h-0 relative">
+          <AnimatePresence mode="popLayout" custom={direction} initial={false}>
+            {activeTab === "about" ? (
+              <motion.div
+                key="about"
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={slideTransition}
+                className="absolute inset-0"
+              >
+                <Hero />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="works"
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={slideTransition}
+                className="absolute inset-0"
+              >
+                <Works />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-        <BottomNavigation activeTab={activeTab} onTabChange={setActiveTab} />
+        <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
       </div>
 
       {/* Mobile Layout (<1024px) */}
@@ -44,9 +92,9 @@ export default function Home() {
         className="flex lg:hidden flex-col h-full w-full overflow-hidden"
         style={{ position: "relative" }}
       >
-        <MobileLayout />
+        {activeTab === "about" ? <MobileLayout /> : <MobileWorks />}
         <div style={{ position: "absolute", bottom: 16, left: 16, right: 16, zIndex: 10 }}>
-          <BottomNavigation activeTab={activeTab} onTabChange={setActiveTab} mobile />
+          <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} mobile />
         </div>
       </div>
     </>

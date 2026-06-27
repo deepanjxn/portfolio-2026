@@ -24,3 +24,28 @@ export interface FooterInfoData {
   year: string;
   location: string;
 }
+
+export type ProjectType = "projects" | "case-studies" | "labs";
+
+export interface GalleryItem {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  type: ProjectType;
+  categories: string[];
+  backgroundImage?: string;
+  thumbnailImage?: string;
+  animatedPreview?: string;
+  shortDescription?: string;
+  longDescription?: string;
+  year?: number;
+  role?: string;
+  client?: string;
+  gallery?: GalleryItem[];
+  projectUrl?: string;
+}
