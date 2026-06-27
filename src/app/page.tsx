@@ -93,7 +93,15 @@ export default function Home() {
         style={{ position: "relative" }}
       >
         {activeTab === "about" ? <MobileLayout /> : <MobileWorks />}
-        <div style={{ position: "absolute", bottom: 16, left: 16, right: 16, zIndex: 10 }}>
+        <div
+          style={{
+            position: "absolute",
+            left: 16,
+            right: 16,
+            bottom: "calc(16px + env(safe-area-inset-bottom, 0px))",
+            zIndex: 10,
+          }}
+        >
           <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} mobile />
         </div>
       </div>
