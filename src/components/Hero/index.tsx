@@ -26,6 +26,7 @@ export function Hero() {
         <div className="flex flex-col">
           <Logo />
           <Intro />
+          <div style={{ height: 12 }} />
           <ExperienceSummary />
         </div>
 
