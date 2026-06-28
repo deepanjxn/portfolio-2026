@@ -5,15 +5,16 @@ import { useTheme } from "@/context/ThemeContext";
 
 interface ActiveMetadataProps {
   project: Project;
+  mobile?: boolean;
 }
 
-export function ActiveMetadata({ project }: ActiveMetadataProps) {
+export function ActiveMetadata({ project, mobile }: ActiveMetadataProps) {
   const { theme } = useTheme();
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex" style={{ justifyContent: "space-between", alignItems: mobile ? "flex-start" : "center" }}>
       <span
-        className="text-[12px] font-medium leading-[1.3] truncate uppercase"
+        className={`text-[12px] font-medium leading-[1.3] uppercase ${mobile ? "" : "truncate"}`}
         style={{
           color: theme.text,
           letterSpacing: "-0.04em",
@@ -22,10 +23,11 @@ export function ActiveMetadata({ project }: ActiveMetadataProps) {
         {project.title}
       </span>
       <span
-        className="text-[12px] font-medium leading-[1.3] truncate ml-4 uppercase"
+        className={`text-[12px] font-medium leading-[1.3] uppercase ${mobile ? "" : "truncate ml-4"}`}
         style={{
           color: theme.accent,
           letterSpacing: "-0.04em",
+          ...(mobile ? { marginLeft: "auto", textAlign: "right" } : {}),
         }}
       >
         {project.categories.join(", ")}

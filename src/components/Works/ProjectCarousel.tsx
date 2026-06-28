@@ -1,9 +1,10 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback, useMemo } from "react";
-import { motion, useMotionValue, animate, PanInfo } from "framer-motion";
+import { motion, useMotionValue, animate, AnimatePresence, PanInfo } from "framer-motion";
 import { Project } from "@/types";
 import { ProjectCard } from "./ProjectCard";
+import { ActiveMetadata } from "./ActiveMetadata";
 
 const VELOCITY_THRESHOLD = 400;
 
@@ -27,6 +28,7 @@ export function ProjectCarousel({
   const initialized = useRef(false);
   const wasDragged = useRef(false);
   const isDragging = useRef(false);
+  const isWrapping = useRef(false);
   const snapCount = useRef(0);
 
   const n = projects.length;
@@ -85,14 +87,19 @@ export function ProjectCarousel({
         if (snapCount.current !== currentSnap) return;
         let wrapped = index;
         if (index < n) {
+          isWrapping.current = true;
           wrapped = index + n;
           x.jump(centerOffset - wrapped * ITEM_WIDTH);
         } else if (index >= 2 * n) {
+          isWrapping.current = true;
           wrapped = index - n;
           x.jump(centerOffset - wrapped * ITEM_WIDTH);
         }
         setVirtualIndex(wrapped);
         isDragging.current = false;
+        requestAnimationFrame(() => {
+          isWrapping.current = false;
+        });
       });
     },
     [centerOffset, x, n]
@@ -124,30 +131,51 @@ export function ProjectCarousel({
     [centerOffset, snapToIndex, x]
   );
 
+  const activeProject = n > 0 ? projects[virtualIndex % n] : null;
+
   return (
-    <div ref={containerRef} className="overflow-hidden w-full h-full relative">
-      <motion.div
-        drag="x"
-        style={{ x, display: "flex", gap: GAP }}
-        dragElastic={0.1}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        className="h-full items-center"
-      >
-        {displayProjects.map((project, index) => (
-          <ProjectCard
-            key={`${project.id}-${index}`}
-            project={project}
-            index={index}
-            isActive={index === virtualIndex}
-            wasDragged={wasDragged}
-            isDragging={isDragging}
-            onSelect={() => handleCardSelect(index)}
-            cardWidth={CARD_WIDTH}
-            mobile={mobile}
-          />
-        ))}
-      </motion.div>
+    <div className="w-full h-full relative" style={{ paddingTop: mobile ? 28 : 0 }}>
+      {mobile && activeProject && (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeProject.id}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute pointer-events-none"
+            style={{ left: centerOffset, width: CARD_WIDTH, top: 0 }}
+          >
+            <ActiveMetadata project={activeProject} mobile />
+          </motion.div>
+        </AnimatePresence>
+      )}
+      <div ref={containerRef} className="overflow-hidden w-full h-full">
+        <motion.div
+          drag="x"
+          style={{ x, display: "flex", gap: GAP }}
+          dragElastic={0.1}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          className="h-full items-center"
+        >
+          {displayProjects.map((project, index) => (
+            <ProjectCard
+              key={`${project.id}-${index}`}
+              project={project}
+              index={index}
+              originalIndex={n > 0 ? index % n : index}
+              isActive={index === virtualIndex}
+              isWrapping={isWrapping}
+              wasDragged={wasDragged}
+              isDragging={isDragging}
+              onSelect={() => handleCardSelect(index)}
+              cardWidth={CARD_WIDTH}
+              mobile={mobile}
+            />
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 }

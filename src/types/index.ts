@@ -41,6 +41,7 @@ export interface Project {
   backgroundImage?: string;
   thumbnailImage?: string;
   animatedPreview?: string;
+  heroImage?: string;
   shortDescription?: string;
   longDescription?: string;
   year?: number;

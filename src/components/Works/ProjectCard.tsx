@@ -11,7 +11,9 @@ const GRADIENT_ANGLES = [0, 72, 144, 216, 288];
 interface ProjectCardProps {
   project: Project;
   index: number;
+  originalIndex: number;
   isActive: boolean;
+  isWrapping: RefObject<boolean>;
   wasDragged: RefObject<boolean>;
   isDragging: RefObject<boolean>;
   onSelect: () => void;
@@ -22,7 +24,9 @@ interface ProjectCardProps {
 export function ProjectCard({
   project,
   index,
+  originalIndex,
   isActive,
+  isWrapping,
   wasDragged,
   isDragging,
   onSelect,
@@ -34,8 +38,8 @@ export function ProjectCard({
   const [isHovered, setIsHovered] = useState(false);
   const hoverComplete = useRef(false);
 
-  const bgAngle = GRADIENT_ANGLES[index % GRADIENT_ANGLES.length];
-  const showMetadata = isActive && (mobile || isHovered) && !isDragging.current;
+  const bgAngle = GRADIENT_ANGLES[originalIndex % GRADIENT_ANGLES.length];
+  const showMetadata = isActive && !mobile && isHovered && !isDragging.current;
 
   useEffect(() => {
     if (!isActive) {
@@ -80,7 +84,7 @@ export function ProjectCard({
             }}
           />
           <div className="relative py-2">
-            <ActiveMetadata project={project} />
+            <ActiveMetadata project={project} mobile={mobile} />
           </div>
         </motion.div>
       )}
@@ -91,13 +95,16 @@ export function ProjectCard({
         layout
         initial={false}
         animate={{
-          opacity: isActive ? 1 : 0.35,
+          opacity: 1,
           boxShadow: isActive
             ? "0px 4px 12px rgba(0, 0, 0, 0.1)"
             : "0px 0px 0px rgba(0, 0, 0, 0)",
         }}
-        transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-        className="overflow-hidden relative"
+        transition={{
+          duration: isWrapping.current ? 0 : 0.35,
+          ease: [0.4, 0, 0.2, 1],
+        }}
+        className="overflow-hidden relative rounded-none"
         style={{ height: Math.round(cardWidth * 360 / 580) }}
         onClick={() => {
           if (wasDragged.current) return;
@@ -138,21 +145,21 @@ export function ProjectCard({
               backgroundSize: "24px 24px",
             }}
           />
-          <div className="absolute inset-0 flex items-center justify-center p-12 pointer-events-none">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ padding: mobile ? "24px" : "48px" }}>
             {isActive && project.animatedPreview ? (
               <img
-                src={gifLoaded ? project.animatedPreview : (project.backgroundImage || undefined)}
+                src={gifLoaded ? project.animatedPreview : (project.thumbnailImage || project.backgroundImage || undefined)}
                 alt={project.title}
-                className="max-w-full max-h-full object-contain"
+                className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}
                 style={{ opacity: gifLoaded ? 1 : 0 }}
                 onLoad={() => setGifLoaded(true)}
                 draggable={false}
               />
-            ) : project.backgroundImage ? (
+            ) : project.thumbnailImage || project.backgroundImage ? (
               <img
-                src={project.backgroundImage}
+                src={project.thumbnailImage || project.backgroundImage}
                 alt={project.title}
-                className="max-w-full max-h-full object-contain"
+                className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}
                 draggable={false}
               />
             ) : (
@@ -161,7 +168,7 @@ export function ProjectCard({
                 style={{
                   border: `1px solid ${theme.text}`,
                   opacity: 0.15,
-                  borderRadius: 8,
+                  borderRadius: 0,
                 }}
               />
             )}
