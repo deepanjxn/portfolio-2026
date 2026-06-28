@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeIn, fadeInUp } from "@/animations/variants";
 import { ProjectType } from "@/types";
@@ -17,6 +17,13 @@ const MOBILE_GAP = 48;
 export function MobileWorks() {
   const { theme } = useTheme();
   const [activeCategory, setActiveCategory] = useState<ProjectType | "all">("projects");
+
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === "all") return PROJECTS;
@@ -83,7 +90,7 @@ export function MobileWorks() {
           </motion.div>
         </div>
 
-        <div style={{ height: 32 }} />
+        <div style={{ height: 0 }} />
 
         <div
           style={{
@@ -93,7 +100,13 @@ export function MobileWorks() {
             justifyContent: "center",
           }}
         >
-          <div className="h-[280px]" style={{ paddingBottom: 40 }}>
+          <motion.div
+            initial={false}
+            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.65, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="h-[280px]"
+            style={{ paddingBottom: 40 }}
+          >
             <ProjectCarousel
               key={activeCategory}
               projects={filteredProjects}
@@ -101,7 +114,7 @@ export function MobileWorks() {
               gap={MOBILE_GAP}
               mobile
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </motion.div>

@@ -30,7 +30,7 @@ export function ProjectCard({
   wasDragged,
   isDragging,
   onSelect,
-  cardWidth = 580,
+  cardWidth = 640,
   mobile = false,
 }: ProjectCardProps) {
   const { theme } = useTheme();
@@ -110,7 +110,7 @@ export function ProjectCard({
           ease: [0.4, 0, 0.2, 1],
         }}
         className="overflow-hidden relative rounded-none"
-        style={{ height: Math.round(cardWidth * 360 / 580) }}
+        style={{ height: Math.round(cardWidth * 5 / 8) }}
         onClick={() => {
           if (wasDragged.current) return;
           if (isActive) {

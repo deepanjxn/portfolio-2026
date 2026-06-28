@@ -31,7 +31,7 @@ export function LinkGroup({ links }: LinkGroupProps) {
         >
           <span
             className="flex items-center justify-center shrink-0"
-            style={{ color: theme.text }}
+            style={{ color: theme.accent }}
           >
             <Icon name="arrow_outward" size={16} weight={400} />
           </span>

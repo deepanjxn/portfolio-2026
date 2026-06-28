@@ -21,7 +21,8 @@ export function Clock() {
         marginTop: 24,
       }}
     >
-      {time}
+      <span style={{ fontVariantNumeric: "tabular-nums" }}>{time}</span>
+      <span style={{ color: theme.accent, marginLeft: 8 }}>IST</span>
     </motion.div>
   );
 }

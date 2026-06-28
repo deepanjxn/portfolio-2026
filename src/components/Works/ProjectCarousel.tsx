@@ -18,7 +18,7 @@ interface ProjectCarouselProps {
 
 export function ProjectCarousel({
   projects,
-  cardWidth: CARD_WIDTH = 580,
+  cardWidth: CARD_WIDTH = 640,
   gap: GAP = 240,
   mobile = false,
 }: ProjectCarouselProps) {

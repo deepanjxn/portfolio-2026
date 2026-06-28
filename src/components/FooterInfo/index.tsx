@@ -21,11 +21,15 @@ export function FooterInfo() {
       }}
     >
       <div className="flex items-center gap-1.5 text-[16px] font-medium leading-[1.6]">
-        <Icon name="copyright" size={16} weight={400} />
+        <span style={{ color: theme.accent }}>
+          <Icon name="copyright" size={16} weight={400} />
+        </span>
         <span>{FOOTER_INFO.year}</span>
       </div>
       <div className="flex items-center gap-1.5 text-[16px] font-medium leading-[1.6]">
-        <Icon name="location_on" size={16} weight={400} />
+        <span style={{ color: theme.accent }}>
+          <Icon name="location_on" size={16} weight={400} />
+        </span>
         <span>{FOOTER_INFO.location}</span>
       </div>
     </motion.div>
