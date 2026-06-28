@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import IntroScreen from "@/components/IntroScreen";
 import { Hero } from "@/components/Hero";
 import { Works } from "@/components/Works";
 import { MobileLayout } from "@/components/MobileLayout";
@@ -28,7 +29,12 @@ const slideTransition = {
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabType>("about");
   const [direction, setDirection] = useState(1);
+  const [showIntro, setShowIntro] = useState(true);
   const { theme, toggleTheme } = useTheme();
+
+  const handleIntroComplete = useCallback(() => {
+    setShowIntro(false);
+  }, []);
 
   const handleTabChange = useCallback((tab: TabType) => {
     setDirection(tab === "works" ? 1 : -1);
@@ -44,14 +50,18 @@ export default function Home() {
 
   return (
     <>
+      {showIntro && <IntroScreen onComplete={handleIntroComplete} />}
       {/* Desktop Layout (≥1024px) */}
-      <div
+      <motion.div
         className="hidden lg:flex flex-col h-full w-full"
         style={{
           padding: OUTER_PADDING,
           backgroundColor: theme.surface,
           gap: HERO_BOTTOM_GAP,
         }}
+        initial={showIntro ? { opacity: 0 } : undefined}
+        animate={showIntro ? { opacity: 0 } : { opacity: 1 }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="flex-1 min-h-0 relative">
           <AnimatePresence mode="popLayout" custom={direction} initial={false}>
@@ -85,12 +95,15 @@ export default function Home() {
           </AnimatePresence>
         </div>
         <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
-      </div>
+      </motion.div>
 
       {/* Mobile Layout (<1024px) */}
-      <div
+      <motion.div
         className="flex lg:hidden flex-col h-full w-full overflow-hidden"
         style={{ position: "relative" }}
+        initial={showIntro ? { opacity: 0 } : undefined}
+        animate={showIntro ? { opacity: 0 } : { opacity: 1 }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
         {activeTab === "about" ? <MobileLayout /> : <MobileWorks />}
         <div
@@ -104,7 +117,7 @@ export default function Home() {
         >
           <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} mobile />
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
