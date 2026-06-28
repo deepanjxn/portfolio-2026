@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback, useMemo } from "react";
+import { flushSync } from "react-dom";
 import { motion, useMotionValue, animate, AnimatePresence, PanInfo } from "framer-motion";
 import { Project } from "@/types";
 import { ProjectCard } from "./ProjectCard";
@@ -81,8 +82,8 @@ export function ProjectCarousel({
       const currentSnap = ++snapCount.current;
       animate(x, target, {
         type: "tween",
-        duration: 0.35,
-        ease: [0.4, 0, 0.2, 1],
+        duration: 0.5,
+        ease: [0.0, 0.0, 0.2, 1],
       }).then(() => {
         if (snapCount.current !== currentSnap) return;
         let wrapped = index;
@@ -90,12 +91,15 @@ export function ProjectCarousel({
           isWrapping.current = true;
           wrapped = index + n;
           x.jump(centerOffset - wrapped * ITEM_WIDTH);
+          flushSync(() => setVirtualIndex(wrapped));
         } else if (index >= 2 * n) {
           isWrapping.current = true;
           wrapped = index - n;
           x.jump(centerOffset - wrapped * ITEM_WIDTH);
+          flushSync(() => setVirtualIndex(wrapped));
+        } else {
+          setVirtualIndex(wrapped);
         }
-        setVirtualIndex(wrapped);
         isDragging.current = false;
         requestAnimationFrame(() => {
           isWrapping.current = false;
@@ -135,20 +139,29 @@ export function ProjectCarousel({
 
   return (
     <div className="w-full h-full relative" style={{ paddingTop: mobile ? 28 : 0 }}>
-      {mobile && activeProject && (
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeProject.id}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-            className="absolute pointer-events-none"
-            style={{ left: centerOffset, width: CARD_WIDTH, top: 0 }}
-          >
-            <ActiveMetadata project={activeProject} mobile />
-          </motion.div>
-        </AnimatePresence>
+      {mobile && (
+        <div className="absolute pointer-events-none" style={{ left: centerOffset, width: CARD_WIDTH, top: 0 }}>
+          <AnimatePresence initial={false}>
+            {activeProject && (
+              <motion.div
+                key={activeProject.id}
+                initial={{ opacity: 0, y: 7 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.45, ease: "easeOut", delay: 0.12 },
+                }}
+                exit={{
+                  opacity: 0,
+                  y: 7,
+                  transition: { duration: 0.45, ease: "easeOut", delay: 0 },
+                }}
+              >
+                <ActiveMetadata project={activeProject} mobile />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       )}
       <div ref={containerRef} className="overflow-hidden w-full h-full">
         <motion.div

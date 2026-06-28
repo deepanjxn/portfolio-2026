@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, type RefObject } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Project } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
 import { ActiveMetadata } from "./ActiveMetadata";
@@ -64,18 +64,12 @@ export function ProjectCard({
 
   return (
     <div className="relative flex-shrink-0" style={{ width: cardWidth }}>
-      {/* Metadata — floats above the card */}
-      <AnimatePresence>
-        {showMetadata && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-            key="metadata"
-            className="absolute left-0 right-0 pointer-events-none"
-            style={{ bottom: "100%", marginBottom: 8 }}
-          >
+      {/* Metadata — floats above the card (desktop only) */}
+      {!mobile && (
+        <div
+          className="absolute left-0 right-0 pointer-events-none"
+          style={{ bottom: "100%", marginBottom: 8 }}
+        >
           <div
             className="absolute inset-0"
             style={{
@@ -83,12 +77,23 @@ export function ProjectCard({
               WebkitBackdropFilter: "blur(8px)",
             }}
           />
-          <div className="relative py-2">
+          <motion.div
+            initial={false}
+            animate={{
+              opacity: showMetadata ? 1 : 0,
+              y: showMetadata ? 0 : 7,
+              transition: {
+                duration: 0.45,
+                ease: "easeOut",
+                delay: showMetadata ? 0.12 : 0,
+              },
+            }}
+            className="relative py-2"
+          >
             <ActiveMetadata project={project} mobile={mobile} />
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       )}
-      </AnimatePresence>
 
       {/* Card */}
       <motion.div
