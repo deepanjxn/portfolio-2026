@@ -42,15 +42,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const theme = mode === "light" ? lightTheme : darkTheme;
 
-  if (!mounted) {
-    // Prevent hydration mismatch — render light theme on first SSR pass
-    return (
-      <ThemeContext.Provider value={{ mode: "light", theme: lightTheme, toggleTheme }}>
-        {children}
-      </ThemeContext.Provider>
-    );
-  }
-
   return (
     <ThemeContext.Provider value={{ mode, theme, toggleTheme }}>
       {children}
