@@ -70,13 +70,6 @@ export function ProjectCard({
           className="absolute left-0 right-0 pointer-events-none"
           style={{ bottom: "100%", marginBottom: 8 }}
         >
-          <div
-            className="absolute inset-0"
-            style={{
-              backdropFilter: "blur(8px)",
-              WebkitBackdropFilter: "blur(8px)",
-            }}
-          />
           <motion.div
             initial={false}
             animate={{
@@ -88,9 +81,18 @@ export function ProjectCard({
                 delay: showMetadata ? 0.12 : 0,
               },
             }}
-            className="relative py-2"
+            className="relative"
           >
-            <ActiveMetadata project={project} mobile={mobile} />
+            <div
+              className="absolute inset-0"
+              style={{
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+              }}
+            />
+            <div className="relative py-2">
+              <ActiveMetadata project={project} mobile={mobile} />
+            </div>
           </motion.div>
         </div>
       )}

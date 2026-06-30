@@ -5,12 +5,14 @@ import { motion } from "framer-motion";
 import { ProjectType } from "@/types";
 import { PROJECTS } from "@/constants/works";
 import { OUTER_PADDING } from "@/theme/tokens";
+import { useDensity } from "@/context/DensityContext";
 import { WorksHeader } from "./WorksHeader";
 import { CategoryFilters } from "./CategoryFilters";
 import { ProjectCounter } from "./ProjectCounter";
 import { ProjectCarousel } from "./ProjectCarousel";
 
 export function Works() {
+  const density = useDensity();
   const [activeCategory, setActiveCategory] = useState<ProjectType | "all">("projects");
   const [ready, setReady] = useState(false);
 
@@ -25,10 +27,10 @@ export function Works() {
   }, [activeCategory]);
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full h-full flex flex-col" {...(density.isCompact ? { "data-laptop": "" } : {})}>
       <WorksHeader />
 
-      <div style={{ height: 48 }} />
+      <div style={{ height: density.spacing(48) }} />
 
       <div className="flex items-center justify-between">
         <CategoryFilters
@@ -38,7 +40,7 @@ export function Works() {
         <ProjectCounter count={filteredProjects.length} />
       </div>
 
-      <div style={{ height: 8 }} />
+      <div style={{ height: density.spacing(8) }} />
 
       <motion.div
         initial={false}
@@ -54,6 +56,8 @@ export function Works() {
         <ProjectCarousel
           key={activeCategory}
           projects={filteredProjects}
+          cardWidth={density.spacing(640)}
+          gap={density.spacing(240)}
         />
       </motion.div>
     </div>

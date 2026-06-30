@@ -5,10 +5,10 @@ import { ThemeTokens } from "@/types";
 import { lightTheme } from "@/theme/light";
 import { darkTheme } from "@/theme/dark";
 
-type ThemeMode = "light" | "dark";
+type ThemeMode = "system" | "light" | "dark";
 
 interface ThemeContextValue {
-  mode: ThemeMode;
+  mode: "light" | "dark";
   theme: ThemeTokens;
   toggleTheme: () => void;
 }
@@ -20,30 +20,68 @@ const ThemeContext = createContext<ThemeContextValue>({
 });
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [mode, setMode] = useState<ThemeMode>("light");
-  const [mounted, setMounted] = useState(false);
+  const [pref, setPref] = useState<ThemeMode>("system");
+  const [resolved, setResolved] = useState<"light" | "dark">("light");
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme") as ThemeMode | null;
-    if (saved === "dark" || saved === "light") {
-      setMode(saved);
+    const saved = localStorage.getItem("theme-preference") as ThemeMode | null;
+    let effectivePref: ThemeMode;
+    if (saved === "system" || saved === "dark" || saved === "light") {
+      effectivePref = saved;
+    } else {
+      const old = localStorage.getItem("theme");
+      if (old === "dark") effectivePref = "dark";
+      else if (old === "light") effectivePref = "light";
+      else effectivePref = "system";
     }
-    setMounted(true);
+
+    let effectiveResolved: "light" | "dark";
+    if (effectivePref === "dark") {
+      effectiveResolved = "dark";
+    } else if (effectivePref === "light") {
+      effectiveResolved = "light";
+    } else {
+      effectiveResolved = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+
+    setPref(effectivePref);
+    setResolved(effectiveResolved);
+    setInitialized(true);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("theme", mode);
-    document.documentElement.classList.toggle("dark", mode === "dark");
-  }, [mode]);
+    if (!initialized) return;
+    document.documentElement.classList.toggle("dark", resolved === "dark");
+  }, [resolved, initialized]);
+
+  useEffect(() => {
+    if (!initialized) return;
+    localStorage.setItem("theme-preference", pref);
+  }, [pref, initialized]);
+
+  useEffect(() => {
+    if (pref !== "system") return;
+
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const handler = (e: MediaQueryListEvent) => {
+      setResolved(e.matches ? "dark" : "light");
+    };
+
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, [pref]);
 
   const toggleTheme = useCallback(() => {
-    setMode((prev) => (prev === "light" ? "dark" : "light"));
-  }, []);
+    const newMode = resolved === "light" ? "dark" : "light";
+    setPref(newMode);
+    setResolved(newMode);
+  }, [resolved]);
 
-  const theme = mode === "light" ? lightTheme : darkTheme;
+  const theme = resolved === "light" ? lightTheme : darkTheme;
 
   return (
-    <ThemeContext.Provider value={{ mode, theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ mode: resolved, theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

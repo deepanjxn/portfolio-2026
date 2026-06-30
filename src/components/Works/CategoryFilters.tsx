@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ProjectType } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
+import { useDensity } from "@/context/DensityContext";
 
 interface CategoryFiltersProps {
   activeCategory: ProjectType | "all";
@@ -19,6 +20,7 @@ const FILTERS: { id: ProjectType | "all"; label: string }[] = [
 
 export function CategoryFilters({ activeCategory, onCategoryChange, mobile = false }: CategoryFiltersProps) {
   const { theme } = useTheme();
+  const density = useDensity();
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const textColor = theme.text;
@@ -58,9 +60,9 @@ export function CategoryFilters({ activeCategory, onCategoryChange, mobile = fal
               color: theme.text,
               borderWidth: 1,
               borderStyle: "solid",
-              fontSize: 16,
-              lineHeight: mobile ? "normal" : "36px",
-              padding: mobile ? "12px 20px" : "8px 24px",
+              fontSize: mobile ? 16 : density.font(16),
+              lineHeight: mobile ? "normal" : `${density.spacing(36)}px`,
+              padding: mobile ? "12px 20px" : `${density.spacing(8)}px ${density.spacing(24)}px`,
             }}
           >
             {filter.label}

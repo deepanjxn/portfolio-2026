@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useCallback, useMemo } from "react";
 import { flushSync } from "react-dom";
 import { motion, useMotionValue, animate, AnimatePresence, PanInfo } from "framer-motion";
 import { Project } from "@/types";
+import { useDensity } from "@/context/DensityContext";
 import { ProjectCard } from "./ProjectCard";
 import { ActiveMetadata } from "./ActiveMetadata";
 
@@ -22,6 +23,7 @@ export function ProjectCarousel({
   gap: GAP = 240,
   mobile = false,
 }: ProjectCarouselProps) {
+  const density = useDensity();
   const ITEM_WIDTH = CARD_WIDTH + GAP;
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -163,7 +165,7 @@ export function ProjectCarousel({
           </AnimatePresence>
         </div>
       )}
-      <div ref={containerRef} className="overflow-hidden w-full h-full">
+      <div ref={containerRef} className="w-full h-full" style={{ overflow: density.isCompact ? "hidden visible" : "hidden" }}>
         <motion.div
           drag="x"
           style={{ x, display: "flex", gap: GAP }}

@@ -5,7 +5,7 @@ import { fadeInUp } from "@/animations/variants";
 import { useClock } from "@/hooks/useClock";
 import { useTheme } from "@/context/ThemeContext";
 
-export function Clock() {
+export function Clock({ marginTop = 24 }: { marginTop?: number }) {
   const time = useClock();
   const { theme } = useTheme();
 
@@ -18,7 +18,7 @@ export function Clock() {
       style={{
         color: theme.text,
         letterSpacing: "-0.04em",
-        marginTop: 24,
+        marginTop,
       }}
     >
       <span style={{ fontVariantNumeric: "tabular-nums" }}>{time}</span>

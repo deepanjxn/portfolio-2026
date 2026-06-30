@@ -10,6 +10,8 @@ import { MobileWorks } from "@/components/MobileWorks";
 import { BottomNavigation } from "@/components/BottomNavigation";
 import { TabType } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
+import { DensityProvider } from "@/context/DensityContext";
+import { useResponsiveScale } from "@/hooks/useResponsiveScale";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { OUTER_PADDING, HERO_BOTTOM_GAP } from "@/theme/tokens";
 
@@ -31,6 +33,8 @@ export default function Home() {
   const [direction, setDirection] = useState(1);
   const [showIntro, setShowIntro] = useState(true);
   const { theme, toggleTheme } = useTheme();
+  const scale = useResponsiveScale();
+  const scaledPadding = Math.round(OUTER_PADDING * scale);
 
   const handleIntroComplete = useCallback(() => {
     setShowIntro(false);
@@ -55,7 +59,7 @@ export default function Home() {
       <motion.div
         className="hidden lg:flex flex-col h-full w-full"
         style={{
-          padding: OUTER_PADDING,
+          padding: scaledPadding,
           backgroundColor: theme.surface,
           gap: HERO_BOTTOM_GAP,
         }}
@@ -63,6 +67,7 @@ export default function Home() {
         animate={showIntro ? { opacity: 0 } : { opacity: 1 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
+        <DensityProvider>
         <div className="flex-1 min-h-0 relative">
           <AnimatePresence mode="popLayout" custom={direction} initial={false}>
             {activeTab === "about" ? (
@@ -95,6 +100,7 @@ export default function Home() {
           </AnimatePresence>
         </div>
         <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
+        </DensityProvider>
       </motion.div>
 
       {/* Mobile Layout (<1024px) */}

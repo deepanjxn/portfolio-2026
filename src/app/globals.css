@@ -68,3 +68,8 @@
     scrollbar-width: none;
   }
 }
+
+/* Laptop compact layout — viewport <1440px wide OR <850px tall */
+[data-laptop] .text-\[16px\] {
+  font-size: 14px !important;
+}
