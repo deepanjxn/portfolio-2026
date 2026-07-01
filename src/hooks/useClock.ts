@@ -12,15 +12,13 @@ function formatTime(date: Date, timezone: string): string {
   });
 }
 
-function getInitialTime(): string {
-  if (typeof window === "undefined") return "--:--:--";
-  return formatTime(new Date(), "Asia/Kolkata");
-}
-
 export function useClock(): string {
-  const [time, setTime] = useState(getInitialTime);
+  const [time, setTime] = useState("--:--:--");
 
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
+    setTime(formatTime(new Date(), "Asia/Kolkata"));
+    /* eslint-enable react-hooks/set-state-in-effect */
     const id = setInterval(() => {
       setTime(formatTime(new Date(), "Asia/Kolkata"));
     }, 1000);

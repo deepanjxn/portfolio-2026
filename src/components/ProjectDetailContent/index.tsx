@@ -184,6 +184,7 @@ function ProjectDetailShell({ slug }: { slug: string }) {
       <div
         style={{
           padding: `0 ${gutter}px ${gutter}px`,
+          backgroundColor: theme.surface,
         }}
       >
         <PageContainer>

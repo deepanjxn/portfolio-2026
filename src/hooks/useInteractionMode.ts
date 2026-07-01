@@ -4,18 +4,14 @@ import { useState, useEffect } from "react";
 
 export type InteractionMode = "desktop" | "mobile";
 
-function getInitialMode(): InteractionMode {
-  if (typeof window === "undefined") return "desktop";
-  return window.matchMedia("(hover: hover) and (pointer: fine)").matches
-    ? "desktop"
-    : "mobile";
-}
-
 export function useInteractionMode(): InteractionMode {
-  const [mode, setMode] = useState<InteractionMode>(getInitialMode);
+  const [mode, setMode] = useState<InteractionMode>("desktop");
 
   useEffect(() => {
     const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    /* eslint-disable react-hooks/set-state-in-effect */
+    setMode(mq.matches ? "desktop" : "mobile");
+    /* eslint-enable react-hooks/set-state-in-effect */
 
     const handler = (e: MediaQueryListEvent) => {
       setMode(e.matches ? "desktop" : "mobile");

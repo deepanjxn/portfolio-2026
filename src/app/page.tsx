@@ -32,16 +32,11 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<TabType>("about");
   const [direction, setDirection] = useState(1);
   const [showIntro, setShowIntro] = useState(true);
-
-  if (showIntro && typeof window !== "undefined" && sessionStorage.getItem("intro_complete") === "true") {
-    setShowIntro(false);
-  }
   const { theme, toggleTheme } = useTheme();
   const scale = useResponsiveScale();
   const scaledPadding = Math.round(OUTER_PADDING * scale);
 
   const handleIntroComplete = useCallback(() => {
-    sessionStorage.setItem("intro_complete", "true");
     setShowIntro(false);
   }, []);
 
