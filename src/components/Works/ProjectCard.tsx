@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect, type RefObject } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Project } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
+import { useInteractionMode } from "@/hooks/useInteractionMode";
 import { ActiveMetadata } from "./ActiveMetadata";
 
 const GRADIENT_ANGLES = [0, 72, 144, 216, 288];
@@ -23,7 +25,6 @@ interface ProjectCardProps {
 
 export function ProjectCard({
   project,
-  index,
   originalIndex,
   isActive,
   isWrapping,
@@ -33,19 +34,17 @@ export function ProjectCard({
   cardWidth = 640,
   mobile = false,
 }: ProjectCardProps) {
+  const router = useRouter();
   const { theme } = useTheme();
+  const interaction = useInteractionMode();
   const [gifLoaded, setGifLoaded] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [hoverIntent, setHoverIntent] = useState(false);
   const hoverComplete = useRef(false);
 
+  const isHoverable = interaction === "desktop";
   const bgAngle = GRADIENT_ANGLES[originalIndex % GRADIENT_ANGLES.length];
-  const showMetadata = isActive && !mobile && isHovered && !isDragging.current;
-
-  useEffect(() => {
-    if (!isActive) {
-      setIsHovered(false);
-    }
-  }, [isActive]);
+  const isHovered = hoverIntent && isActive;
+  const showMetadata = isActive && isHoverable && isHovered && !isDragging.current;
 
   useEffect(() => {
     if (showMetadata) {
@@ -116,16 +115,14 @@ export function ProjectCard({
         onClick={() => {
           if (wasDragged.current) return;
           if (isActive) {
-            if (!mobile && !hoverComplete.current) return;
-            if (project.projectUrl) {
-              window.open(project.projectUrl, "_blank", "noopener,noreferrer");
-            }
+            if (isHoverable && !hoverComplete.current) return;
+            router.push(`/work/${project.id}`);
           } else {
             onSelect();
           }
         }}
-        onMouseEnter={!mobile && isActive ? () => setIsHovered(true) : undefined}
-        onMouseLeave={!mobile && isActive ? () => setIsHovered(false) : undefined}
+        onMouseEnter={isHoverable && isActive ? () => setHoverIntent(true) : undefined}
+        onMouseLeave={isHoverable && isActive ? () => setHoverIntent(false) : undefined}
       >
         <div className="relative w-full h-full">
           {!project.backgroundImage && (

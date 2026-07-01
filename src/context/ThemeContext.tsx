@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
 import { ThemeTokens } from "@/types";
 import { lightTheme } from "@/theme/light";
 import { darkTheme } from "@/theme/dark";
@@ -19,36 +19,27 @@ const ThemeContext = createContext<ThemeContextValue>({
   toggleTheme: () => {},
 });
 
+function getInitialPref(): ThemeMode {
+  if (typeof window === "undefined") return "system";
+  const saved = localStorage.getItem("theme-preference") as ThemeMode | null;
+  if (saved === "system" || saved === "dark" || saved === "light") return saved;
+  const old = localStorage.getItem("theme");
+  if (old === "dark") return "dark";
+  if (old === "light") return "light";
+  return "system";
+}
+
+function getResolvedForPref(pref: ThemeMode): "light" | "dark" {
+  if (typeof window === "undefined") return "light";
+  if (pref === "dark") return "dark";
+  if (pref === "light") return "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [pref, setPref] = useState<ThemeMode>("system");
-  const [resolved, setResolved] = useState<"light" | "dark">("light");
-  const [initialized, setInitialized] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme-preference") as ThemeMode | null;
-    let effectivePref: ThemeMode;
-    if (saved === "system" || saved === "dark" || saved === "light") {
-      effectivePref = saved;
-    } else {
-      const old = localStorage.getItem("theme");
-      if (old === "dark") effectivePref = "dark";
-      else if (old === "light") effectivePref = "light";
-      else effectivePref = "system";
-    }
-
-    let effectiveResolved: "light" | "dark";
-    if (effectivePref === "dark") {
-      effectiveResolved = "dark";
-    } else if (effectivePref === "light") {
-      effectiveResolved = "light";
-    } else {
-      effectiveResolved = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    }
-
-    setPref(effectivePref);
-    setResolved(effectiveResolved);
-    setInitialized(true);
-  }, []);
+  const [pref, setPref] = useState<ThemeMode>(getInitialPref);
+  const [resolved, setResolved] = useState<"light" | "dark">(() => getResolvedForPref(getInitialPref()));
+  const [initialized] = useState(() => typeof window !== "undefined");
 
   useEffect(() => {
     if (!initialized) return;

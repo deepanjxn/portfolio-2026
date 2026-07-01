@@ -12,5 +12,8 @@ export const LOGO_FONT_SIZE = 112; // px
 export const GLOBAL_LETTER_SPACING = "-0.04em";
 export const MAX_BODY_WIDTH = 720; // px
 
+// Maximum content width — measured at Full HD (1920×1080) after OUTER_PADDING * 2
+export const MAX_CONTENT_WIDTH = 1840; // px
+
 // Border radius
 export const PILL_RADIUS = 9999; // px

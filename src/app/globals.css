@@ -22,6 +22,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    background-color: var(--color-surface);
   }
 
   body {
@@ -72,4 +73,13 @@
 /* Laptop compact layout — viewport <1440px wide OR <850px tall */
 [data-laptop] .text-\[16px\] {
   font-size: 14px !important;
+}
+
+@keyframes page-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-page-enter {
+  animation: page-enter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }

@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { ThemeScript } from "@/components/ThemeScript";
+import { PageContainer } from "@/components/PageContainer";
 import { siteConfig } from "@/config/site";
 
 const geist = Geist({
@@ -113,7 +114,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ThemeScript />
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <PageContainer>{children}</PageContainer>
+        </ThemeProvider>
       </body>
     </html>
   );

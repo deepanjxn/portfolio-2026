@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ProjectType } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
 import { useDensity } from "@/context/DensityContext";
+import { useInteractionMode } from "@/hooks/useInteractionMode";
 
 interface CategoryFiltersProps {
   activeCategory: ProjectType | "all";
@@ -21,6 +22,8 @@ const FILTERS: { id: ProjectType | "all"; label: string }[] = [
 export function CategoryFilters({ activeCategory, onCategoryChange, mobile = false }: CategoryFiltersProps) {
   const { theme } = useTheme();
   const density = useDensity();
+  const interaction = useInteractionMode();
+  const isHoverable = interaction === "desktop";
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const textColor = theme.text;
@@ -38,7 +41,7 @@ export function CategoryFilters({ activeCategory, onCategoryChange, mobile = fal
 
         const borderColor = isActive
           ? textColor
-          : isHovered && !mobile
+          : isHovered && isHoverable
             ? textColor50
             : textColor20;
 
@@ -46,8 +49,8 @@ export function CategoryFilters({ activeCategory, onCategoryChange, mobile = fal
           <motion.button
             key={filter.id}
             onClick={() => onCategoryChange(filter.id)}
-            onHoverStart={!mobile ? () => setHoveredId(filter.id) : undefined}
-            onHoverEnd={!mobile ? () => setHoveredId(null) : undefined}
+            onHoverStart={isHoverable ? () => setHoveredId(filter.id) : undefined}
+            onHoverEnd={isHoverable ? () => setHoveredId(null) : undefined}
             initial={false}
             animate={{
               backgroundColor: isActive ? theme.gray : "transparent",

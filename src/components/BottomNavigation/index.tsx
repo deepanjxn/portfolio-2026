@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/animations/variants";
 import { TabSwitch } from "@/components/TabSwitch";
@@ -13,12 +14,14 @@ import { BOTTOM_NAV_GRID } from "@/theme/tokens";
 const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view";
 
 interface BottomNavigationProps {
-  activeTab: TabType;
-  onTabChange: (tab: TabType) => void;
+  activeTab?: TabType;
+  onTabChange?: (tab: TabType) => void;
   mobile?: boolean;
+  back?: boolean;
 }
 
-export function BottomNavigation({ activeTab, onTabChange, mobile = false }: BottomNavigationProps) {
+export function BottomNavigation({ activeTab = "about", onTabChange = () => {}, mobile = false, back = false }: BottomNavigationProps) {
+  const router = useRouter();
   const { theme, toggleTheme, mode } = useTheme();
 
   const openResume = useCallback(() => {
@@ -70,9 +73,40 @@ export function BottomNavigation({ activeTab, onTabChange, mobile = false }: Bot
         )}
       </div>
 
-      {/* Center: Tab switch */}
+      {/* Center: Tab switch or Back button */}
       <div className="flex items-center justify-center">
-        {mobile ? (
+        {back ? (
+          mobile ? (
+            <button
+              onClick={() => router.back()}
+              className="flex items-center justify-center cursor-pointer"
+              style={{
+                padding: 14,
+                borderRadius: 9999,
+                backgroundColor: theme.gray,
+                border: "none",
+                lineHeight: 1,
+              }}
+            >
+              <Icon name="arrow_back" size={20} weight={400} />
+            </button>
+          ) : (
+            <button
+              onClick={() => router.back()}
+              className="text-[16px] font-medium cursor-pointer"
+              style={{
+                padding: "12px 24px",
+                borderRadius: 9999,
+                backgroundColor: theme.gray,
+                color: theme.text,
+                letterSpacing: "-0.04em",
+                border: "none",
+              }}
+            >
+              Back
+            </button>
+          )
+        ) : mobile ? (
           <MobileTabSwitch activeTab={activeTab} onTabChange={onTabChange} />
         ) : (
           <TabSwitch activeTab={activeTab} onTabChange={onTabChange} />

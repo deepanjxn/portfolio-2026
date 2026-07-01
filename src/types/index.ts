@@ -50,3 +50,23 @@ export interface Project {
   gallery?: GalleryItem[];
   projectUrl?: string;
 }
+
+export type SectionType = "full-image";
+
+export interface ProjectSection {
+  type: SectionType;
+  src: string;
+  alt: string;
+}
+
+export interface ProjectDetail {
+  slug: string;
+  title: string;
+  description: string;
+  hero: string;
+  sections: ProjectSection[];
+  externalUrl?: string;
+  responsibilities: string[];
+  contribution: string;
+  aboutProject: string;
+}

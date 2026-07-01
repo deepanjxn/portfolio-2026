@@ -42,7 +42,25 @@ export function ProjectCarousel({
     [projects]
   );
 
-  const [virtualIndex, setVirtualIndex] = useState(initialVirtualIndex);
+  const [virtualIndex, setVirtualIndex] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = sessionStorage.getItem("works_carousel_index");
+      if (saved) {
+        const parsed = parseInt(saved, 10);
+        if (!isNaN(parsed) && parsed >= n && parsed < 2 * n) {
+          sessionStorage.removeItem("works_carousel_index");
+          return parsed;
+        }
+      }
+    }
+    return initialVirtualIndex;
+  });
+
+  useEffect(() => {
+    if (virtualIndex >= n && virtualIndex < 2 * n) {
+      sessionStorage.setItem("works_carousel_index", String(virtualIndex));
+    }
+  }, [virtualIndex, n]);
 
   useEffect(() => {
     const el = containerRef.current;

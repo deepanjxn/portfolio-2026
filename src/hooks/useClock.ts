@@ -12,11 +12,15 @@ function formatTime(date: Date, timezone: string): string {
   });
 }
 
+function getInitialTime(): string {
+  if (typeof window === "undefined") return "--:--:--";
+  return formatTime(new Date(), "Asia/Kolkata");
+}
+
 export function useClock(): string {
-  const [time, setTime] = useState("--:--:--");
+  const [time, setTime] = useState(getInitialTime);
 
   useEffect(() => {
-    setTime(formatTime(new Date(), "Asia/Kolkata"));
     const id = setInterval(() => {
       setTime(formatTime(new Date(), "Asia/Kolkata"));
     }, 1000);
