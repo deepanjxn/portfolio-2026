@@ -11,8 +11,8 @@ const overlayStyle: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  background: "var(--bg)",
-  color: "var(--text)",
+  background: "var(--color-surface)",
+  color: "var(--color-text)",
 };
 
 const signatureStyle: React.CSSProperties = {

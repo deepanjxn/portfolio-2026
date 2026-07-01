@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { ThemeScript } from "@/components/ThemeScript";
 import { PageContainer } from "@/components/PageContainer";
+import { NavigationStateProvider } from "@/context/NavigationStateContext";
 import { siteConfig } from "@/config/site";
 
 const geist = Geist({
@@ -115,7 +116,9 @@ export default function RootLayout({
         />
         <ThemeScript />
         <ThemeProvider>
-          <PageContainer>{children}</PageContainer>
+          <NavigationStateProvider>
+            <PageContainer>{children}</PageContainer>
+          </NavigationStateProvider>
         </ThemeProvider>
       </body>
     </html>

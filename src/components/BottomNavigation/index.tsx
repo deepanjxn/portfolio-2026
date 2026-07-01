@@ -19,9 +19,10 @@ interface BottomNavigationProps {
   mobile?: boolean;
   back?: boolean;
   appearance?: "default" | "transparent";
+  onBack?: () => void;
 }
 
-export function BottomNavigation({ activeTab = "about", onTabChange = () => {}, mobile = false, back = false, appearance = "default" }: BottomNavigationProps) {
+export function BottomNavigation({ activeTab = "about", onTabChange = () => {}, mobile = false, back = false, appearance = "default", onBack }: BottomNavigationProps) {
   const router = useRouter();
   const { theme, toggleTheme, mode } = useTheme();
 
@@ -79,7 +80,7 @@ export function BottomNavigation({ activeTab = "about", onTabChange = () => {}, 
         {back ? (
           mobile ? (
             <button
-              onClick={() => router.back()}
+              onClick={() => (onBack ? onBack() : router.back())}
               className="flex items-center justify-center cursor-pointer"
               style={{
                 padding: 14,
@@ -93,7 +94,7 @@ export function BottomNavigation({ activeTab = "about", onTabChange = () => {}, 
             </button>
           ) : (
             <button
-              onClick={() => router.back()}
+              onClick={() => (onBack ? onBack() : router.back())}
               className="text-[16px] font-medium cursor-pointer"
               style={{
                 padding: "12px 24px",

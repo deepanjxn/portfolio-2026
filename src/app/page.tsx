@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import IntroScreen from "@/components/IntroScreen";
 import { Hero } from "@/components/Hero";
@@ -10,6 +10,7 @@ import { MobileWorks } from "@/components/MobileWorks";
 import { BottomNavigation } from "@/components/BottomNavigation";
 import { TabType } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
+import { useNavigationState } from "@/context/NavigationStateContext";
 import { DensityProvider } from "@/context/DensityContext";
 import { useResponsiveScale } from "@/hooks/useResponsiveScale";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
@@ -29,22 +30,8 @@ const slideTransition = {
 };
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<TabType>("about");
-  const [direction, setDirection] = useState(1);
-  const [showIntro, setShowIntro] = useState(true);
-
-  useEffect(() => {
-    const returning = sessionStorage.getItem("return_from_project");
-    if (returning === "true") {
-      sessionStorage.removeItem("return_from_project");
-      sessionStorage.removeItem("home_active_tab");
-      /* eslint-disable react-hooks/set-state-in-effect */
-      setShowIntro(false);
-      setActiveTab("works");
-      setDirection(1);
-      /* eslint-enable react-hooks/set-state-in-effect */
-    }
-  }, []);
+  const { activeTab, showIntro, setActiveTab, setShowIntro } = useNavigationState();
+  const [direction, setDirection] = useState(() => activeTab === "works" ? 1 : -1);
 
   const { theme, toggleTheme } = useTheme();
   const scale = useResponsiveScale();
@@ -52,12 +39,12 @@ export default function Home() {
 
   const handleIntroComplete = useCallback(() => {
     setShowIntro(false);
-  }, []);
+  }, [setShowIntro]);
 
   const handleTabChange = useCallback((tab: TabType) => {
     setDirection(tab === "works" ? 1 : -1);
     setActiveTab(tab);
-  }, []);
+  }, [setActiveTab]);
 
   const openResume = useCallback(() => {
     window.open(RESUME_URL, "_blank", "noopener,noreferrer");
@@ -79,7 +66,7 @@ export default function Home() {
         }}
         initial={showIntro ? { opacity: 0 } : undefined}
         animate={showIntro ? { opacity: 0 } : { opacity: 1 }}
-        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
       >
         <DensityProvider>
         <div className="flex-1 min-h-0 relative">
@@ -123,7 +110,7 @@ export default function Home() {
         style={{ position: "relative" }}
         initial={showIntro ? { opacity: 0 } : undefined}
         animate={showIntro ? { opacity: 0 } : { opacity: 1 }}
-        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
       >
         {activeTab === "about" ? <MobileLayout /> : <MobileWorks />}
         <div
