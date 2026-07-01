@@ -18,9 +18,10 @@ interface BottomNavigationProps {
   onTabChange?: (tab: TabType) => void;
   mobile?: boolean;
   back?: boolean;
+  appearance?: "default" | "transparent";
 }
 
-export function BottomNavigation({ activeTab = "about", onTabChange = () => {}, mobile = false, back = false }: BottomNavigationProps) {
+export function BottomNavigation({ activeTab = "about", onTabChange = () => {}, mobile = false, back = false, appearance = "default" }: BottomNavigationProps) {
   const router = useRouter();
   const { theme, toggleTheme, mode } = useTheme();
 

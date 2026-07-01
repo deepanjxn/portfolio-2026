@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import IntroScreen from "@/components/IntroScreen";
 import { Hero } from "@/components/Hero";
@@ -32,6 +32,20 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<TabType>("about");
   const [direction, setDirection] = useState(1);
   const [showIntro, setShowIntro] = useState(true);
+
+  useEffect(() => {
+    const returning = sessionStorage.getItem("return_from_project");
+    if (returning === "true") {
+      sessionStorage.removeItem("return_from_project");
+      sessionStorage.removeItem("home_active_tab");
+      /* eslint-disable react-hooks/set-state-in-effect */
+      setShowIntro(false);
+      setActiveTab("works");
+      setDirection(1);
+      /* eslint-enable react-hooks/set-state-in-effect */
+    }
+  }, []);
+
   const { theme, toggleTheme } = useTheme();
   const scale = useResponsiveScale();
   const scaledPadding = Math.round(OUTER_PADDING * scale);

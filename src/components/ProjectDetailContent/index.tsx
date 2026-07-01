@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { getProjectDetail } from "@/data/projects/registry";
 import { useTheme } from "@/context/ThemeContext";
@@ -8,12 +9,29 @@ import { PageContainer } from "@/components/PageContainer";
 import { Contained } from "@/components/Contained";
 import { ProjectRenderer } from "@/components/ProjectRenderer";
 import { BottomNavigation } from "@/components/BottomNavigation";
-import { OUTER_PADDING, COLUMN_GAP, HERO_BOTTOM_GAP } from "@/theme/tokens";
+import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
+import { OUTER_PADDING, COLUMN_GAP } from "@/theme/tokens";
+
+const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view";
 
 function ProjectDetailShell({ slug }: { slug: string }) {
   const project = getProjectDetail(slug);
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const density = useDensity();
+
+  const openResume = useCallback(() => {
+    window.open(RESUME_URL, "_blank", "noopener,noreferrer");
+  }, []);
+
+  useKeyboardShortcut("r", openResume);
+  useKeyboardShortcut("d", toggleTheme);
+
+  useEffect(() => {
+    return () => {
+      sessionStorage.setItem("return_from_project", "true");
+      sessionStorage.setItem("home_active_tab", "works");
+    };
+  }, []);
 
   if (!project) {
     return null;
@@ -23,15 +41,15 @@ function ProjectDetailShell({ slug }: { slug: string }) {
 
   return (
     <div
-      className="h-full w-full flex flex-col"
+      className="h-full w-full"
       style={{
         backgroundColor: theme.surface,
-        gap: density.spacing(HERO_BOTTOM_GAP),
+        position: "relative",
       }}
     >
       {/* Scrollable content */}
       <div
-        className="flex-1 min-h-0 overflow-y-auto"
+        className="h-full overflow-y-auto"
         style={{ padding: `0 ${gutter}px` }}
       >
         <PageContainer>
@@ -40,7 +58,7 @@ function ProjectDetailShell({ slug }: { slug: string }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col"
-            style={{ paddingTop: gutter }}
+            style={{ paddingTop: gutter, paddingBottom: 140 }}
           >
             {/* Header */}
             <Contained>
@@ -180,15 +198,19 @@ function ProjectDetailShell({ slug }: { slug: string }) {
         </PageContainer>
       </div>
 
-      {/* Bottom navigation */}
+      {/* Floating navigation */}
       <div
         style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
           padding: `0 ${gutter}px ${gutter}px`,
-          backgroundColor: theme.surface,
+          zIndex: 10,
         }}
       >
         <PageContainer>
-          <BottomNavigation back />
+          <BottomNavigation back appearance="transparent" />
         </PageContainer>
       </div>
     </div>
