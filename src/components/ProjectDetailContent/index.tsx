@@ -381,6 +381,73 @@ function ProjectDetailShell({ slug }: { slug: string }) {
               <EditorialContainer density={density} isLarge={isLarge}>
                 <ProjectRenderer sections={project.sections} />
               </EditorialContainer>
+
+              <div style={{ height: density.spacing(36) }} />
+
+              {/* Note from the Creator */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={SECTION_REVEAL}
+              >
+                <EditorialContainer density={density} isLarge={isLarge}>
+                  <Contained>
+                    <h2
+                      className="text-[24px] font-medium leading-none"
+                      style={{
+                        letterSpacing: "-0.04em",
+                        color: theme.text,
+                      }}
+                    >
+                      Note from the Creator
+                    </h2>
+                    <div style={{ height: density.spacing(32) }} />
+                    <p
+                      className="text-[16px] leading-[1.6] font-medium"
+                      style={{
+                        color: theme.text,
+                        letterSpacing: "-0.04em",
+                      }}
+                    >
+                      Hey,
+                    </p>
+                    <div style={{ height: density.spacing(24) }} />
+                    <p
+                      className="text-[16px] leading-[1.6] font-medium"
+                      style={{
+                        color: theme.text,
+                        letterSpacing: "-0.04em",
+                      }}
+                    >
+                      If you&rsquo;re reading this, then I just want you to know you&rsquo;re amazing :)
+                    </p>
+                    <div style={{ height: density.spacing(24) }} />
+                    <p
+                      className="text-[16px] leading-[1.6] font-medium"
+                      style={{
+                        color: theme.text,
+                        letterSpacing: "-0.04em",
+                      }}
+                    >
+                      At a time where no one has a slight bit of patience left, you took the time to scroll all the way to the end.
+                    </p>
+                    <div style={{ height: density.spacing(24) }} />
+                    <p
+                      className="text-[16px] leading-[1.6] font-medium"
+                      style={{
+                        color: theme.text,
+                        letterSpacing: "-0.04em",
+                      }}
+                    >
+                      Cheers,<br />
+                      Deepanjan
+                    </p>
+                  </Contained>
+                </EditorialContainer>
+              </motion.div>
+
+              <div style={{ height: density.spacing(64) }} />
             </motion.div>
           </PageContainer>
         </div>
