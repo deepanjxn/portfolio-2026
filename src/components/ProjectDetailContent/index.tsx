@@ -106,6 +106,10 @@ function ProjectDetailShell({ slug }: { slug: string }) {
     const content = contentRef.current;
     if (!wrapper || !content) return;
 
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+
+    if (!isFinePointer) return;
+
     const lenis = new Lenis({
       wrapper,
       content,
@@ -158,7 +162,18 @@ function ProjectDetailShell({ slug }: { slug: string }) {
         position: "relative",
       }}
     >
-      <div className="h-full" ref={wrapperRef} style={{ overflow: "hidden" }}>
+      <style>{`
+        [data-scroll-wrapper] {
+          overflow: hidden;
+        }
+        @media (pointer: coarse) {
+          [data-scroll-wrapper] {
+            overflow-y: auto;
+            overflow-x: hidden;
+          }
+        }
+      `}</style>
+      <div className="h-full" ref={wrapperRef} data-scroll-wrapper>
         {/* Sticky helper bar — desktop only */}
         {isLarge && (
           <div
