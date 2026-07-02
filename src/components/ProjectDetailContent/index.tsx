@@ -17,6 +17,21 @@ import Lenis from "lenis";
 
 const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view";
 
+function contactAboutProject(title: string) {
+  const subject = `Question about ${title} — From your portfolio`;
+  const body = `Hey Deepanjan,
+
+I just finished exploring your portfolio and reading through the "${title}" project.
+
+I'd love to learn more about your thinking, design decisions, and overall process behind it.
+
+Looking forward to hearing from you.
+
+Best,`;
+  const url = `https://mail.google.com/mail/?view=cm&fs=1&to=deepanjxn@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
 function useIsLargeScreen() {
   const [isLarge, setIsLarge] = useState(false);
 
@@ -38,7 +53,7 @@ function useIsLargeScreen() {
   return isLarge;
 }
 
-function HelperRow({ theme, density }: { theme: ReturnType<typeof useTheme>["theme"]; density: ReturnType<typeof useDensity> }) {
+function HelperRow({ theme, density, onKnowMore }: { theme: ReturnType<typeof useTheme>["theme"]; density: ReturnType<typeof useDensity>; onKnowMore: () => void }) {
   return (
     <div
       style={{
@@ -57,17 +72,21 @@ function HelperRow({ theme, density }: { theme: ReturnType<typeof useTheme>["the
       >
         {WORKS_DESCRIPTION}
       </p>
-      <p
-        className="text-[16px] font-medium leading-[1.6] shrink-0"
+      <button
+        onClick={onKnowMore}
+        className="text-[16px] font-medium leading-[1.6] shrink-0 cursor-pointer"
         style={{
           color: theme.text,
           letterSpacing: "-0.04em",
+          background: "none",
+          border: "none",
+          padding: 0,
         }}
       >
         {"Press "}
         <span style={{ color: theme.accent }}>{"\u0022K\u0022"}</span>
         {" Know More"}
-      </p>
+      </button>
     </div>
   );
 }
@@ -109,11 +128,11 @@ function ProjectDetailShell({ slug }: { slug: string }) {
     window.open(RESUME_URL, "_blank", "noopener,noreferrer");
   }, []);
 
-  const openProjectUrl = useCallback(() => {
-    if (project?.externalUrl) {
-      window.open(project.externalUrl, "_blank", "noopener,noreferrer");
+  const handleKnowMore = useCallback(() => {
+    if (project) {
+      contactAboutProject(project.title);
     }
-  }, [project?.externalUrl]);
+  }, [project]);
 
   const handleReturnToWorks = useCallback(() => {
     setActiveTab("works");
@@ -123,7 +142,7 @@ function ProjectDetailShell({ slug }: { slug: string }) {
 
   useKeyboardShortcut("r", openResume);
   useKeyboardShortcut("d", toggleTheme);
-  useKeyboardShortcut("k", openProjectUrl);
+  useKeyboardShortcut("k", handleKnowMore);
 
   if (!project) {
     return null;
@@ -151,7 +170,7 @@ function ProjectDetailShell({ slug }: { slug: string }) {
             }}
           >
             <PageContainer>
-              <HelperRow theme={theme} density={density} />
+              <HelperRow theme={theme} density={density} onKnowMore={handleKnowMore} />
             </PageContainer>
           </div>
         )}
