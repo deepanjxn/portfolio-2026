@@ -81,16 +81,21 @@ export function BottomNavigation({ activeTab = "about", onTabChange = () => {}, 
           mobile ? (
             <button
               onClick={() => (onBack ? onBack() : router.back())}
-              className="flex items-center justify-center cursor-pointer"
+              className="text-[16px] font-medium cursor-pointer"
               style={{
-                padding: 14,
+                padding: "8px 20px",
+                height: 48,
                 borderRadius: 9999,
                 backgroundColor: theme.gray,
+                color: theme.text,
+                letterSpacing: "-0.04em",
                 border: "none",
+                display: "flex",
+                alignItems: "center",
                 lineHeight: 1,
               }}
             >
-              <Icon name="arrow_back" size={20} weight={400} />
+              BACK
             </button>
           ) : (
             <button
