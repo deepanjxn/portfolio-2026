@@ -4,7 +4,7 @@ const BASE = "/projects/reevv";
 
 export const reevvProject: ProjectDetail = {
   slug: "reevv",
-  title: "Reevv Research",
+  title: "REEVV",
   description:
     "Reevv Research is a forward-thinking product and development studio specializing in blockchain engineering, AI-powered solutions, and modern web experiences. The project focused on designing a scalable digital platform that supports the complete product lifecycle—from discovery and strategy to development, deployment, and long-term maintenance—while delivering secure, production-ready Web3 applications.",
   hero: `${BASE}/hero.webp`,
@@ -15,6 +15,9 @@ export const reevvProject: ProjectDetail = {
   ],
   contribution:
     "Defined the overall product direction, established the visual system, and translated the brand into a scalable digital experience. The work focused on creating a modern Web3 presence that balanced technical credibility with a clean, approachable user experience.",
+  externalUrl: "https://www.linkedin.com/company/reevv-inc/",
+  outcome:
+    "The project established a complete visual identity for Reevv, including its logo, brand system and overall design language. Alongside the branding, a modern Web3 and AI-focused website was designed across desktop and mobile experiences, giving the company a distinctive digital presence that reflected its technical expertise and future-facing vision.",
   aboutProject:
     "Reevv Research is a Web3-focused product and development studio specializing in blockchain engineering, AI-powered solutions, and modern digital experiences. The project involved creating a cohesive brand identity and designing a complete marketing website that communicates the studio\u2019s expertise across blockchain development, AI, web platforms, and mobile experiences. The final outcome established a consistent visual language that supports the company\u2019s positioning while providing a scalable foundation for future growth.",
   sections: [

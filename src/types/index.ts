@@ -67,4 +67,5 @@ export interface ProjectDetail {
   responsibilities: string[];
   contribution: string;
   aboutProject: string;
+  outcome?: string;
 }

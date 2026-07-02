@@ -15,5 +15,9 @@ export const MAX_BODY_WIDTH = 720; // px
 // Maximum content width — measured at Full HD (1920×1080) after OUTER_PADDING * 2
 export const MAX_CONTENT_WIDTH = 1840; // px
 
+// Project Detail Layout
+export const PROJECT_DETAIL_TOP_SPACING = 156; // px — desktop top spacing before title
+export const PROJECT_DETAIL_GUTTER = 256; // px — desktop horizontal editorial gutters
+
 // Border radius
 export const PILL_RADIUS = 9999; // px

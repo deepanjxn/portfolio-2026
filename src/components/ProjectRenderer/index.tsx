@@ -25,7 +25,7 @@ export function ProjectRenderer({ sections }: ProjectRendererProps) {
             }
           })()}
           {index < sections.length - 1 && (
-            <div style={{ height: density.spacing(64) }} />
+            <div style={{ height: density.spacing(24) }} />
           )}
         </Fragment>
       ))}

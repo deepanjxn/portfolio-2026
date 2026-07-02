@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { getProjectDetail } from "@/data/projects/registry";
@@ -12,7 +12,9 @@ import { Contained } from "@/components/Contained";
 import { ProjectRenderer } from "@/components/ProjectRenderer";
 import { BottomNavigation } from "@/components/BottomNavigation";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
-import { OUTER_PADDING, COLUMN_GAP } from "@/theme/tokens";
+import { OUTER_PADDING, PROJECT_DETAIL_TOP_SPACING, PROJECT_DETAIL_GUTTER } from "@/theme/tokens";
+import { WORKS_DESCRIPTION } from "@/constants/works";
+import Lenis from "lenis";
 
 const PAGE_FADE = {
   duration: 0.65,
@@ -26,16 +28,113 @@ const SECTION_REVEAL = {
 
 const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view";
 
+function useIsLargeScreen() {
+  const [isLarge, setIsLarge] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsLarge(window.innerWidth >= 1024);
+    check();
+    let id: number;
+    const onResize = () => {
+      cancelAnimationFrame(id);
+      id = requestAnimationFrame(check);
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      cancelAnimationFrame(id);
+    };
+  }, []);
+
+  return isLarge;
+}
+
+function HelperRow({ theme, density }: { theme: ReturnType<typeof useTheme>["theme"]; density: ReturnType<typeof useDensity> }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+      }}
+    >
+      <p
+        className="text-[16px] leading-[1.6] font-medium"
+        style={{
+          color: theme.text,
+          letterSpacing: "-0.04em",
+          maxWidth: 720,
+        }}
+      >
+        {WORKS_DESCRIPTION}
+      </p>
+      <p
+        className="text-[16px] font-medium leading-[1.6] shrink-0"
+        style={{
+          color: theme.text,
+          letterSpacing: "-0.04em",
+        }}
+      >
+        {"Press "}
+        <span style={{ color: theme.accent }}>{"\u0022K\u0022"}</span>
+        {" Know More"}
+      </p>
+    </div>
+  );
+}
+
+function EditorialContainer({ children, density, isLarge }: { children: React.ReactNode; density: ReturnType<typeof useDensity>; isLarge: boolean }) {
+  const gutter = isLarge ? density.spacing(PROJECT_DETAIL_GUTTER) : 0;
+
+  return (
+    <div style={{ paddingLeft: gutter, paddingRight: gutter }}>
+      {children}
+    </div>
+  );
+}
+
 function ProjectDetailShell({ slug }: { slug: string }) {
   const project = getProjectDetail(slug);
   const { theme, toggleTheme } = useTheme();
   const density = useDensity();
   const router = useRouter();
+  const isLarge = useIsLargeScreen();
   const { setActiveTab, setShowIntro } = useNavigationState();
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    const content = contentRef.current;
+    if (!wrapper || !content) return;
+
+    const lenis = new Lenis({
+      wrapper,
+      content,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1,
+      autoRaf: true,
+    });
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   const openResume = useCallback(() => {
     window.open(RESUME_URL, "_blank", "noopener,noreferrer");
   }, []);
+
+  const openProjectUrl = useCallback(() => {
+    if (project?.externalUrl) {
+      window.open(project.externalUrl, "_blank", "noopener,noreferrer");
+    }
+  }, [project?.externalUrl]);
 
   const handleReturnToWorks = useCallback(() => {
     setActiveTab("works");
@@ -45,12 +144,14 @@ function ProjectDetailShell({ slug }: { slug: string }) {
 
   useKeyboardShortcut("r", openResume);
   useKeyboardShortcut("d", toggleTheme);
+  useKeyboardShortcut("k", openProjectUrl);
 
   if (!project) {
     return null;
   }
 
   const gutter = density.spacing(OUTER_PADDING);
+  const topSpacing = density.spacing(PROJECT_DETAIL_TOP_SPACING);
 
   return (
     <div
@@ -60,140 +161,88 @@ function ProjectDetailShell({ slug }: { slug: string }) {
         position: "relative",
       }}
     >
-      {/* Scrollable content */}
-      <div
-        className="h-full overflow-y-auto"
-        style={{ padding: `0 ${gutter}px` }}
-      >
-        <PageContainer>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={PAGE_FADE}
-            className="flex flex-col"
-            style={{ paddingTop: gutter, paddingBottom: 140 }}
+      <div className="h-full" ref={wrapperRef} style={{ overflow: "hidden" }}>
+        {/* Sticky helper bar — top counterpart of BottomNavigation */}
+        {isLarge && (
+          <div
+            style={{
+              position: "sticky",
+              top: 0,
+              zIndex: 20,
+              padding: `${gutter}px`,
+            }}
           >
-            {/* Header Section */}
+            <PageContainer>
+              <HelperRow theme={theme} density={density} />
+            </PageContainer>
+          </div>
+        )}
+
+        <div ref={contentRef}>
+          {isLarge && <div style={{ height: density.spacing(96) }} />}
+
+          <div style={{ padding: `0 ${gutter}px` }}>
+          <PageContainer>
             <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-48px" }}
-              transition={SECTION_REVEAL}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={PAGE_FADE}
+              className="flex flex-col"
+              style={{ paddingTop: topSpacing, paddingBottom: 140 }}
             >
-              <Contained>
-                <h1
-                  className="font-medium leading-none"
-                  style={{
-                    fontSize: density.font(112),
-                    letterSpacing: "-0.04em",
-                    color: theme.text,
-                  }}
-                >
-                  {project.title}
-                </h1>
+              {/* Project Title only */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={SECTION_REVEAL}
+              >
+                <EditorialContainer density={density} isLarge={isLarge}>
+                  <Contained>
+                    <h1
+                      className="font-medium leading-none"
+                      style={{
+                        fontSize: density.font(112),
+                        letterSpacing: "-0.04em",
+                        color: theme.text,
+                      }}
+                    >
+                      {project.title}
+                    </h1>
+                  </Contained>
+                </EditorialContainer>
+              </motion.div>
 
-                <div style={{ height: density.spacing(24) }} />
+              <div style={{ height: density.spacing(64) }} />
 
-                <p
-                  className="text-[16px] leading-[1.6] font-medium"
-                  style={{
-                    color: theme.text,
-                    letterSpacing: "-0.04em",
-                  }}
-                >
-                  {project.description}
-                </p>
-              </Contained>
-            </motion.div>
+              {/* Hero Image — aligned to editorial grid */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={SECTION_REVEAL}
+              >
+                <EditorialContainer density={density} isLarge={isLarge}>
+                  <img
+                    src={project.hero}
+                    alt={`${project.title} hero`}
+                    className="w-full h-auto block"
+                    draggable={false}
+                  />
+                </EditorialContainer>
+              </motion.div>
 
-            <div style={{ height: density.spacing(64) }} />
+              <div style={{ height: density.spacing(64) }} />
 
-            {/* Hero Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-48px" }}
-              transition={SECTION_REVEAL}
-            >
-              <img
-                src={project.hero}
-                alt={`${project.title} hero`}
-                className="w-full h-auto block"
-                draggable={false}
-              />
-            </motion.div>
-
-            <div style={{ height: density.spacing(64) }} />
-
-            {/* Editorial Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-48px" }}
-              transition={SECTION_REVEAL}
-            >
-              <Contained>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: density.spacing(COLUMN_GAP),
-                  }}
-                >
-                  {/* Left Column */}
-                  <div className="flex flex-col" style={{ gap: density.spacing(32) }}>
-                    <div>
-                      <h2
-                        className="text-[24px] font-medium leading-none"
-                        style={{
-                          letterSpacing: "-0.04em",
-                          color: theme.text,
-                        }}
-                      >
-                        Responsibilities
-                      </h2>
-                      <div style={{ height: density.spacing(16) }} />
-                      <div className="flex flex-col" style={{ gap: density.spacing(8) }}>
-                        {project.responsibilities.map((item, i) => (
-                          <p
-                            key={i}
-                            className="text-[16px] leading-[1.6] font-medium"
-                            style={{
-                              color: theme.text,
-                              letterSpacing: "-0.04em",
-                            }}
-                          >
-                            {`\u2022 ${item}`}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h2
-                        className="text-[24px] font-medium leading-none"
-                        style={{
-                          letterSpacing: "-0.04em",
-                          color: theme.text,
-                        }}
-                      >
-                        Contribution
-                      </h2>
-                      <div style={{ height: density.spacing(16) }} />
-                      <p
-                        className="text-[16px] leading-[1.6] font-medium"
-                        style={{
-                          color: theme.text,
-                          letterSpacing: "-0.04em",
-                        }}
-                      >
-                        {project.contribution}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Right Column */}
-                  <div>
+              {/* About the Project */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={SECTION_REVEAL}
+              >
+                <EditorialContainer density={density} isLarge={isLarge}>
+                  <Contained>
                     <h2
                       className="text-[24px] font-medium leading-none"
                       style={{
@@ -213,30 +262,141 @@ function ProjectDetailShell({ slug }: { slug: string }) {
                     >
                       {project.aboutProject}
                     </p>
-                  </div>
-                </div>
-              </Contained>
+                  </Contained>
+                </EditorialContainer>
+              </motion.div>
+
+              <div style={{ height: density.spacing(36) }} />
+
+              {/* Responsibilities */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={SECTION_REVEAL}
+              >
+                <EditorialContainer density={density} isLarge={isLarge}>
+                  <Contained>
+                    <h2
+                      className="text-[24px] font-medium leading-none"
+                      style={{
+                        letterSpacing: "-0.04em",
+                        color: theme.text,
+                      }}
+                    >
+                      Responsibilities
+                    </h2>
+                    <div style={{ height: density.spacing(16) }} />
+                    <div className="flex flex-col" style={{ gap: density.spacing(8) }}>
+                      {project.responsibilities.map((item, i) => (
+                        <p
+                          key={i}
+                          className="text-[16px] leading-[1.6] font-medium"
+                          style={{
+                            color: theme.text,
+                            letterSpacing: "-0.04em",
+                          }}
+                        >
+                          {`\u2022 ${item}`}
+                        </p>
+                      ))}
+                    </div>
+                  </Contained>
+                </EditorialContainer>
+              </motion.div>
+
+              <div style={{ height: density.spacing(36) }} />
+
+              {/* Contribution */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={SECTION_REVEAL}
+              >
+                <EditorialContainer density={density} isLarge={isLarge}>
+                  <Contained>
+                    <h2
+                      className="text-[24px] font-medium leading-none"
+                      style={{
+                        letterSpacing: "-0.04em",
+                        color: theme.text,
+                      }}
+                    >
+                      Contribution
+                    </h2>
+                    <div style={{ height: density.spacing(16) }} />
+                    <p
+                      className="text-[16px] leading-[1.6] font-medium"
+                      style={{
+                        color: theme.text,
+                        letterSpacing: "-0.04em",
+                      }}
+                    >
+                      {project.contribution}
+                    </p>
+                  </Contained>
+                </EditorialContainer>
+              </motion.div>
+
+              <div style={{ height: density.spacing(36) }} />
+
+              {/* Outcome */}
+              {project.outcome && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={SECTION_REVEAL}
+                >
+                  <EditorialContainer density={density} isLarge={isLarge}>
+                    <Contained>
+                      <h2
+                        className="text-[24px] font-medium leading-none"
+                        style={{
+                          letterSpacing: "-0.04em",
+                          color: theme.text,
+                        }}
+                      >
+                        Outcome
+                      </h2>
+                      <div style={{ height: density.spacing(16) }} />
+                      <p
+                        className="text-[16px] leading-[1.6] font-medium"
+                        style={{
+                          color: theme.text,
+                          letterSpacing: "-0.04em",
+                        }}
+                      >
+                        {project.outcome}
+                      </p>
+                    </Contained>
+                  </EditorialContainer>
+                </motion.div>
+              )}
+
+              {project.outcome && <div style={{ height: density.spacing(36) }} />}
+
+              {/* Gallery — aligned to editorial grid */}
+              <EditorialContainer density={density} isLarge={isLarge}>
+                <ProjectRenderer sections={project.sections} />
+              </EditorialContainer>
             </motion.div>
-
-            <div style={{ height: density.spacing(64) }} />
-
-            {/* Gallery */}
-            <ProjectRenderer sections={project.sections} />
-          </motion.div>
-        </PageContainer>
+          </PageContainer>
+        </div>
       </div>
+    </div>
 
-      {/* Floating navigation */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          padding: `0 ${gutter}px ${gutter}px`,
-          zIndex: 10,
-        }}
-      >
+    <div
+      style={{
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: `0 ${gutter}px ${gutter}px`,
+        zIndex: 10,
+      }}
+    >
         <PageContainer>
           <BottomNavigation back appearance="transparent" onBack={handleReturnToWorks} />
         </PageContainer>
