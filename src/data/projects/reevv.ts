@@ -7,7 +7,7 @@ export const reevvProject: ProjectDetail = {
   title: "REEVV",
   description:
     "Reevv Research is a forward-thinking product and development studio specializing in blockchain engineering, AI-powered solutions, and modern web experiences. The project focused on designing a scalable digital platform that supports the complete product lifecycle—from discovery and strategy to development, deployment, and long-term maintenance—while delivering secure, production-ready Web3 applications.",
-  hero: `${BASE}/hero.webp`,
+  hero: `${BASE}/animated.gif`,
   responsibilities: [
     "Led the visual identity for Reevv Research, including the logo and overall brand language.",
     "Designed responsive product experiences across desktop and mobile platforms.",
