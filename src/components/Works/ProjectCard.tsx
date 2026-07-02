@@ -116,7 +116,7 @@ export function ProjectCard({
           if (wasDragged.current) return;
           if (isActive) {
             if (isHoverable && !hoverComplete.current) return;
-            router.push(`/work/${project.id}`);
+            router.push(`/${project.id}`);
           } else {
             onSelect();
           }
