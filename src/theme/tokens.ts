@@ -19,5 +19,8 @@ export const MAX_CONTENT_WIDTH = 1840; // px
 export const PROJECT_DETAIL_TOP_SPACING = 156; // px — desktop top spacing before title
 export const PROJECT_DETAIL_GUTTER = 256; // px — desktop horizontal editorial gutters
 
+// Bottom navigation
+export const BACK_BUTTON_PADDING = "16px 28px"; // px — Back button container padding
+
 // Border radius
 export const PILL_RADIUS = 9999; // px

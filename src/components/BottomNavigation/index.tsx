@@ -9,7 +9,7 @@ import { MobileTabSwitch } from "@/components/MobileTabSwitch";
 import { Icon } from "@/components/Icon";
 import { TabType } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
-import { BOTTOM_NAV_GRID } from "@/theme/tokens";
+import { BOTTOM_NAV_GRID, BACK_BUTTON_PADDING } from "@/theme/tokens";
 
 const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view";
 
@@ -97,7 +97,7 @@ export function BottomNavigation({ activeTab = "about", onTabChange = () => {}, 
               onClick={() => (onBack ? onBack() : router.back())}
               className="text-[16px] font-medium cursor-pointer"
               style={{
-                padding: "12px 24px",
+                padding: BACK_BUTTON_PADDING,
                 borderRadius: 9999,
                 backgroundColor: theme.gray,
                 color: theme.text,
