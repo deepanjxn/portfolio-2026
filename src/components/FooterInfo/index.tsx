@@ -1,12 +1,13 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/animations/variants";
 import { Icon } from "@/components/Icon";
 import { FOOTER_INFO } from "@/constants";
 import { useTheme } from "@/context/ThemeContext";
 
-export function FooterInfo() {
+export const FooterInfo = memo(function FooterInfo() {
   const { theme } = useTheme();
   return (
     <motion.div
@@ -34,4 +35,4 @@ export function FooterInfo() {
       </div>
     </motion.div>
   );
-}
+});

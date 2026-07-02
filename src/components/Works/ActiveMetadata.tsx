@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { Project } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -8,7 +9,7 @@ interface ActiveMetadataProps {
   mobile?: boolean;
 }
 
-export function ActiveMetadata({ project, mobile }: ActiveMetadataProps) {
+export const ActiveMetadata = memo(function ActiveMetadata({ project, mobile }: ActiveMetadataProps) {
   const { theme } = useTheme();
 
   return (
@@ -34,4 +35,4 @@ export function ActiveMetadata({ project, mobile }: ActiveMetadataProps) {
       </span>
     </div>
   );
-}
+});

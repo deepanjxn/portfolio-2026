@@ -30,8 +30,6 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
   const [pathLength, setPathLength] = useState(0);
   const pathRef = useRef<SVGPathElement>(null);
 
-  console.log("[render] pathLength =", pathLength);
-
   useEffect(() => {
     const exitTimeout = setTimeout(() => {
       setPhase("exiting");
@@ -51,8 +49,6 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
   useLayoutEffect(() => {
     if (pathRef.current) {
       const measured = Math.round(pathRef.current.getTotalLength());
-      console.log("[useLayoutEffect] measured length =", measured);
-      console.log("[useLayoutEffect] before set — dasharray:", pathRef.current.style.strokeDasharray, "dashoffset:", pathRef.current.style.strokeDashoffset);
       setPathLength(measured);
     }
   }, []);

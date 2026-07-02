@@ -18,8 +18,6 @@ export interface MediaFrameProps {
   videoSrc?: string;
 }
 
-export type IconStyle = "outlined" | "rounded" | "sharp";
-
 export interface FooterInfoData {
   year: string;
   location: string;

@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/animations/variants";
 import { useTheme } from "@/context/ThemeContext";
@@ -7,7 +8,7 @@ import { MAX_BODY_WIDTH } from "@/theme/tokens";
 
 const linkClass = "underline underline-offset-2";
 
-export function ExperienceSummary() {
+export const ExperienceSummary = memo(function ExperienceSummary() {
   const { theme } = useTheme();
   return (
     <motion.p
@@ -97,4 +98,4 @@ export function ExperienceSummary() {
       , and more.
     </motion.p>
   );
-}
+});

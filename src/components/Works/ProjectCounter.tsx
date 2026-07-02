@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import { useDensity } from "@/context/DensityContext";
 
@@ -8,7 +9,7 @@ interface ProjectCounterProps {
   mobile?: boolean;
 }
 
-export function ProjectCounter({ count, mobile = false }: ProjectCounterProps) {
+export const ProjectCounter = memo(function ProjectCounter({ count, mobile = false }: ProjectCounterProps) {
   const { theme } = useTheme();
   const density = useDensity();
 
@@ -24,4 +25,4 @@ export function ProjectCounter({ count, mobile = false }: ProjectCounterProps) {
       {count} projects available
     </span>
   );
-}
+});

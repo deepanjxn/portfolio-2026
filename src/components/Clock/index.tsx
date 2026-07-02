@@ -1,11 +1,12 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/animations/variants";
 import { useClock } from "@/hooks/useClock";
 import { useTheme } from "@/context/ThemeContext";
 
-export function Clock({ marginTop = 24 }: { marginTop?: number }) {
+export const Clock = memo(function Clock({ marginTop = 24 }: { marginTop?: number }) {
   const time = useClock();
   const { theme } = useTheme();
 
@@ -25,4 +26,4 @@ export function Clock({ marginTop = 24 }: { marginTop?: number }) {
       <span style={{ color: theme.accent, marginLeft: 8 }}>IST</span>
     </motion.div>
   );
-}
+});

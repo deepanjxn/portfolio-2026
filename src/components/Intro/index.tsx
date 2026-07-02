@@ -1,12 +1,13 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/animations/variants";
 import { INTRO_TEXT } from "@/constants";
 import { useTheme } from "@/context/ThemeContext";
 import { MAX_BODY_WIDTH } from "@/theme/tokens";
 
-export function Intro({ marginTop = 24 }: { marginTop?: number }) {
+export const Intro = memo(function Intro({ marginTop = 24 }: { marginTop?: number }) {
   const { theme } = useTheme();
   return (
     <motion.p
@@ -24,4 +25,4 @@ export function Intro({ marginTop = 24 }: { marginTop?: number }) {
       {INTRO_TEXT}
     </motion.p>
   );
-}
+});
