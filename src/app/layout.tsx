@@ -6,6 +6,7 @@ import { ThemeScript } from "@/components/ThemeScript";
 import { PageContainer } from "@/components/PageContainer";
 import { NavigationStateProvider } from "@/context/NavigationStateContext";
 import { siteConfig } from "@/config/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -120,6 +121,7 @@ export default function RootLayout({
             <PageContainer>{children}</PageContainer>
           </NavigationStateProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
