@@ -91,10 +91,8 @@ export const PROJECTS: Project[] = [
     title: "PaperClip",
     type: "projects",
     categories: ["Mobile App", "Product Design"],
-    backgroundImage: `${BASE}/paperclip/background.jpg`,
-    thumbnailImage: `${BASE}/paperclip/thumbnail.jpg`,
+    backgroundImage: `${BASE}/paperclip/background.webp`,
     animatedPreview: `${BASE}/paperclip/animated.gif`,
-    heroImage: `${BASE}/paperclip/hero.jpg`,
     shortDescription:
       "Mobile app design for a document intelligence platform. Focused on simplicity and speed in high-volume workflows.",
     longDescription:
@@ -102,10 +100,6 @@ export const PROJECTS: Project[] = [
     year: 2023,
     role: "Mobile Product Designer",
     client: "PaperClip HQ",
-    gallery: [
-      { src: `${BASE}/paperclip/gallery/01.jpg`, alt: "PaperClip mobile scanner" },
-      { src: `${BASE}/paperclip/gallery/02.jpg`, alt: "PaperClip document editor" },
-    ],
     projectUrl: "https://www.linkedin.com/company/papercliphq/",
   },
   {
