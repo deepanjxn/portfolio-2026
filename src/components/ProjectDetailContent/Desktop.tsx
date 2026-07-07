@@ -5,6 +5,7 @@ import { ProjectDetail } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
 import { useDensity } from "@/context/DensityContext";
 import { ProjectRenderer } from "@/components/ProjectRenderer";
+import { HeroMedia } from "@/components/HeroMedia";
 import { Contained } from "@/components/Contained";
 import { PageContainer } from "@/components/PageContainer";
 import { OUTER_PADDING, PROJECT_DETAIL_TOP_SPACING, PROJECT_DETAIL_GUTTER } from "@/theme/tokens";
@@ -85,12 +86,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
             {/* Hero Image */}
             <SectionReveal>
               <EditorialContainer density={density}>
-                <img
-                  src={project.hero}
-                  alt={`${project.title} hero`}
-                  className="w-full h-auto block"
-                  draggable={false}
-                />
+                <HeroMedia project={project} />
               </EditorialContainer>
             </SectionReveal>
 
@@ -203,15 +199,35 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                       Outcome
                     </h2>
                     <div style={{ height: density.spacing(16) }} />
-                    <p
-                      className="text-[16px] leading-[1.6] font-medium"
-                      style={{
-                        color: theme.text,
-                        letterSpacing: "-0.04em",
-                      }}
-                    >
-                      {project.outcome}
-                    </p>
+                    {typeof project.outcome === "string" ? (
+                      <p
+                        className="text-[16px] leading-[1.6] font-medium"
+                        style={{
+                          color: theme.text,
+                          letterSpacing: "-0.04em",
+                        }}
+                      >
+                        {project.outcome}
+                      </p>
+                    ) : (
+                      <ul
+                        className="flex flex-col"
+                        style={{ gap: density.spacing(8) }}
+                      >
+                        {project.outcome.map((item, i) => (
+                          <li
+                            key={i}
+                            className="text-[16px] leading-[1.6] font-medium"
+                            style={{
+                              color: theme.text,
+                              letterSpacing: "-0.04em",
+                            }}
+                          >
+                            {`\u2022 ${item}`}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </Contained>
                 </EditorialContainer>
               </SectionReveal>

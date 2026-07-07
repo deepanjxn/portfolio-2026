@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ProjectDetail } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
 import { ProjectRenderer } from "@/components/ProjectRenderer";
+import { HeroMedia } from "@/components/HeroMedia";
 
 const SECTION_REVEAL = {
   duration: 0.5,
@@ -61,12 +62,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
 
       {/* Hero — full width */}
       <SectionReveal>
-        <img
-          src={project.hero}
-          alt={`${project.title} hero`}
-          className="w-full h-auto block"
-          draggable={false}
-        />
+        <HeroMedia project={project} />
       </SectionReveal>
 
       <div style={{ height: 32 }} />
@@ -171,15 +167,32 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
               Outcome
             </h2>
             <div style={{ height: 16 }} />
-            <p
-              className="text-[16px] leading-[1.6] font-medium"
-              style={{
-                color: theme.text,
-                letterSpacing: "-0.04em",
-              }}
-            >
-              {project.outcome}
-            </p>
+            {typeof project.outcome === "string" ? (
+              <p
+                className="text-[16px] leading-[1.6] font-medium"
+                style={{
+                  color: theme.text,
+                  letterSpacing: "-0.04em",
+                }}
+              >
+                {project.outcome}
+              </p>
+            ) : (
+              <ul className="flex flex-col" style={{ gap: 8 }}>
+                {project.outcome.map((item, i) => (
+                  <li
+                    key={i}
+                    className="text-[16px] leading-[1.6] font-medium"
+                    style={{
+                      color: theme.text,
+                      letterSpacing: "-0.04em",
+                    }}
+                  >
+                    {`\u2022 ${item}`}
+                  </li>
+                ))}
+              </ul>
+            )}
           </SectionReveal>
         </div>
       )}
