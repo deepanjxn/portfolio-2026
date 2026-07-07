@@ -152,6 +152,7 @@ export function ProjectCard({
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ padding: mobile ? "24px" : "48px" }}>
             {isActive && project.animatedPreview ? (
               <img
+                key="active-media"
                 src={gifLoaded ? project.animatedPreview : (project.thumbnailImage || project.backgroundImage || undefined)}
                 alt={project.title}
                 className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}
@@ -161,6 +162,7 @@ export function ProjectCard({
               />
             ) : project.thumbnailImage || project.backgroundImage ? (
               <img
+                key="inactive-media"
                 src={project.thumbnailImage || project.backgroundImage}
                 alt={project.title}
                 className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}

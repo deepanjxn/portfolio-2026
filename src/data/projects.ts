@@ -92,6 +92,7 @@ export const PROJECTS: Project[] = [
     type: "projects",
     categories: ["Mobile App", "Product Design"],
     backgroundImage: `${BASE}/paperclip/background.webp`,
+    thumbnailImage: `${BASE}/paperclip/thumbnail.webp`,
     animatedPreview: `${BASE}/paperclip/animated.gif`,
     shortDescription:
       "Mobile app design for a document intelligence platform. Focused on simplicity and speed in high-volume workflows.",
