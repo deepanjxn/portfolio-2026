@@ -16,6 +16,7 @@ export interface MediaFrameProps {
   src?: string;
   alt?: string;
   videoSrc?: string;
+  vimeoId?: string;
 }
 
 export interface FooterInfoData {

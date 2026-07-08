@@ -56,7 +56,7 @@ export function MobileLayout() {
         <MediaFrame
           src="/images/portrait.png"
           alt="Deepanjan Sen portrait"
-          videoSrc="/video/deepanjan-sen-portfolio.mp4"
+          vimeoId="1208018575"
         />
       </motion.div>
     </motion.div>

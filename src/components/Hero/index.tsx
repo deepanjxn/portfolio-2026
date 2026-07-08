@@ -76,7 +76,7 @@ export function Hero() {
         className="h-full flex items-start justify-start self-stretch overflow-hidden"
         {...(isCompact ? { "data-laptop": "" } : {})}
       >
-        <MediaFrame src="/images/portrait.png" alt="Deepanjan Sen portrait" videoSrc="/video/deepanjan-sen-portfolio.mp4" />
+        <MediaFrame src="/images/portrait.png" alt="Deepanjan Sen portrait" vimeoId="1208018575" />
       </div>
     </div>
   );
