@@ -6,7 +6,7 @@ export const paperclipProject: ProjectDetail = {
   slug: "paperclip",
   title: "PAPERCLIP",
   description:
-    "Mobile app design for a document intelligence platform. Focused on simplicity and speed in high-volume workflows.",
+    "Mobile app design for a document intelligence platform. Focused on simplicity and speed in high volume workflows.",
   hero: `${BASE}/background.webp`,
   heroType: "vimeo",
   heroVideoId: "1085649092",
@@ -14,22 +14,22 @@ export const paperclipProject: ProjectDetail = {
     "Product strategy and UX direction",
     "User research, interviews, and synthesis",
     "Information architecture",
-    "End-to-end interaction design",
-    "Wireframing and high-fidelity UI design",
+    "End to end interaction design",
+    "Wireframing and high fidelity UI design",
     "Design system and component library",
     "Developer handoff and design validation",
   ],
   contribution:
-    "One of the biggest opportunities wasn\u2019t adding new features\u2014it was simplifying the overall experience. I redesigned the core marketplace journey by reducing unnecessary decision points, introducing AI-assisted listing, improving trust throughout the buying experience, and creating a more consistent interaction model across the product. The focus was always on helping users complete tasks faster without sacrificing confidence or control.",
+    "One of the biggest opportunities wasn\u2019t adding new features. It was simplifying the overall experience. I redesigned the core marketplace journey by reducing unnecessary decision points, introducing AI assisted listing, improving trust throughout the buying experience, and creating a more consistent interaction model across the product. The focus was always on helping users complete tasks faster without sacrificing confidence or control.",
   externalUrl: "https://www.linkedin.com/company/papercliphq/",
   outcome: [
-    "Listing time reduced by 85% through AI-assisted listing.",
+    "Listing time reduced by 85% through AI assisted listing.",
     "Achieved a 4.9\u2605 App Store rating.",
-    "Every participant in usability testing successfully completed the full listing-to-shipping workflow.",
+    "Every participant in usability testing successfully completed the full listing to shipping workflow.",
     "Users consistently highlighted the platform\u2019s speed, simplicity, and premium experience as its biggest strengths.",
   ],
   aboutProject:
-    "Paperclip was built to rethink how people buy and sell second-hand goods. While most resale platforms still rely on long listing forms, manual pricing, and fragmented shipping experiences, Paperclip uses AI to remove much of that friction. The goal wasn\u2019t simply to redesign another marketplace\u2014it was to create an experience where listing an item could feel almost effortless while maintaining the trust and quality expected from a premium marketplace.",
+    "Paperclip was built to rethink how people buy and sell second-hand goods. While most resale platforms still rely on long listing forms, manual pricing, and fragmented shipping experiences, Paperclip uses AI to remove much of that friction. The goal wasn\u2019t simply to redesign another marketplace. It was to create an experience where listing an item could feel almost effortless while maintaining the trust and quality expected from a premium marketplace.",
   sections: [
     { type: "full-image", src: `${BASE}/gallery-1.webp`, alt: "Paperclip overview" },
     {
@@ -54,7 +54,7 @@ export const paperclipProject: ProjectDetail = {
     {
       type: "editorial",
       title: "Competitive Analysis",
-      body: "Instead of benchmarking visual design alone, I compared how each competitor handled the complete resale journey\u2014from creating a listing to completing a sale. This made it easier to identify opportunities where Paperclip could differentiate itself through AI-powered automation, a cleaner interface, and a more connected end-to-end experience.",
+      body: "Instead of benchmarking visual design alone, I compared how each competitor handled the complete resale journey, from creating a listing to completing a sale. This made it easier to identify opportunities where Paperclip could differentiate itself through AI powered automation, a cleaner interface, and a more connected end to end experience.",
     },
     { type: "full-image", src: `${BASE}/gallery-6.webp`, alt: "Paperclip interaction design" },
     { type: "full-image", src: `${BASE}/animated.gif`, alt: "Paperclip hero animation" },
@@ -68,7 +68,7 @@ export const paperclipProject: ProjectDetail = {
     {
       type: "editorial",
       title: "User Persona & Empathy Map",
-      body: "The persona wasn\u2019t created as a documentation exercise\u2014it became a reference point throughout the project. By grounding product decisions around a single representative user, the team could evaluate new ideas against real goals, motivations, and pain points rather than personal opinions.",
+      body: "The persona wasn\u2019t created as a documentation exercise. It became a reference point throughout the project. By grounding product decisions around a single representative user, the team could evaluate new ideas against real goals, motivations, and pain points rather than personal opinions.",
     },
     { type: "full-image", src: `${BASE}/gallery-9.webp`, alt: "Paperclip component library" },
     { type: "full-image", src: `${BASE}/gallery-10.webp`, alt: "Paperclip responsive layout" },
@@ -83,14 +83,14 @@ export const paperclipProject: ProjectDetail = {
     {
       type: "editorial",
       title: "Low-Fidelity Wireframes",
-      body: "Low-fidelity exploration allowed ideas to evolve quickly before visual design became a constraint. This stage focused on validating structure, navigation, and interaction patterns, making it easier to iterate with stakeholders while keeping discussions centred on usability rather than aesthetics.",
+      body: "Low fidelity exploration allowed ideas to evolve quickly before visual design became a constraint. This stage focused on validating structure, navigation, and interaction patterns, making it easier to iterate with stakeholders while keeping discussions centred on usability rather than aesthetics.",
     },
     { type: "full-image", src: `${BASE}/gallery-14.webp`, alt: "Paperclip design system" },
     { type: "full-image", src: `${BASE}/gallery-15.webp`, alt: "Paperclip final prototype" },
     {
       type: "editorial",
       title: "High-Fidelity Designs",
-      body: "Once the workflow had been validated, I translated the concepts into production-ready designs. The focus shifted toward interaction details, accessibility, consistency, and preparing the experience for engineering handoff.",
+      body: "Once the workflow had been validated, I translated the concepts into production ready designs. The focus shifted toward interaction details, accessibility, consistency, and preparing the experience for engineering handoff.",
     },
     { type: "full-image", src: `${BASE}/gallery-16.webp`, alt: "Paperclip brand application" },
     { type: "full-image", src: `${BASE}/gallery-17.webp`, alt: "Paperclip presentation" },
