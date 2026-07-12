@@ -35,5 +35,6 @@ export const reevvProject: ProjectDetail = {
     { type: "full-image", src: `${BASE}/gallery-12.webp`, alt: "Reevv design system token" },
     { type: "full-image", src: `${BASE}/gallery-13.webp`, alt: "Reevv final presentation" },
     { type: "full-image", src: `${BASE}/gallery-14.webp`, alt: "Reevv project summary" },
+    { type: "full-image", src: `${BASE}/outro.webp`, alt: "Reevv outro" },
   ],
 };

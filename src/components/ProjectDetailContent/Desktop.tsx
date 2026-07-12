@@ -97,7 +97,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
               <EditorialContainer density={density}>
                 <Contained>
                   <h2
-                    className="text-[24px] font-medium leading-none"
+                    className="text-[18px] font-medium leading-none"
                     style={{
                       letterSpacing: "-0.04em",
                       color: theme.text,
@@ -111,6 +111,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                     style={{
                       color: theme.text,
                       letterSpacing: "-0.04em",
+                      opacity: 0.5,
                     }}
                   >
                     {project.aboutProject}
@@ -126,7 +127,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
               <EditorialContainer density={density}>
                 <Contained>
                   <h2
-                    className="text-[24px] font-medium leading-none"
+                    className="text-[18px] font-medium leading-none"
                     style={{
                       letterSpacing: "-0.04em",
                       color: theme.text,
@@ -135,20 +136,29 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                     Responsibilities
                   </h2>
                   <div style={{ height: density.spacing(16) }} />
-                  <div className="flex flex-col" style={{ gap: density.spacing(8) }}>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: density.spacing(8),
+                      listStyleType: "disc",
+                      paddingLeft: density.spacing(24),
+                    }}
+                  >
                     {project.responsibilities.map((item, i) => (
-                      <p
+                      <li
                         key={i}
                         className="text-[16px] leading-[1.6] font-medium"
                         style={{
-                          color: theme.text,
-                          letterSpacing: "-0.04em",
-                        }}
+                        color: theme.text,
+                        letterSpacing: "-0.04em",
+                        opacity: 0.5,
+                      }}
                       >
-                        {`\u2022 ${item}`}
-                      </p>
+                        {item}
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </Contained>
               </EditorialContainer>
             </SectionReveal>
@@ -160,7 +170,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
               <EditorialContainer density={density}>
                 <Contained>
                   <h2
-                    className="text-[24px] font-medium leading-none"
+                    className="text-[18px] font-medium leading-none"
                     style={{
                       letterSpacing: "-0.04em",
                       color: theme.text,
@@ -174,6 +184,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                     style={{
                       color: theme.text,
                       letterSpacing: "-0.04em",
+                      opacity: 0.5,
                     }}
                   >
                     {project.contribution}
@@ -190,7 +201,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                 <EditorialContainer density={density}>
                   <Contained>
                     <h2
-                      className="text-[24px] font-medium leading-none"
+                      className="text-[18px] font-medium leading-none"
                       style={{
                         letterSpacing: "-0.04em",
                         color: theme.text,
@@ -203,16 +214,22 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                       <p
                         className="text-[16px] leading-[1.6] font-medium"
                         style={{
-                          color: theme.text,
-                          letterSpacing: "-0.04em",
-                        }}
+                        color: theme.text,
+                        letterSpacing: "-0.04em",
+                        opacity: 0.5,
+                      }}
                       >
                         {project.outcome}
                       </p>
                     ) : (
                       <ul
-                        className="flex flex-col"
-                        style={{ gap: density.spacing(8) }}
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: density.spacing(8),
+                          listStyleType: "disc",
+                          paddingLeft: density.spacing(24),
+                        }}
                       >
                         {project.outcome.map((item, i) => (
                           <li
@@ -221,9 +238,10 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                             style={{
                               color: theme.text,
                               letterSpacing: "-0.04em",
+                              opacity: 0.5,
                             }}
                           >
-                            {`\u2022 ${item}`}
+                            {item}
                           </li>
                         ))}
                       </ul>
@@ -247,7 +265,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
               <EditorialContainer density={density}>
                 <Contained>
                   <h2
-                    className="text-[24px] font-medium leading-none"
+                    className="text-[18px] font-medium leading-none"
                     style={{
                       letterSpacing: "-0.04em",
                       color: theme.text,
@@ -255,12 +273,13 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                   >
                     Note from the Creator
                   </h2>
-                  <div style={{ height: density.spacing(32) }} />
+                  <div style={{ height: density.spacing(16) }} />
                   <p
                     className="text-[16px] leading-[1.6] font-medium"
                     style={{
                       color: theme.text,
                       letterSpacing: "-0.04em",
+                      opacity: 0.5,
                     }}
                   >
                     Hey,
@@ -271,6 +290,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                     style={{
                       color: theme.text,
                       letterSpacing: "-0.04em",
+                      opacity: 0.5,
                     }}
                   >
                     If you&rsquo;re reading this, then I just want you to know you&rsquo;re amazing :)
@@ -281,6 +301,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                     style={{
                       color: theme.text,
                       letterSpacing: "-0.04em",
+                      opacity: 0.5,
                     }}
                   >
                     At a time where no one has a slight bit of patience left, you took the time to scroll all the way to the end.
@@ -291,6 +312,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                     style={{
                       color: theme.text,
                       letterSpacing: "-0.04em",
+                      opacity: 0.5,
                     }}
                   >
                     Cheers,<br />
@@ -300,7 +322,7 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
               </EditorialContainer>
             </SectionReveal>
 
-            <div style={{ height: density.spacing(64) }} />
+            <div style={{ height: density.spacing(36) }} />
           </motion.div>
         </PageContainer>
       </div>

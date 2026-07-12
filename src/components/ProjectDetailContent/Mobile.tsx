@@ -51,6 +51,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
             style={{
               color: theme.text,
               letterSpacing: "-0.04em",
+              opacity: 0.5,
             }}
           >
             {project.description}
@@ -71,7 +72,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
       <div style={{ padding: "0 16px" }}>
         <SectionReveal>
           <h2
-            className="text-[20px] font-medium leading-none"
+            className="text-[16px] font-medium leading-none"
             style={{
               letterSpacing: "-0.04em",
               color: theme.text,
@@ -85,6 +86,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
             style={{
               color: theme.text,
               letterSpacing: "-0.04em",
+              opacity: 0.5,
             }}
           >
             {project.aboutProject}
@@ -98,7 +100,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
       <div style={{ padding: "0 16px" }}>
         <SectionReveal>
           <h2
-            className="text-[20px] font-medium leading-none"
+            className="text-[16px] font-medium leading-none"
             style={{
               letterSpacing: "-0.04em",
               color: theme.text,
@@ -107,20 +109,29 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
             Responsibilities
           </h2>
           <div style={{ height: 16 }} />
-          <div className="flex flex-col" style={{ gap: 8 }}>
+          <ul
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
+              listStyleType: "disc",
+              paddingLeft: 24,
+            }}
+          >
             {project.responsibilities.map((item, i) => (
-              <p
+              <li
                 key={i}
                 className="text-[16px] leading-[1.6] font-medium"
                 style={{
                   color: theme.text,
                   letterSpacing: "-0.04em",
+                  opacity: 0.5,
                 }}
               >
-                {`\u2022 ${item}`}
-              </p>
+                {item}
+              </li>
             ))}
-          </div>
+          </ul>
         </SectionReveal>
       </div>
 
@@ -130,7 +141,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
       <div style={{ padding: "0 16px" }}>
         <SectionReveal>
           <h2
-            className="text-[20px] font-medium leading-none"
+            className="text-[16px] font-medium leading-none"
             style={{
               letterSpacing: "-0.04em",
               color: theme.text,
@@ -144,6 +155,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
             style={{
               color: theme.text,
               letterSpacing: "-0.04em",
+              opacity: 0.5,
             }}
           >
             {project.contribution}
@@ -158,7 +170,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
         <div style={{ padding: "0 16px" }}>
           <SectionReveal>
             <h2
-              className="text-[20px] font-medium leading-none"
+              className="text-[16px] font-medium leading-none"
               style={{
                 letterSpacing: "-0.04em",
                 color: theme.text,
@@ -173,12 +185,21 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
                 style={{
                   color: theme.text,
                   letterSpacing: "-0.04em",
+                  opacity: 0.5,
                 }}
               >
                 {project.outcome}
               </p>
             ) : (
-              <ul className="flex flex-col" style={{ gap: 8 }}>
+              <ul
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                  listStyleType: "disc",
+                  paddingLeft: 24,
+                }}
+              >
                 {project.outcome.map((item, i) => (
                   <li
                     key={i}
@@ -188,7 +209,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
                       letterSpacing: "-0.04em",
                     }}
                   >
-                    {`\u2022 ${item}`}
+                    {item}
                   </li>
                 ))}
               </ul>
@@ -208,7 +229,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
       <div style={{ padding: "0 16px" }}>
         <SectionReveal>
           <h2
-            className="text-[20px] font-medium leading-none"
+            className="text-[16px] font-medium leading-none"
             style={{
               letterSpacing: "-0.04em",
               color: theme.text,
@@ -216,12 +237,13 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
           >
             Note from the Creator
           </h2>
-          <div style={{ height: 32 }} />
+          <div style={{ height: 16 }} />
           <p
             className="text-[16px] leading-[1.6] font-medium"
             style={{
               color: theme.text,
               letterSpacing: "-0.04em",
+              opacity: 0.5,
             }}
           >
             Hey,
@@ -232,6 +254,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
             style={{
               color: theme.text,
               letterSpacing: "-0.04em",
+              opacity: 0.5,
             }}
           >
             If you&rsquo;re reading this, then I just want you to know you&rsquo;re amazing :)
@@ -242,6 +265,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
             style={{
               color: theme.text,
               letterSpacing: "-0.04em",
+              opacity: 0.5,
             }}
           >
             At a time where no one has a slight bit of patience left, you took the time to scroll all the way to the end.
@@ -252,6 +276,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
             style={{
               color: theme.text,
               letterSpacing: "-0.04em",
+              opacity: 0.5,
             }}
           >
             Cheers,<br />
@@ -260,7 +285,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
         </SectionReveal>
       </div>
 
-      <div style={{ height: 64 }} />
+      <div style={{ height: 24 }} />
     </div>
   );
 }

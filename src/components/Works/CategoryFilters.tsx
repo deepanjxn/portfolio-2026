@@ -15,7 +15,6 @@ interface CategoryFiltersProps {
 
 const FILTERS: { id: ProjectType | "all"; label: string }[] = [
   { id: "projects", label: "Projects" },
-  { id: "case-studies", label: "Case Studies" },
   { id: "labs", label: "Labs" },
 ];
 

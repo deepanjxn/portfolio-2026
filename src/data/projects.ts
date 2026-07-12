@@ -70,23 +70,6 @@ export const PROJECTS: Project[] = [
     projectUrl: "https://www.linkedin.com/company/perfios/",
   },
   {
-    id: "reevv",
-    title: "Reevv Research",
-    type: "projects",
-    categories: ["BRAND IDENTITY, WEB DESIGN"],
-    backgroundImage: `${BASE}/reevv/background.png`,
-    thumbnailImage: `${BASE}/reevv/thumbnail.png`,
-    animatedPreview: `${BASE}/reevv/animated.gif`,
-    shortDescription:
-      "Product design for a B2B research and analytics platform. Built scalable component libraries and research tooling.",
-    longDescription:
-      "Designed the end-to-end product experience for a B2B research and analytics platform. Built scalable component libraries, research tooling, and collaborative workflows that empowered enterprise research teams.",
-    year: 2023,
-    role: "Product Designer",
-    client: "Reevv Inc.",
-    projectUrl: "https://www.linkedin.com/company/reevv-inc/",
-  },
-  {
     id: "paperclip",
     title: "PaperClip",
     type: "projects",
@@ -102,6 +85,45 @@ export const PROJECTS: Project[] = [
     role: "Mobile Product Designer",
     client: "PaperClip HQ",
     projectUrl: "https://www.linkedin.com/company/papercliphq/",
+  },
+  {
+    id: "filterpixel",
+    title: "FilterPixel",
+    type: "projects",
+    categories: ["AI", "SaaS", "Photo Editing"],
+    backgroundImage: `${BASE}/filterpixel/background.webp`,
+    thumbnailImage: `${BASE}/filterpixel/thumbnail.webp`,
+    animatedPreview: `${BASE}/filterpixel/animated.gif`,
+    heroImage: `${BASE}/filterpixel/animated.gif`,
+    shortDescription:
+      "A comprehensive case study covering the end-to-end product design process for an AI-powered photo editing platform.",
+    longDescription:
+      "Designed the end-to-end product experience for an AI-powered photo editing platform. Focused on intelligent automation, intuitive workflows, and a clean visual language that made professional-grade editing accessible to everyone.",
+    year: 2025,
+    role: "Product Designer",
+    client: "FilterPixel",
+    gallery: [
+      { src: `${BASE}/filterpixel/gallery/01.jpg`, alt: "FilterPixel dashboard" },
+      { src: `${BASE}/filterpixel/gallery/02.jpg`, alt: "FilterPixel editor" },
+    ],
+    projectUrl: "https://filterpixel.com/",
+  },
+  {
+    id: "reevv",
+    title: "Reevv Research",
+    type: "projects",
+    categories: ["BRAND IDENTITY, WEB DESIGN"],
+    backgroundImage: `${BASE}/reevv/background.png`,
+    thumbnailImage: `${BASE}/reevv/thumbnail.png`,
+    animatedPreview: `${BASE}/reevv/animated.gif`,
+    shortDescription:
+      "Product design for a B2B research and analytics platform. Built scalable component libraries and research tooling.",
+    longDescription:
+      "Designed the end-to-end product experience for a B2B research and analytics platform. Built scalable component libraries, research tooling, and collaborative workflows that empowered enterprise research teams.",
+    year: 2023,
+    role: "Product Designer",
+    client: "Reevv Inc.",
+    projectUrl: "https://www.linkedin.com/company/reevv-inc/",
   },
   {
     id: "void",

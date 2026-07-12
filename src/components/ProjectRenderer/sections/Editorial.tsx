@@ -30,7 +30,7 @@ export function Editorial({ title, body }: EditorialProps) {
         style={{ marginTop: 32, marginBottom: 32 }}
       >
         <h2
-          className="text-[24px] font-medium leading-none"
+          className="text-[18px] font-medium leading-none"
           style={{
             letterSpacing: "-0.04em",
             color: theme.text,
@@ -44,6 +44,7 @@ export function Editorial({ title, body }: EditorialProps) {
           style={{
             color: theme.text,
             letterSpacing: "-0.04em",
+            opacity: 0.5,
           }}
         >
           {body}
