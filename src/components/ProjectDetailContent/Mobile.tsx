@@ -207,6 +207,7 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
                     style={{
                       color: theme.text,
                       letterSpacing: "-0.04em",
+                      opacity: 0.5,
                     }}
                   >
                     {item}
