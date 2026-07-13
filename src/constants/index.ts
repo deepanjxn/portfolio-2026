@@ -10,14 +10,6 @@ export const EXPERIENCE_TEXT =
 
 export const PORTFOLIO_LINKS: LinkItem[] = [
   {
-    label: "Resume",
-    href: "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view",
-  },
-  {
-    label: "Case Studies (3)",
-    href: "https://www.behance.net/moodboard/219892841/Case-Studies-Deepanjan-Sen",
-  },
-  {
     label: "Visual Designs",
     href: "https://rebrand.ly/myworks-dsen",
   },
@@ -25,23 +17,27 @@ export const PORTFOLIO_LINKS: LinkItem[] = [
 
 export const UX_LINKS: LinkItem[] = [
   {
-    label: "UX Breakdown - FinTech (Live)",
+    label: "UX Breakdown - FinTech",
     href: "https://supercut.ai/share/kriva/_L6v9yBk2mlh0rmaMoYZMH",
   },
   {
-    label: "UX Breakdown - HealthTech (Live)",
+    label: "UX Breakdown - HealthTech",
     href: "https://supercut.ai/share/kriva/9-naqcny94PD8chyPN65HY",
   },
 ];
 
 export const CONTACT_LINKS: LinkItem[] = [
   {
-    label: "Email",
-    href: "mailto:deepanjxn@gmail.com",
-  },
-  {
     label: "LinkedIn",
     href: "https://linkedin.com/in/deepanjansen",
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/deepanjxn",
+  },
+  {
+    label: "Email",
+    href: "mailto:deepanjxn@gmail.com",
   },
   {
     label: "Instagram",

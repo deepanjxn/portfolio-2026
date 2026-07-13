@@ -22,6 +22,9 @@ export const reevvProject: ProjectDetail = {
   contribution:
     "I treated branding as a product problem rather than just a visual exercise. Every decision around typography, colour, and composition was made to communicate clarity and confidence while keeping the system flexible enough to grow with the company.",
   externalUrl: "https://www.linkedin.com/company/reevv-inc/",
+  dateCreated: "September, 2024",
+  projectDuration: "8 Weeks",
+  liveLink: "https://www.linkedin.com/company/reevv-inc/",
   outcome:
     "The final identity feels modern and intentional. More importantly it works across products, marketing, and whatever comes next for the company.",
   aboutProject:

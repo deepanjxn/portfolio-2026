@@ -70,4 +70,7 @@ export interface ProjectDetail {
   contribution: string;
   aboutProject: string;
   outcome?: string | string[];
+  dateCreated: string;
+  projectDuration: string;
+  liveLink: string;
 }

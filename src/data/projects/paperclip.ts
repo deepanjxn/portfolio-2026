@@ -22,6 +22,9 @@ export const paperclipProject: ProjectDetail = {
   contribution:
     "One of the biggest opportunities wasn\u2019t adding new features. It was simplifying the overall experience. I redesigned the core marketplace journey by reducing unnecessary decision points, introducing AI assisted listing, improving trust throughout the buying experience, and creating a more consistent interaction model across the product. The focus was always on helping users complete tasks faster without sacrificing confidence or control.",
   externalUrl: "https://www.linkedin.com/company/papercliphq/",
+  dateCreated: "September, 2024",
+  projectDuration: "8 Months",
+  liveLink: "https://www.linkedin.com/company/papercliphq/",
   outcome: [
     "Listing time reduced by 85% through AI assisted listing.",
     "Achieved a 4.9\u2605 App Store rating.",

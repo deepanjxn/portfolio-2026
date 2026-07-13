@@ -19,6 +19,9 @@ export const filterpixelProject: ProjectDetail = {
   contribution:
     "I led the end-to-end product design for FilterPixel, defining both the product strategy and the interaction model that shaped the platform. My work focused on simplifying every stage of the photo editing workflow — from AI-assisted adjustments to seamless sharing and collaboration. Beyond the core product experience, I established a scalable design system and reusable component library that enabled faster collaboration, consistent execution, and future product growth.",
   externalUrl: "https://filterpixel.com/",
+  dateCreated: "December, 2024",
+  projectDuration: "12 Weeks",
+  liveLink: "https://filterpixel.com/",
   outcome: [
     "Reduced editing time through AI-powered automation and intelligent presets.",
     "Positive user feedback highlighting speed, ease of use, and intuitive workflows.",

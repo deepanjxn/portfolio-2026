@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { fadeInUp } from "@/animations/variants";
 import { useClock } from "@/hooks/useClock";
 import { useTheme } from "@/context/ThemeContext";
+import { Icon } from "@/components/Icon";
 
 export const Clock = memo(function Clock({ marginTop = 24 }: { marginTop?: number }) {
   const time = useClock();
@@ -20,10 +21,16 @@ export const Clock = memo(function Clock({ marginTop = 24 }: { marginTop?: numbe
         color: theme.text,
         letterSpacing: "-0.04em",
         marginTop,
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
       }}
     >
+      <span style={{ color: theme.accent, display: "flex", alignItems: "center" }}>
+        <Icon name="hourglass" size={16} weight={400} />
+      </span>
       <span style={{ fontVariantNumeric: "tabular-nums" }}>{time}</span>
-      <span style={{ color: theme.accent, marginLeft: 8 }}>IST</span>
+      <span>IST</span>
     </motion.div>
   );
 });

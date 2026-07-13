@@ -43,7 +43,12 @@ function SectionReveal({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
+interface ProjectDetailDesktopProps {
+  project: ProjectDetail;
+  categories: string[];
+}
+
+export function ProjectDetailDesktop({ project, categories }: ProjectDetailDesktopProps) {
   const { theme } = useTheme();
   const density = useDensity();
 
@@ -77,6 +82,133 @@ export function ProjectDetailDesktop({ project }: { project: ProjectDetail }) {
                   >
                     {project.title}
                   </h1>
+                </Contained>
+              </EditorialContainer>
+            </SectionReveal>
+
+            <div style={{ height: density.spacing(12) }} />
+
+            {/* Project Description */}
+            <SectionReveal>
+              <EditorialContainer density={density}>
+                <Contained>
+                  <p
+                    className="text-[16px] leading-[1.6] font-medium"
+                    style={{
+                      color: theme.text,
+                      letterSpacing: "-0.04em",
+                      opacity: 0.5,
+                    }}
+                  >
+                    {project.description}
+                  </p>
+                </Contained>
+              </EditorialContainer>
+            </SectionReveal>
+
+            <div style={{ height: density.spacing(36) }} />
+
+            {/* Project Metadata */}
+            <SectionReveal>
+              <EditorialContainer density={density}>
+                <Contained>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr",
+                      columnGap: density.spacing(48),
+                    }}
+                  >
+                    <div className="flex flex-col" style={{ gap: density.spacing(36) }}>
+                      <div className="flex flex-col" style={{ gap: density.spacing(8) }}>
+                        <h2
+                          className="text-[18px] font-medium leading-none"
+                          style={{
+                            letterSpacing: "-0.04em",
+                            color: theme.text,
+                          }}
+                        >
+                          Project Started
+                        </h2>
+                        <p
+                          className="text-[16px] leading-[1.6] font-medium"
+                          style={{
+                            color: theme.text,
+                            letterSpacing: "-0.04em",
+                            opacity: 0.5,
+                          }}
+                        >
+                          {project.dateCreated}
+                        </p>
+                      </div>
+                      <div className="flex flex-col" style={{ gap: density.spacing(8) }}>
+                        <h2
+                          className="text-[18px] font-medium leading-none"
+                          style={{
+                            letterSpacing: "-0.04em",
+                            color: theme.text,
+                          }}
+                        >
+                          Category
+                        </h2>
+                        <p
+                          className="text-[16px] leading-[1.6] font-medium"
+                          style={{
+                            color: theme.accent,
+                            letterSpacing: "-0.04em",
+                          }}
+                        >
+                          {categories.join(", ")}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col" style={{ gap: density.spacing(36) }}>
+                      <div className="flex flex-col" style={{ gap: density.spacing(8) }}>
+                        <h2
+                          className="text-[18px] font-medium leading-none"
+                          style={{
+                            letterSpacing: "-0.04em",
+                            color: theme.text,
+                          }}
+                        >
+                          Project Duration
+                        </h2>
+                        <p
+                          className="text-[16px] leading-[1.6] font-medium"
+                          style={{
+                            color: theme.text,
+                            letterSpacing: "-0.04em",
+                            opacity: 0.5,
+                          }}
+                        >
+                          {project.projectDuration}
+                        </p>
+                      </div>
+                      <div className="flex flex-col" style={{ gap: density.spacing(8) }}>
+                        <h2
+                          className="text-[18px] font-medium leading-none"
+                          style={{
+                            letterSpacing: "-0.04em",
+                            color: theme.text,
+                          }}
+                        >
+                          Live Link
+                        </h2>
+                        <a
+                          href={project.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[16px] leading-[1.6] font-medium underline underline-offset-2"
+                          style={{
+                            color: theme.accent,
+                            letterSpacing: "-0.04em",
+                          }}
+                        >
+                          {project.liveLink}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </Contained>
               </EditorialContainer>
             </SectionReveal>

@@ -24,7 +24,12 @@ function SectionReveal({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
+interface MobileProjectDetailProps {
+  project: ProjectDetail;
+  categories: string[];
+}
+
+export function MobileProjectDetail({ project, categories }: MobileProjectDetailProps) {
   const { theme } = useTheme();
 
   return (
@@ -56,6 +61,101 @@ export function MobileProjectDetail({ project }: { project: ProjectDetail }) {
           >
             {project.description}
           </p>
+        </SectionReveal>
+      </div>
+
+      <div style={{ height: 24 }} />
+
+      {/* Project Metadata */}
+      <div style={{ padding: "0 16px" }}>
+        <SectionReveal>
+          <div className="flex flex-col" style={{ gap: 24 }}>
+            <div className="flex flex-col" style={{ gap: 8 }}>
+              <h2
+                className="text-[16px] font-medium leading-none"
+                style={{
+                  letterSpacing: "-0.04em",
+                  color: theme.text,
+                }}
+              >
+                Project Started
+              </h2>
+              <p
+                className="text-[16px] leading-[1.6] font-medium"
+                style={{
+                  color: theme.text,
+                  letterSpacing: "-0.04em",
+                  opacity: 0.5,
+                }}
+              >
+                {project.dateCreated}
+              </p>
+            </div>
+            <div className="flex flex-col" style={{ gap: 8 }}>
+              <h2
+                className="text-[16px] font-medium leading-none"
+                style={{
+                  letterSpacing: "-0.04em",
+                  color: theme.text,
+                }}
+              >
+                Project Duration
+              </h2>
+              <p
+                className="text-[16px] leading-[1.6] font-medium"
+                style={{
+                  color: theme.text,
+                  letterSpacing: "-0.04em",
+                  opacity: 0.5,
+                }}
+              >
+                {project.projectDuration}
+              </p>
+            </div>
+            <div className="flex flex-col" style={{ gap: 8 }}>
+              <h2
+                className="text-[16px] font-medium leading-none"
+                style={{
+                  letterSpacing: "-0.04em",
+                  color: theme.text,
+                }}
+              >
+                Category
+              </h2>
+              <p
+                className="text-[16px] leading-[1.6] font-medium"
+                style={{
+                  color: theme.accent,
+                  letterSpacing: "-0.04em",
+                }}
+              >
+                {categories.join(", ")}
+              </p>
+            </div>
+            <div className="flex flex-col" style={{ gap: 8 }}>
+              <h2
+                className="text-[16px] font-medium leading-none"
+                style={{
+                  letterSpacing: "-0.04em",
+                  color: theme.text,
+                }}
+              >
+                Live Link
+              </h2>
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[16px] leading-[1.6] font-medium underline underline-offset-2"
+                style={{
+                  color: theme.accent,
+                  letterSpacing: "-0.04em",
+                }}
+              >
+                {project.liveLink}
+              </a>
+            </div>
+          </div>
         </SectionReveal>
       </div>
 

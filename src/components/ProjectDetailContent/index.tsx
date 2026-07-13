@@ -3,6 +3,7 @@
 import { useCallback, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { getProjectDetail } from "@/data/projects/registry";
+import { PROJECTS } from "@/constants/works";
 import { useTheme } from "@/context/ThemeContext";
 import { useDensity, DensityProvider } from "@/context/DensityContext";
 import { useNavigationState } from "@/context/NavigationStateContext";
@@ -68,6 +69,7 @@ function HelperRow({ theme, density, onKnowMore }: { theme: ReturnType<typeof us
           color: theme.text,
           letterSpacing: "-0.04em",
           maxWidth: 720,
+          mixBlendMode: "difference",
         }}
       >
         {WORKS_DESCRIPTION}
@@ -93,6 +95,8 @@ function HelperRow({ theme, density, onKnowMore }: { theme: ReturnType<typeof us
 
 function ProjectDetailShell({ slug }: { slug: string }) {
   const project = getProjectDetail(slug);
+  const carouselProject = PROJECTS.find((p) => p.id === slug);
+  const projectCategories = carouselProject?.categories ?? [];
   const { theme, toggleTheme } = useTheme();
   const density = useDensity();
   const router = useRouter();
@@ -192,9 +196,9 @@ function ProjectDetailShell({ slug }: { slug: string }) {
 
         <div ref={contentRef}>
           {isLarge ? (
-            <ProjectDetailDesktop project={project} />
+            <ProjectDetailDesktop project={project} categories={projectCategories} />
           ) : (
-            <MobileProjectDetail project={project} />
+            <MobileProjectDetail project={project} categories={projectCategories} />
           )}
         </div>
       </div>
