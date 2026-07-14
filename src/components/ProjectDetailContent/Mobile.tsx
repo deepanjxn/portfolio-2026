@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { ProjectDetail } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
@@ -163,12 +164,12 @@ export function MobileProjectDetail({ project, categories }: MobileProjectDetail
 
       {/* Hero — full width */}
       <SectionReveal>
-        <HeroMedia project={project} />
+        <HeroMedia project={project} showControls={project.type === "ux-breakdown"} />
       </SectionReveal>
 
       <div style={{ height: 32 }} />
 
-      {/* About the Project */}
+      {/* About the Project / About this Breakdown */}
       <div style={{ padding: "0 16px" }}>
         <SectionReveal>
           <h2
@@ -178,7 +179,7 @@ export function MobileProjectDetail({ project, categories }: MobileProjectDetail
               color: theme.text,
             }}
           >
-            About the Project
+            {project.type === "ux-breakdown" ? "About this Breakdown" : "About the Project"}
           </h2>
           <div style={{ height: 16 }} />
           <p
@@ -193,6 +194,37 @@ export function MobileProjectDetail({ project, categories }: MobileProjectDetail
           </p>
         </SectionReveal>
       </div>
+
+      {/* Editorial Sections for UX Breakdown */}
+      {project.type === "ux-breakdown" && project.sections.filter(s => s.type === "editorial").map((section, i) => (
+        <React.Fragment key={i}>
+          <div style={{ height: 24 }} />
+          <div style={{ padding: "0 16px" }}>
+            <SectionReveal>
+              <h2
+                className="text-[16px] font-medium leading-none"
+                style={{
+                  letterSpacing: "-0.04em",
+                  color: theme.text,
+                }}
+              >
+                {section.title}
+              </h2>
+              <div style={{ height: 16 }} />
+              <p
+                className="text-[16px] leading-[1.6] font-medium"
+                style={{
+                  color: theme.text,
+                  letterSpacing: "-0.04em",
+                  opacity: 0.5,
+                }}
+              >
+                {section.body}
+              </p>
+            </SectionReveal>
+          </div>
+        </React.Fragment>
+      ))}
 
       <div style={{ height: 24 }} />
 
@@ -235,38 +267,40 @@ export function MobileProjectDetail({ project, categories }: MobileProjectDetail
         </SectionReveal>
       </div>
 
-      <div style={{ height: 24 }} />
+      {project.type !== "ux-breakdown" && <div style={{ height: 24 }} />}
 
       {/* Contribution */}
-      <div style={{ padding: "0 16px" }}>
-        <SectionReveal>
-          <h2
-            className="text-[16px] font-medium leading-none"
-            style={{
-              letterSpacing: "-0.04em",
-              color: theme.text,
-            }}
-          >
-            Contribution
-          </h2>
-          <div style={{ height: 16 }} />
-          <p
-            className="text-[16px] leading-[1.6] font-medium"
-            style={{
-              color: theme.text,
-              letterSpacing: "-0.04em",
-              opacity: 0.5,
-            }}
-          >
-            {project.contribution}
-          </p>
-        </SectionReveal>
-      </div>
+      {project.type !== "ux-breakdown" && (
+        <div style={{ padding: "0 16px" }}>
+          <SectionReveal>
+            <h2
+              className="text-[16px] font-medium leading-none"
+              style={{
+                letterSpacing: "-0.04em",
+                color: theme.text,
+              }}
+            >
+              Contribution
+            </h2>
+            <div style={{ height: 16 }} />
+            <p
+              className="text-[16px] leading-[1.6] font-medium"
+              style={{
+                color: theme.text,
+                letterSpacing: "-0.04em",
+                opacity: 0.5,
+              }}
+            >
+              {project.contribution}
+            </p>
+          </SectionReveal>
+        </div>
+      )}
 
-      <div style={{ height: 24 }} />
+      {project.type !== "ux-breakdown" && <div style={{ height: 24 }} />}
 
       {/* Outcome */}
-      {project.outcome && (
+      {project.type !== "ux-breakdown" && project.outcome && (
         <div style={{ padding: "0 16px" }}>
           <SectionReveal>
             <h2
@@ -319,72 +353,76 @@ export function MobileProjectDetail({ project, categories }: MobileProjectDetail
         </div>
       )}
 
-      {project.outcome && <div style={{ height: 24 }} />}
+      {project.type !== "ux-breakdown" && project.outcome && <div style={{ height: 24 }} />}
 
       {/* Gallery — full width */}
-      <ProjectRenderer sections={project.sections} />
+      {project.type !== "ux-breakdown" && (
+        <ProjectRenderer sections={project.sections} />
+      )}
 
-      <div style={{ height: 24 }} />
+      {project.type !== "ux-breakdown" && <div style={{ height: 24 }} />}
 
       {/* Note from the Creator */}
-      <div style={{ padding: "0 16px" }}>
-        <SectionReveal>
-          <h2
-            className="text-[16px] font-medium leading-none"
-            style={{
-              letterSpacing: "-0.04em",
-              color: theme.text,
-            }}
-          >
-            Note from the Creator
-          </h2>
-          <div style={{ height: 16 }} />
-          <p
-            className="text-[16px] leading-[1.6] font-medium"
-            style={{
-              color: theme.text,
-              letterSpacing: "-0.04em",
-              opacity: 0.5,
-            }}
-          >
-            Hey,
-          </p>
-          <div style={{ height: 24 }} />
-          <p
-            className="text-[16px] leading-[1.6] font-medium"
-            style={{
-              color: theme.text,
-              letterSpacing: "-0.04em",
-              opacity: 0.5,
-            }}
-          >
-            If you&rsquo;re reading this, then I just want you to know you&rsquo;re amazing :)
-          </p>
-          <div style={{ height: 24 }} />
-          <p
-            className="text-[16px] leading-[1.6] font-medium"
-            style={{
-              color: theme.text,
-              letterSpacing: "-0.04em",
-              opacity: 0.5,
-            }}
-          >
-            At a time where no one has a slight bit of patience left, you took the time to scroll all the way to the end.
-          </p>
-          <div style={{ height: 24 }} />
-          <p
-            className="text-[16px] leading-[1.6] font-medium"
-            style={{
-              color: theme.text,
-              letterSpacing: "-0.04em",
-              opacity: 0.5,
-            }}
-          >
-            Cheers,<br />
-            Deepanjan
-          </p>
-        </SectionReveal>
-      </div>
+      {project.type !== "ux-breakdown" && (
+        <div style={{ padding: "0 16px" }}>
+          <SectionReveal>
+            <h2
+              className="text-[16px] font-medium leading-none"
+              style={{
+                letterSpacing: "-0.04em",
+                color: theme.text,
+              }}
+            >
+              Note from the Creator
+            </h2>
+            <div style={{ height: 16 }} />
+            <p
+              className="text-[16px] leading-[1.6] font-medium"
+              style={{
+                color: theme.text,
+                letterSpacing: "-0.04em",
+                opacity: 0.5,
+              }}
+            >
+              Hey,
+            </p>
+            <div style={{ height: 24 }} />
+            <p
+              className="text-[16px] leading-[1.6] font-medium"
+              style={{
+                color: theme.text,
+                letterSpacing: "-0.04em",
+                opacity: 0.5,
+              }}
+            >
+              If you&rsquo;re reading this, then I just want you to know you&rsquo;re amazing :)
+            </p>
+            <div style={{ height: 24 }} />
+            <p
+              className="text-[16px] leading-[1.6] font-medium"
+              style={{
+                color: theme.text,
+                letterSpacing: "-0.04em",
+                opacity: 0.5,
+              }}
+            >
+              At a time where no one has a slight bit of patience left, you took the time to scroll all the way to the end.
+            </p>
+            <div style={{ height: 24 }} />
+            <p
+              className="text-[16px] leading-[1.6] font-medium"
+              style={{
+                color: theme.text,
+                letterSpacing: "-0.04em",
+                opacity: 0.5,
+              }}
+            >
+              Cheers,<br />
+              Deepanjan
+            </p>
+          </SectionReveal>
+        </div>
+      )}
 
       <div style={{ height: 24 }} />
     </div>

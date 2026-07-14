@@ -2,11 +2,17 @@ import { ProjectDetail } from "@/types";
 import { reevvProject } from "./reevv";
 import { paperclipProject } from "./paperclip";
 import { filterpixelProject } from "./filterpixel";
+import { fintechUxBreakdownProject } from "./fintech-ux-breakdown";
+import { fintech2UxBreakdownProject } from "./fintech-2-ux-breakdown";
+import { healthtechUxBreakdownProject } from "./healthtech-ux-breakdown";
 
 export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
   reevv: reevvProject,
   paperclip: paperclipProject,
   filterpixel: filterpixelProject,
+  "fintech-ux-breakdown": fintechUxBreakdownProject,
+  "fintech-2-ux-breakdown": fintech2UxBreakdownProject,
+  "healthtech-ux-breakdown": healthtechUxBreakdownProject,
 };
 
 export function getProjectDetail(slug: string): ProjectDetail | undefined {

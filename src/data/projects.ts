@@ -186,6 +186,47 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    id: "fintech-ux-breakdown",
+    title: "PayCrunch UX Breakdown",
+    type: "ux-breakdown",
+    categories: ["UX Breakdown", "FinTech"],
+    backgroundImage: `${BASE}/fintech-ux-breakdown/background.webp`,
+    shortDescription:
+      "A deep-dive case study analysing UX patterns in FinTech applications. Recorded live walkthrough with annotation.",
+    longDescription:
+      "A deep-dive case study analysing UX patterns in FinTech applications. This recorded live walkthrough with annotation breaks down onboarding flows, data entry patterns, and trust-building design decisions used by leading FinTech products.",
+    year: 2025,
+    role: "UX Analyst",
+    projectUrl: "https://supercut.ai/share/kriva/_L6v9yBk2mlh0rmaMoYZMH",
+  },
+  {
+    id: "fintech-2-ux-breakdown",
+    title: "Kiwi UX Breakdown",
+    type: "ux-breakdown",
+    categories: ["UX Breakdown", "FinTech"],
+    backgroundImage: `${BASE}/fintech-2-ux-breakdown/background.webp`,
+    shortDescription:
+      "A second deep-dive UX breakdown exploring advanced FinTech product patterns across lending, investment, and neo-banking platforms.",
+    longDescription:
+      "A second deep-dive UX breakdown exploring advanced FinTech product patterns across lending, investment, and neo-banking platforms. The analysis covers complex decision-flows, data-heavy dashboards, and trust-building design strategies.",
+    year: 2025,
+    role: "UX Analyst",
+  },
+  {
+    id: "healthtech-ux-breakdown",
+    title: "GrowthX UX Breakdown",
+    type: "ux-breakdown",
+    categories: ["UX Breakdown", "HealthTech"],
+    backgroundImage: `${BASE}/healthtech-ux-breakdown/background.webp`,
+    shortDescription:
+      "Live UX teardown of a HealthTech product, focusing on onboarding flows and trust-building design patterns.",
+    longDescription:
+      "A live UX teardown of a HealthTech product, focusing on onboarding flows and trust-building design patterns. The analysis covers visual hierarchy, content strategy, and conversion optimisation techniques specific to healthcare applications.",
+    year: 2025,
+    role: "UX Analyst",
+    projectUrl: "https://supercut.ai/share/kriva/9-naqcny94PD8chyPN65HY",
+  },
+  {
     id: "fintech-case-study",
     title: "FinTech UX Breakdown",
     type: "case-studies",

@@ -16,7 +16,7 @@ export function Works() {
   const [activeCategory, setActiveCategory] = useState<ProjectType | "all">(() => {
     if (typeof window !== "undefined") {
       const saved = sessionStorage.getItem("works_category");
-      if (saved === "all" || saved === "projects" || saved === "case-studies" || saved === "labs") {
+      if (saved === "all" || saved === "projects" || saved === "ux-breakdown" || saved === "labs") {
         sessionStorage.removeItem("works_category");
         return saved;
       }

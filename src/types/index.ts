@@ -24,7 +24,7 @@ export interface FooterInfoData {
   location: string;
 }
 
-export type ProjectType = "projects" | "case-studies" | "labs";
+export type ProjectType = "projects" | "case-studies" | "labs" | "ux-breakdown";
 
 export interface GalleryItem {
   src: string;
@@ -73,4 +73,5 @@ export interface ProjectDetail {
   dateCreated: string;
   projectDuration: string;
   liveLink: string;
+  type?: "project" | "ux-breakdown";
 }
