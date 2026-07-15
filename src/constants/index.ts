@@ -3,28 +3,24 @@ import { LinkItem, FooterInfoData } from "@/types";
 export const LOGO_TEXT = "D\u2015S";
 
 export const INTRO_TEXT =
-  "Hi, I'm Deepanjan Sen \u2014 a product designer and design lead helping companies build thoughtful, design-driven solutions.";
+  "Hi, I'm Deepanjan Sen. Currently leading Product Design at Layer, where I help turn ambitious ideas into products that are built, launched and scaled.";
 
 export const EXPERIENCE_TEXT =
-  "I'm currently Lead Product Designer at Layer, and I also collaborate with founders to bring early-stage ideas to life. My work spans AI, FinTech, Web3, B2B and SaaS, with past projects at TenTwenty, Perfios, Karza, PaperClip, Reevv Research, FilterPixel, and more.";
+  "With over half a decade of experience, I've worked across AI, FinTech, SaaS and consumer products with teams at Perfios, Karza, TenTwenty, PaperClip, Reevv Research and FilterPixel. I enjoy taking products from early ideas to production and helping them evolve as they grow.\n\nBefore product design, I spent four and a half years building a tech YouTube channel from zero to over 350,000 subscribers. That journey shaped the way I think about people, storytelling and creating experiences that resonate.\n\nLately, I've been exploring the intersection of design, AI and code, building products end to end. I built this portfolio myself as part of that journey.\n\nOutside of work, you'll usually find me in the gym, on my motorcycle or planning my next adventure.";
 
 export const PORTFOLIO_LINKS: LinkItem[] = [
+  {
+    label: "Book a Call",
+    href: "https://cal.com/deepanjan/30min",
+    sublabel: "(For Founders and TAs)",
+  },
   {
     label: "Visual Designs",
     href: "https://rebrand.ly/myworks-dsen",
   },
 ];
 
-export const UX_LINKS: LinkItem[] = [
-  {
-    label: "UX Breakdown - FinTech",
-    href: "https://supercut.ai/share/kriva/_L6v9yBk2mlh0rmaMoYZMH",
-  },
-  {
-    label: "UX Breakdown - HealthTech",
-    href: "https://supercut.ai/share/kriva/9-naqcny94PD8chyPN65HY",
-  },
-];
+export const UX_LINKS: LinkItem[] = [];
 
 export const CONTACT_LINKS: LinkItem[] = [
   {
@@ -34,10 +30,6 @@ export const CONTACT_LINKS: LinkItem[] = [
   {
     label: "GitHub",
     href: "https://github.com/deepanjxn",
-  },
-  {
-    label: "Email",
-    href: "mailto:deepanjxn@gmail.com",
   },
   {
     label: "Instagram",

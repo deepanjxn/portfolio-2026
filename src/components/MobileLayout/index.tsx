@@ -38,11 +38,10 @@ export function MobileLayout() {
             <div style={{ height: 24 }} />
 
             {/* Group 2: Navigation & Footer */}
-            <div className="flex flex-col" style={{ gap: 20 }}>
+            <div className="flex flex-col" style={{ gap: 24 }}>
               <LinkGroup links={PORTFOLIO_LINKS} />
-              <LinkGroup links={UX_LINKS} />
               <LinkGroup links={CONTACT_LINKS} />
-              <div className="flex flex-col" style={{ gap: 8 }}>
+              <div className="flex flex-col">
                 <FooterInfo />
                 <Clock />
               </div>

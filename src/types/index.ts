@@ -10,6 +10,7 @@ export type TabType = "about" | "works";
 export interface LinkItem {
   label: string;
   href: string;
+  sublabel?: string;
 }
 
 export interface MediaFrameProps {

@@ -21,8 +21,6 @@ export function Hero() {
   const introMargin = spacing(24);
   const spacer12 = spacing(12);
   const spacer24 = spacing(24);
-  const spacer48 = spacing(48);
-  const clockMargin = spacing(24);
 
   const gridColumns = isCompact ? LAPTOP_GRID_COLUMNS : HERO_GRID_COLUMNS;
 
@@ -38,8 +36,8 @@ export function Hero() {
       }}
     >
       {/* Left Column */}
-      <div className="flex flex-col h-full justify-start">
-        {/* Group 1: Introduction */}
+      <div className="flex flex-col h-full justify-between">
+        {/* TOP: Introduction */}
         <div className="flex flex-col">
           <Logo size={logoSize} />
           <Intro marginTop={introMargin} />
@@ -47,27 +45,14 @@ export function Hero() {
           <ExperienceSummary />
         </div>
 
-        <div style={{ height: spacer24 }} />
-
-        {/* Group 2: Portfolio Links */}
-        <LinkGroup links={PORTFOLIO_LINKS} />
-
-        <div style={{ height: spacer24 }} />
-
-        {/* Group 3: UX Breakdowns */}
-        <LinkGroup links={UX_LINKS} />
-
-        <div style={{ height: spacer24 }} />
-
-        {/* Group 4: Contact */}
-        <LinkGroup links={CONTACT_LINKS} />
-
-        <div style={{ height: spacer48 }} />
-
-        {/* Group 5: Footer */}
-        <div className="flex flex-col">
-          <FooterInfo />
-          <Clock marginTop={clockMargin} />
+        {/* GROUPS: Three content groups with 24px between them */}
+        <div className="flex flex-col" style={{ gap: spacer24 }}>
+          <LinkGroup links={PORTFOLIO_LINKS} />
+          <LinkGroup links={CONTACT_LINKS} />
+          <div className="flex flex-col">
+            <FooterInfo />
+            <Clock />
+          </div>
         </div>
       </div>
 

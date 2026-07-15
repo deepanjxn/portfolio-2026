@@ -44,6 +44,11 @@ export function LinkGroup({ links }: LinkGroupProps) {
           >
             {link.label}
           </a>
+          {link.sublabel && (
+            <span style={{ color: theme.text, opacity: 0.5, marginLeft: 4 }}>
+              {link.sublabel}
+            </span>
+          )}
         </motion.div>
       ))}
     </motion.nav>
