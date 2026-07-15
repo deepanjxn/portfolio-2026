@@ -190,7 +190,9 @@ export const PROJECTS: Project[] = [
     title: "PayCrunch UX Breakdown",
     type: "ux-breakdown",
     categories: ["UX Breakdown", "FinTech"],
+    thumbnailImage: `${BASE}/fintech-ux-breakdown/thumbnail.webp`,
     backgroundImage: `${BASE}/fintech-ux-breakdown/background.webp`,
+    animatedPreview: `${BASE}/fintech-ux-breakdown/animated.gif`,
     shortDescription:
       "A deep-dive case study analysing UX patterns in FinTech applications. Recorded live walkthrough with annotation.",
     longDescription:
@@ -217,7 +219,9 @@ export const PROJECTS: Project[] = [
     title: "GrowthX UX Breakdown",
     type: "ux-breakdown",
     categories: ["UX Breakdown", "HealthTech"],
+    thumbnailImage: `${BASE}/healthtech-ux-breakdown/thumbnail.webp`,
     backgroundImage: `${BASE}/healthtech-ux-breakdown/background.webp`,
+    animatedPreview: `${BASE}/healthtech-ux-breakdown/animated.gif`,
     shortDescription:
       "Live UX teardown of a HealthTech product, focusing on onboarding flows and trust-building design patterns.",
     longDescription:
