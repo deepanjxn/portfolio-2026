@@ -23,16 +23,10 @@ export function Works() {
     }
     return "projects";
   });
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     sessionStorage.setItem("works_category", activeCategory);
   }, [activeCategory]);
-
-  useEffect(() => {
-    const raf = requestAnimationFrame(() => setReady(true));
-    return () => cancelAnimationFrame(raf);
-  }, []);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === "all") return PROJECTS;
@@ -57,8 +51,9 @@ export function Works() {
 
       <FullBleed className="flex-1 min-h-0">
         <motion.div
-          initial={false}
-          animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          key={activeCategory}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="h-full"
         >

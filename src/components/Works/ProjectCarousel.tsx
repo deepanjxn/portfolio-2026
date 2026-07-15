@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback, useMemo } from "react";
+import { useRef, useState, useEffect, useCallback, useMemo, useLayoutEffect } from "react";
 import { flushSync } from "react-dom";
 import { motion, useMotionValue, animate, AnimatePresence, PanInfo } from "framer-motion";
 import { Project } from "@/types";
@@ -62,7 +62,7 @@ export function ProjectCarousel({
     }
   }, [virtualIndex, n]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
@@ -82,7 +82,7 @@ export function ProjectCarousel({
 
   const centerOffset = containerWidth > 0 ? (containerWidth - CARD_WIDTH) / 2 : 0;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (containerWidth > 0 && !initialized.current) {
       initialized.current = true;
       const target = centerOffset - initialVirtualIndex * ITEM_WIDTH;
