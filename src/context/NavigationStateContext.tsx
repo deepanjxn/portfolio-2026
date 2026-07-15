@@ -8,6 +8,8 @@ interface NavigationState {
   showIntro: boolean;
   setActiveTab: (tab: TabType) => void;
   setShowIntro: (show: boolean) => void;
+  worksEntryCount: number;
+  incrementWorksEntry: () => void;
 }
 
 const NavigationStateContext = createContext<NavigationState>({
@@ -15,14 +17,28 @@ const NavigationStateContext = createContext<NavigationState>({
   showIntro: true,
   setActiveTab: () => {},
   setShowIntro: () => {},
+  worksEntryCount: 0,
+  incrementWorksEntry: () => {},
 });
 
 export function NavigationStateProvider({ children }: { children: ReactNode }) {
   const [activeTab, setActiveTab] = useState<TabType>("about");
   const [showIntro, setShowIntro] = useState(true);
+  const [worksEntryCount, setWorksEntryCount] = useState(0);
+
+  const incrementWorksEntry = () => setWorksEntryCount((c) => c + 1);
 
   return (
-    <NavigationStateContext.Provider value={{ activeTab, showIntro, setActiveTab, setShowIntro }}>
+    <NavigationStateContext.Provider
+      value={{
+        activeTab,
+        showIntro,
+        setActiveTab,
+        setShowIntro,
+        worksEntryCount,
+        incrementWorksEntry,
+      }}
+    >
       {children}
     </NavigationStateContext.Provider>
   );

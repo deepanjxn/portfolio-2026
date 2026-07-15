@@ -101,7 +101,7 @@ function ProjectDetailShell({ slug }: { slug: string }) {
   const density = useDensity();
   const router = useRouter();
   const isLarge = useIsLargeScreen();
-  const { setActiveTab, setShowIntro } = useNavigationState();
+  const { setActiveTab, setShowIntro, incrementWorksEntry } = useNavigationState();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -145,8 +145,9 @@ function ProjectDetailShell({ slug }: { slug: string }) {
   const handleReturnToWorks = useCallback(() => {
     setActiveTab("works");
     setShowIntro(false);
+    incrementWorksEntry();
     router.replace("/");
-  }, [router, setActiveTab, setShowIntro]);
+  }, [router, setActiveTab, setShowIntro, incrementWorksEntry]);
 
   useKeyboardShortcut("r", openResume);
   useKeyboardShortcut("d", toggleTheme);

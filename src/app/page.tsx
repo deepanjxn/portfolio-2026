@@ -30,7 +30,7 @@ const slideTransition = {
 };
 
 export default function Home() {
-  const { activeTab, showIntro, setActiveTab, setShowIntro } = useNavigationState();
+  const { activeTab, showIntro, setActiveTab, setShowIntro, worksEntryCount, incrementWorksEntry } = useNavigationState();
   const [direction, setDirection] = useState(() => activeTab === "works" ? 1 : -1);
 
   const { theme, toggleTheme } = useTheme();
@@ -43,8 +43,9 @@ export default function Home() {
 
   const handleTabChange = useCallback((tab: TabType) => {
     setDirection(tab === "works" ? 1 : -1);
+    if (tab === "works") incrementWorksEntry();
     setActiveTab(tab);
-  }, [setActiveTab]);
+  }, [setActiveTab, incrementWorksEntry]);
 
   const openResume = useCallback(() => {
     window.open(RESUME_URL, "_blank", "noopener,noreferrer");
@@ -95,7 +96,7 @@ export default function Home() {
                 transition={slideTransition}
                 className="absolute inset-0"
               >
-                <Works />
+                <Works key={worksEntryCount} />
               </motion.div>
             )}
           </AnimatePresence>
@@ -112,7 +113,7 @@ export default function Home() {
         animate={showIntro ? { opacity: 0 } : { opacity: 1 }}
         transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
       >
-        {activeTab === "about" ? <MobileLayout /> : <MobileWorks />}
+        {activeTab === "about" ? <MobileLayout /> : <MobileWorks key={worksEntryCount} />}
         <div
           style={{
             position: "absolute",
