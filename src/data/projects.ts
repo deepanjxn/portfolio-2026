@@ -231,6 +231,21 @@ export const PROJECTS: Project[] = [
     projectUrl: "https://supercut.ai/share/kriva/9-naqcny94PD8chyPN65HY",
   },
   {
+    id: "tentwenty-ux-breakdown",
+    title: "TenTwenty",
+    type: "ux-breakdown",
+    categories: ["UX Breakdown", "B2B SaaS"],
+    thumbnailImage: `${BASE}/tentwenty-ux-breakdown/thumbnail.webp`,
+    backgroundImage: `${BASE}/tentwenty-ux-breakdown/background.webp`,
+    animatedPreview: `${BASE}/tentwenty-ux-breakdown/animated.gif`,
+    shortDescription:
+      "A B2B SaaS dashboard and offer management assignment focused on helping multi-outlet businesses monitor performance, create promotional campaigns, and manage operations through a scalable interface.",
+    longDescription:
+      "Designed a modern dashboard and end-to-end offer creation workflow for businesses managing multiple retail outlets. Combined analytics and campaign management into a single cohesive experience.",
+    year: 2025,
+    role: "UX Designer",
+  },
+  {
     id: "fintech-case-study",
     title: "FinTech UX Breakdown",
     type: "case-studies",
