@@ -26,6 +26,7 @@ export function Works() {
 
   useEffect(() => {
     sessionStorage.setItem("works_category", activeCategory);
+    sessionStorage.removeItem("works_carousel_index");
   }, [activeCategory]);
 
   const filteredProjects = useMemo(() => {
