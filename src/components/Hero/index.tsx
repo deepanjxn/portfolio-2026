@@ -1,13 +1,12 @@
 "use client";
 
 import { Logo } from "@/components/Logo";
-import { Intro } from "@/components/Intro";
 import { ExperienceSummary } from "@/components/ExperienceSummary";
 import { LinkGroup } from "@/components/LinkGroup";
 import { FooterInfo } from "@/components/FooterInfo";
 import { Clock } from "@/components/Clock";
 import { MediaFrame } from "@/components/MediaFrame";
-import { PORTFOLIO_LINKS, UX_LINKS, CONTACT_LINKS } from "@/constants";
+import { BOOK_A_CALL_LINK, VISUAL_LINKS, UX_LINKS, CONTACT_LINKS } from "@/constants";
 import { HERO_GRID_COLUMNS } from "@/theme/tokens";
 import { useDensity } from "@/context/DensityContext";
 
@@ -36,18 +35,17 @@ export function Hero() {
       }}
     >
       {/* Left Column */}
-      <div className="flex flex-col h-full justify-between">
+      <div className="flex flex-col h-full">
         {/* TOP: Introduction */}
-        <div className="flex flex-col">
+        <div className="flex flex-col" style={{ gap: spacing(16) }}>
           <Logo size={logoSize} />
-          <Intro marginTop={introMargin} />
-          <div style={{ height: spacer12 }} />
           <ExperienceSummary />
         </div>
 
         {/* GROUPS: Three content groups with 24px between them */}
-        <div className="flex flex-col" style={{ gap: spacer24 }}>
-          <LinkGroup links={PORTFOLIO_LINKS} />
+        <div className="flex flex-col" style={{ gap: spacer24, marginTop: spacing(40) }}>
+          <LinkGroup links={BOOK_A_CALL_LINK} />
+          <LinkGroup links={VISUAL_LINKS} />
           <LinkGroup links={CONTACT_LINKS} />
           <div className="flex flex-col">
             <FooterInfo />

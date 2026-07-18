@@ -3,13 +3,12 @@
 import { motion } from "framer-motion";
 import { staggerContainer, fadeIn } from "@/animations/variants";
 import { Logo } from "@/components/Logo";
-import { Intro } from "@/components/Intro";
 import { ExperienceSummary } from "@/components/ExperienceSummary";
 import { LinkGroup } from "@/components/LinkGroup";
 import { FooterInfo } from "@/components/FooterInfo";
 import { Clock } from "@/components/Clock";
 import { MediaFrame } from "@/components/MediaFrame";
-import { PORTFOLIO_LINKS, UX_LINKS, CONTACT_LINKS } from "@/constants";
+import { BOOK_A_CALL_LINK, VISUAL_LINKS, UX_LINKS, CONTACT_LINKS } from "@/constants";
 import { useTheme } from "@/context/ThemeContext";
 
 export function MobileLayout() {
@@ -30,8 +29,6 @@ export function MobileLayout() {
             <div className="flex flex-col">
               <Logo size={48} />
               <div style={{ height: 12 }} />
-              <Intro marginTop={0} />
-              <div style={{ height: 12 }} />
               <ExperienceSummary />
             </div>
 
@@ -39,7 +36,8 @@ export function MobileLayout() {
 
             {/* Group 2: Navigation & Footer */}
             <div className="flex flex-col" style={{ gap: 24 }}>
-              <LinkGroup links={PORTFOLIO_LINKS} />
+              <LinkGroup links={BOOK_A_CALL_LINK} />
+              <LinkGroup links={VISUAL_LINKS} />
               <LinkGroup links={CONTACT_LINKS} />
               <div className="flex flex-col">
                 <FooterInfo />

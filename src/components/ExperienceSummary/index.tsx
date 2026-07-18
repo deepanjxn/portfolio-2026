@@ -35,91 +35,88 @@ export const ExperienceSummary = memo(function ExperienceSummary() {
       initial="hidden"
       animate="visible"
       className="flex flex-col"
-      style={{ gap: 12 }}
+      style={{ gap: 16 }}
     >
       <TextParagraph>
-        With over half a decade of experience, I&apos;ve worked across AI,
-        FinTech, SaaS and consumer products with teams at{" "}
+        Hi, I&apos;m Deepanjan Sen — a product designer and design lead helping
+        companies build thoughtful, user-centered products. I&apos;m currently
+        leading Product Design at{" "}
         <a
-          href="https://www.linkedin.com/company/perfios/"
+          href="https://www.withlayer.ai/"
           target="_blank"
           rel="noopener noreferrer"
           className={linkClass}
           style={{ color: theme.text, textDecorationColor: theme.text }}
         >
-          Perfios
+          Layer
         </a>
-        ,{" "}
-        <a
-          href="https://www.linkedin.com/company/karza-technologies/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={linkClass}
-          style={{ color: theme.text, textDecorationColor: theme.text }}
-        >
-          Karza
-        </a>
-        ,{" "}
-        <a
-          href="https://tentwenty.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={linkClass}
-          style={{ color: theme.text, textDecorationColor: theme.text }}
-        >
-          TenTwenty
-        </a>
-        ,{" "}
-        <a
-          href="https://www.linkedin.com/company/papercliphq/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={linkClass}
-          style={{ color: theme.text, textDecorationColor: theme.text }}
-        >
-          PaperClip
-        </a>
-        ,{" "}
-        <a
-          href="https://www.linkedin.com/company/reevv-inc/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={linkClass}
-          style={{ color: theme.text, textDecorationColor: theme.text }}
-        >
-          Reevv Research
-        </a>{" "}
-        and{" "}
-        <a
-          href="https://www.linkedin.com/company/filterpixel/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={linkClass}
-          style={{ color: theme.text, textDecorationColor: theme.text }}
-        >
-          FilterPixel
-        </a>
-        .{" "}
-        <span style={{ opacity: 0.5 }}>
-          I enjoy taking products from early ideas to production and helping
-          them evolve as they grow.
-        </span>
+        . Over the past 5+ years, I&apos;ve worked across AI, FinTech, SaaS
+          and consumer technology, collaborating with teams at{" "}
+          <a
+            href="https://www.linkedin.com/company/perfios/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+            style={{ color: theme.text, textDecorationColor: theme.text }}
+          >
+            Perfios
+          </a>
+          ,{" "}
+          <a
+            href="https://www.linkedin.com/company/karza-technologies/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+            style={{ color: theme.text, textDecorationColor: theme.text }}
+          >
+            Karza
+          </a>
+          ,{" "}
+          <a
+            href="https://tentwenty.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+            style={{ color: theme.text, textDecorationColor: theme.text }}
+          >
+            TenTwenty
+          </a>
+          ,{" "}
+          <a
+            href="https://www.linkedin.com/company/papercliphq/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+            style={{ color: theme.text, textDecorationColor: theme.text }}
+          >
+            PaperClip
+          </a>
+          ,{" "}
+          <a
+            href="https://www.linkedin.com/company/reevv-inc/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+            style={{ color: theme.text, textDecorationColor: theme.text }}
+          >
+            Reevv Research
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://www.linkedin.com/company/filterpixel/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+            style={{ color: theme.text, textDecorationColor: theme.text }}
+          >
+            FilterPixel
+          </a>
+          .
       </TextParagraph>
       <TextParagraph>
-        Before product design, I spent four and a half years building a tech
-        YouTube channel from zero to over 350,000 subscribers.{" "}
-        <span style={{ opacity: 0.5 }}>
-          That journey shaped the way I think about people, storytelling and
-          creating experiences that resonate.
-        </span>
-      </TextParagraph>
-      <TextParagraph>
-        Lately, I&apos;ve been exploring the intersection of design, AI and
-        code, building products end to end. I built this portfolio myself
-        <span style={{ opacity: 0.5 }}>
-          {" "}as part of that journey. Outside of work, you&apos;ll usually find me in
-          the gym, on my motorcycle or planning my next adventure.
-        </span>
+        Outside of work, I&apos;m usually building something with design, AI and
+        code or you&apos;ll find me in the gym, riding my motorcycle or planning
+        my next adventure.
       </TextParagraph>
     </motion.div>
   );
