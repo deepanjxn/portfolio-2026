@@ -52,7 +52,6 @@ export function HeroMedia({ project, showControls = false }: HeroMediaProps) {
             pointerEvents: showControls ? "auto" : "none",
           }}
           allow="autoplay; fullscreen"
-          allowTransparency
           title={`${project.title} hero`}
         />
       </div>

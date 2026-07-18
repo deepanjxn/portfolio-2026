@@ -9,15 +9,7 @@ export const fintechUxBreakdownProject: ProjectDetail = {
   heroType: "vimeo",
   heroVideoId: "1209826265",
   type: "ux-breakdown",
-  responsibilities: [
-    "Analysed the assignment brief and translated business requirements into a scalable product flow.",
-    "Defined assumptions and identified edge cases before exploring interface solutions.",
-    "Designed the complete bill splitting journey from expense creation to payment settlement.",
-    "Created reusable UI components using familiar native iOS interaction patterns.",
-    "Considered users outside the PayCrunch ecosystem by supporting SMS and WhatsApp payment reminders.",
-    "Built interactive prototypes to communicate user flows and product behaviour.",
-    "Recorded and presented the complete design rationale through a walkthrough video.",
-  ],
+  responsibilities: [],
   contribution: "",
   aboutProject:
     "PayCrunch is a Gen Z focused fintech company exploring modern payment experiences. As part of the interview process, I was asked to design a bill splitting experience that balanced usability with a clean and engaging interface while demonstrating my end to end product thinking. Rather than limiting the solution to the requested screens, I approached it as a scalable feature that could naturally fit into a larger payments ecosystem.",
@@ -39,11 +31,6 @@ export const fintechUxBreakdownProject: ProjectDetail = {
       type: "editorial",
       title: "Key Design Decisions",
       body: "Instead of solving only the requested flow, I introduced an Expenses module that could become part of a broader financial management experience. To reduce friction, I prioritised quick category selection, reusable components, and familiar iOS patterns. Every interaction was designed to minimise cognitive load while remaining flexible enough to support future product expansion.",
-    },
-    {
-      type: "editorial",
-      title: "Deliverables",
-      body: "Product assumptions, user flow, information architecture, low fidelity wireframes, high fidelity interface design, interactive prototype, component library, recorded UX walkthrough.",
     },
   ],
 };

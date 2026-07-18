@@ -9,16 +9,7 @@ export const tentwentyUxBreakdownProject: ProjectDetail = {
   heroType: "vimeo",
   heroVideoId: "1210147429",
   type: "ux-breakdown",
-  responsibilities: [
-    "Product Thinking",
-    "UX Research",
-    "User Flow Design",
-    "Dashboard Design",
-    "Information Architecture",
-    "Design System",
-    "High Fidelity UI Design",
-    "Interactive Prototype",
-  ],
+  responsibilities: [],
   contribution: "",
   aboutProject:
     "This assignment focused on designing a modern dashboard and an end-to-end offer creation workflow for businesses managing multiple retail outlets.\n\nThe objective wasn't just to create visually appealing screens, but to organize operational data, simplify campaign creation, and make everyday management tasks easier for teams working at scale.\n\nMy approach was to combine both requested experiences into one cohesive workflow instead of treating them as separate products. This reduced context switching while creating a more connected experience for business users.",

@@ -9,15 +9,7 @@ export const healthtechUxBreakdownProject: ProjectDetail = {
   heroType: "vimeo",
   heroVideoId: "1209828074",
   type: "ux-breakdown",
-  responsibilities: [
-    "Analysed the assignment brief and translated requirements into a structured product strategy.",
-    "Defined onboarding flows based on athlete goals and experience levels.",
-    "Created the end to end user flow covering onboarding, training, analytics, community, and premium content.",
-    "Explored low fidelity concepts before developing high fidelity interfaces.",
-    "Designed reusable UI components and interaction patterns for a scalable design system.",
-    "Built interactive prototypes demonstrating the complete user experience.",
-    "Recorded and presented the complete design walkthrough explaining key product decisions.",
-  ],
+  responsibilities: [],
   contribution: "",
   aboutProject:
     "GrowthX asked me to design a mobile experience for athletes preparing for endurance events such as Ironman and Ultraman. The assignment focused on helping users plan their training, monitor progress, stay motivated through community engagement, and access educational content within a single product. Rather than designing isolated screens, I approached the assignment as a complete product experience by defining the information architecture, planning the onboarding journey, and creating a scalable foundation before moving into interface design.",
@@ -39,11 +31,6 @@ export const healthtechUxBreakdownProject: ProjectDetail = {
       type: "editorial",
       title: "Key Design Decisions",
       body: "Instead of treating the application as a workout tracker, I positioned it as a complete training companion. The experience combines personalised plans, readiness insights, community engagement, educational content, and progress tracking within a single ecosystem. I also introduced personalised onboarding based on athlete goals and event types, allowing the application to adapt the experience from the very beginning instead of presenting the same interface to every user.",
-    },
-    {
-      type: "editorial",
-      title: "Deliverables",
-      body: "Product documentation, user flow, information architecture, low fidelity wireframes, high fidelity interface design, interactive prototype, component library, design system foundations, recorded UX walkthrough.",
     },
   ],
 };

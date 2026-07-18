@@ -15,7 +15,7 @@ interface CategoryFiltersProps {
 
 const FILTERS: { id: ProjectType | "all"; label: string }[] = [
   { id: "projects", label: "Live Projects" },
-  { id: "ux-breakdown", label: "UX Breakdowns" },
+  { id: "ux-breakdown", label: "Offer-Winning Assignments" },
 ];
 
 export function CategoryFilters({ activeCategory, onCategoryChange, mobile = false }: CategoryFiltersProps) {
