@@ -39,8 +39,7 @@ export const ExperienceSummary = memo(function ExperienceSummary() {
       style={{ gap: 16 }}
     >
       <TextParagraph>
-        <span style={{ marginRight: "0.2em" }}>{INTRO_TEXT}</span> I&apos;m currently
-        leading Product Design at{" "}
+        {INTRO_TEXT} Currently leading Product Design at{" "}
         <a
           href="https://www.withlayer.ai/"
           target="_blank"
@@ -50,68 +49,71 @@ export const ExperienceSummary = memo(function ExperienceSummary() {
         >
           Layer
         </a>
-        . Over the past 5+ years, I&apos;ve worked across AI, FinTech, SaaS
-          and consumer technology, collaborating with teams at{" "}
-          <a
-            href="https://www.linkedin.com/company/perfios/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-            style={{ color: theme.text, textDecorationColor: theme.text }}
-          >
-            Perfios
-          </a>
-          ,{" "}
-          <a
-            href="https://www.linkedin.com/company/karza-technologies/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-            style={{ color: theme.text, textDecorationColor: theme.text }}
-          >
-            Karza
-          </a>
-          ,{" "}
-          <a
-            href="https://tentwenty.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-            style={{ color: theme.text, textDecorationColor: theme.text }}
-          >
-            TenTwenty
-          </a>
-          ,{" "}
-          <a
-            href="https://www.linkedin.com/company/papercliphq/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-            style={{ color: theme.text, textDecorationColor: theme.text }}
-          >
-            PaperClip
-          </a>
-          ,{" "}
-          <a
-            href="https://www.linkedin.com/company/reevv-inc/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-            style={{ color: theme.text, textDecorationColor: theme.text }}
-          >
-            Reevv Research
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://www.linkedin.com/company/filterpixel/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-            style={{ color: theme.text, textDecorationColor: theme.text }}
-          >
-            FilterPixel
-          </a>
-          .
+        .
+      </TextParagraph>
+      <TextParagraph>
+        Over the past 5+ years, I&apos;ve worked across AI, FinTech, SaaS
+        and consumer technology, collaborating with teams at{" "}
+        <a
+          href="https://www.linkedin.com/company/perfios/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkClass}
+          style={{ color: theme.text, textDecorationColor: theme.text }}
+        >
+          Perfios
+        </a>
+        ,{" "}
+        <a
+          href="https://www.linkedin.com/company/karza-technologies/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkClass}
+          style={{ color: theme.text, textDecorationColor: theme.text }}
+        >
+          Karza
+        </a>
+        ,{" "}
+        <a
+          href="https://tentwenty.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkClass}
+          style={{ color: theme.text, textDecorationColor: theme.text }}
+        >
+          TenTwenty
+        </a>
+        ,{" "}
+        <a
+          href="https://www.linkedin.com/company/papercliphq/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkClass}
+          style={{ color: theme.text, textDecorationColor: theme.text }}
+        >
+          PaperClip
+        </a>
+        ,{" "}
+        <a
+          href="https://www.linkedin.com/company/reevv-inc/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkClass}
+          style={{ color: theme.text, textDecorationColor: theme.text }}
+        >
+          Reevv Research
+        </a>{" "}
+        and{" "}
+        <a
+          href="https://www.linkedin.com/company/filterpixel/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkClass}
+          style={{ color: theme.text, textDecorationColor: theme.text }}
+        >
+          FilterPixel
+        </a>
+        .
       </TextParagraph>
       <TextParagraph>
         Outside of work, I&apos;m usually building something with design, AI and
