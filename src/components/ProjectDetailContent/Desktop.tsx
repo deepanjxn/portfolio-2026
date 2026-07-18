@@ -286,48 +286,51 @@ export function ProjectDetailDesktop({ project, categories }: ProjectDetailDeskt
               </React.Fragment>
             ))}
 
-            <div style={{ height: density.spacing(44) }} />
-
-            {/* Responsibilities */}
-            <SectionReveal>
-              <EditorialContainer density={density}>
-                <Contained>
-                  <h2
-                    className="text-[18px] font-medium leading-none"
-                    style={{
-                      letterSpacing: "-0.04em",
-                      color: theme.text,
-                    }}
-                  >
-                    Responsibilities
-                  </h2>
-                  <div style={{ height: density.spacing(16) }} />
-                  <ul
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: density.spacing(8),
-                      listStyleType: "disc",
-                      paddingLeft: density.spacing(24),
-                    }}
-                  >
-                    {project.responsibilities.map((item, i) => (
-                      <li
-                        key={i}
-                        className="text-[16px] leading-[1.6] font-medium"
+            {project.responsibilities.length > 0 && (
+              <React.Fragment>
+                <div style={{ height: density.spacing(44) }} />
+                {/* Responsibilities */}
+                <SectionReveal>
+                  <EditorialContainer density={density}>
+                    <Contained>
+                      <h2
+                        className="text-[18px] font-medium leading-none"
                         style={{
-                        color: theme.text,
-                        letterSpacing: "-0.04em",
-                        opacity: 0.5,
-                      }}
+                          letterSpacing: "-0.04em",
+                          color: theme.text,
+                        }}
                       >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </Contained>
-              </EditorialContainer>
-            </SectionReveal>
+                        Responsibilities
+                      </h2>
+                      <div style={{ height: density.spacing(16) }} />
+                      <ul
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: density.spacing(8),
+                          listStyleType: "disc",
+                          paddingLeft: density.spacing(24),
+                        }}
+                      >
+                        {project.responsibilities.map((item, i) => (
+                          <li
+                            key={i}
+                            className="text-[16px] leading-[1.6] font-medium"
+                            style={{
+                            color: theme.text,
+                            letterSpacing: "-0.04em",
+                            opacity: 0.5,
+                          }}
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </Contained>
+                  </EditorialContainer>
+                </SectionReveal>
+              </React.Fragment>
+            )}
 
             {project.type !== "ux-breakdown" && <div style={{ height: density.spacing(44) }} />}
 

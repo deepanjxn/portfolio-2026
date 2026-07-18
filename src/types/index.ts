@@ -63,8 +63,9 @@ export interface ProjectDetail {
   title: string;
   description: string;
   hero: string;
-  heroType?: "image" | "vimeo";
+  heroType?: "image" | "vimeo" | "tella";
   heroVideoId?: string;
+  heroEmbedSrc?: string;
   sections: ProjectSection[];
   externalUrl?: string;
   responsibilities: string[];

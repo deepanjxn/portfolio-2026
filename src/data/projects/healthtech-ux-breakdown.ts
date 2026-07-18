@@ -23,7 +23,7 @@ export const healthtechUxBreakdownProject: ProjectDetail = {
     "GrowthX asked me to design a mobile experience for athletes preparing for endurance events such as Ironman and Ultraman. The assignment focused on helping users plan their training, monitor progress, stay motivated through community engagement, and access educational content within a single product. Rather than designing isolated screens, I approached the assignment as a complete product experience by defining the information architecture, planning the onboarding journey, and creating a scalable foundation before moving into interface design.",
   dateCreated: "28 May 2025",
   projectDuration: "2 Days",
-  liveLink: "https://supercut.ai/share/kriva/9-naqcny94PD8chyPN65HY",
+  liveLink: "https://growthx.club/",
   sections: [
     {
       type: "editorial",

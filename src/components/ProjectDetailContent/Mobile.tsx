@@ -226,46 +226,48 @@ export function MobileProjectDetail({ project, categories }: MobileProjectDetail
         </React.Fragment>
       ))}
 
-      <div style={{ height: 28 }} />
-
-      {/* Responsibilities */}
-      <div style={{ padding: "0 16px" }}>
-        <SectionReveal>
-          <h2
-            className="text-[16px] font-medium leading-none"
-            style={{
-              letterSpacing: "-0.04em",
-              color: theme.text,
-            }}
-          >
-            Responsibilities
-          </h2>
-          <div style={{ height: 16 }} />
-          <ul
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 8,
-              listStyleType: "disc",
-              paddingLeft: 24,
-            }}
-          >
-            {project.responsibilities.map((item, i) => (
-              <li
-                key={i}
-                className="text-[16px] leading-[1.6] font-medium"
+      {project.responsibilities.length > 0 && (
+        <React.Fragment>
+          <div style={{ height: 28 }} />
+          <div style={{ padding: "0 16px" }}>
+            <SectionReveal>
+              <h2
+                className="text-[16px] font-medium leading-none"
                 style={{
-                  color: theme.text,
                   letterSpacing: "-0.04em",
-                  opacity: 0.5,
+                  color: theme.text,
                 }}
               >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </SectionReveal>
-      </div>
+                Responsibilities
+              </h2>
+              <div style={{ height: 16 }} />
+              <ul
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                  listStyleType: "disc",
+                  paddingLeft: 24,
+                }}
+              >
+                {project.responsibilities.map((item, i) => (
+                  <li
+                    key={i}
+                    className="text-[16px] leading-[1.6] font-medium"
+                    style={{
+                      color: theme.text,
+                      letterSpacing: "-0.04em",
+                      opacity: 0.5,
+                    }}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </SectionReveal>
+          </div>
+        </React.Fragment>
+      )}
 
       {project.type !== "ux-breakdown" && <div style={{ height: 28 }} />}
 

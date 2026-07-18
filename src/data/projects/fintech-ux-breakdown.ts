@@ -23,7 +23,7 @@ export const fintechUxBreakdownProject: ProjectDetail = {
     "PayCrunch is a Gen Z focused fintech company exploring modern payment experiences. As part of the interview process, I was asked to design a bill splitting experience that balanced usability with a clean and engaging interface while demonstrating my end to end product thinking. Rather than limiting the solution to the requested screens, I approached it as a scalable feature that could naturally fit into a larger payments ecosystem.",
   dateCreated: "25 May 2025",
   projectDuration: "2 Days",
-  liveLink: "https://supercut.ai/share/kriva/_L6v9yBk2mlh0rmaMoYZMH",
+  liveLink: "https://www.paycrunch.in/",
   sections: [
     {
       type: "editorial",
