@@ -16,7 +16,7 @@ import { ProjectDetailDesktop } from "./Desktop";
 import { MobileProjectDetail } from "./Mobile";
 import Lenis from "lenis";
 
-const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view";
+const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view?usp=sharing";
 
 function contactAboutProject(title: string) {
   const subject = `Question about ${title} — From your portfolio`;

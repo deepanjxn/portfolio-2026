@@ -16,7 +16,7 @@ import { useResponsiveScale } from "@/hooks/useResponsiveScale";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { OUTER_PADDING, HERO_BOTTOM_GAP } from "@/theme/tokens";
 
-const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view";
+const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view?usp=sharing";
 
 const slideVariants = {
   enter: (dir: number) => ({ x: dir > 0 ? "100%" : "-100%" }),

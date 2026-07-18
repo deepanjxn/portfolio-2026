@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { staggerContainer, fadeInUp } from "@/animations/variants";
 import { useTheme } from "@/context/ThemeContext";
 import { MAX_BODY_WIDTH } from "@/theme/tokens";
+import { INTRO_TEXT } from "@/constants";
 
 const linkClass = "underline underline-offset-2";
 
@@ -38,8 +39,7 @@ export const ExperienceSummary = memo(function ExperienceSummary() {
       style={{ gap: 16 }}
     >
       <TextParagraph>
-        Hi, I&apos;m Deepanjan Sen — a product designer and design lead helping
-        companies build thoughtful, user-centered products. I&apos;m currently
+        <span style={{ marginRight: "0.2em" }}>{INTRO_TEXT}</span> I&apos;m currently
         leading Product Design at{" "}
         <a
           href="https://www.withlayer.ai/"

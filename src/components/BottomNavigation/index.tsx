@@ -11,7 +11,7 @@ import { TabType } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
 import { BOTTOM_NAV_GRID, BACK_BUTTON_PADDING } from "@/theme/tokens";
 
-const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view";
+const RESUME_URL = "https://drive.google.com/file/d/1ZXlLG8gkWQ4AKvzqvgp63Z1tr6ZRtpPm/view?usp=sharing";
 
 interface BottomNavigationProps {
   activeTab?: TabType;

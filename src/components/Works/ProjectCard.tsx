@@ -47,6 +47,12 @@ export function ProjectCard({
   const showMetadata = isActive && isHoverable && isHovered && !isDragging.current;
 
   useEffect(() => {
+    if (!project.animatedPreview) return;
+    const img = new Image();
+    img.src = project.animatedPreview;
+  }, [project.animatedPreview]);
+
+  useEffect(() => {
     if (showMetadata) {
       hoverComplete.current = false;
       const timer = setTimeout(() => {
@@ -60,6 +66,12 @@ export function ProjectCard({
       hoverComplete.current = false;
     }
   }, [showMetadata]);
+
+  const cardStyle: React.CSSProperties = {
+    height: Math.round(cardWidth * 5 / 8),
+    boxShadow: isActive ? "0px 4px 12px rgba(0, 0, 0, 0.1)" : "0px 0px 0px rgba(0, 0, 0, 0)",
+    transition: "box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+  };
 
   return (
     <div className="relative flex-shrink-0" style={{ width: cardWidth }}>
@@ -98,20 +110,14 @@ export function ProjectCard({
 
       {/* Card */}
       <motion.div
-        layout
         initial={false}
-        animate={{
-          opacity: 1,
-          boxShadow: isActive
-            ? "0px 4px 12px rgba(0, 0, 0, 0.1)"
-            : "0px 0px 0px rgba(0, 0, 0, 0)",
-        }}
+        animate={{ opacity: 1 }}
         transition={{
           duration: isWrapping.current ? 0 : 0.35,
           ease: [0.4, 0, 0.2, 1],
         }}
         className="overflow-hidden relative rounded-none"
-        style={{ height: Math.round(cardWidth * 5 / 8) }}
+        style={cardStyle}
         onClick={() => {
           if (wasDragged.current) return;
           if (isActive) {
