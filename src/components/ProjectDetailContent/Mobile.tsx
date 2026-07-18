@@ -198,7 +198,7 @@ export function MobileProjectDetail({ project, categories }: MobileProjectDetail
       {/* Editorial Sections for UX Breakdown */}
       {project.type === "ux-breakdown" && project.sections.filter(s => s.type === "editorial").map((section, i) => (
         <React.Fragment key={i}>
-          <div style={{ height: 24 }} />
+          <div style={{ height: 28 }} />
           <div style={{ padding: "0 16px" }}>
             <SectionReveal>
               <h2
@@ -226,7 +226,7 @@ export function MobileProjectDetail({ project, categories }: MobileProjectDetail
         </React.Fragment>
       ))}
 
-      <div style={{ height: 24 }} />
+      <div style={{ height: 28 }} />
 
       {/* Responsibilities */}
       <div style={{ padding: "0 16px" }}>
@@ -267,7 +267,7 @@ export function MobileProjectDetail({ project, categories }: MobileProjectDetail
         </SectionReveal>
       </div>
 
-      {project.type !== "ux-breakdown" && <div style={{ height: 24 }} />}
+      {project.type !== "ux-breakdown" && <div style={{ height: 28 }} />}
 
       {/* Contribution */}
       {project.type !== "ux-breakdown" && (
@@ -297,7 +297,7 @@ export function MobileProjectDetail({ project, categories }: MobileProjectDetail
         </div>
       )}
 
-      {project.type !== "ux-breakdown" && <div style={{ height: 24 }} />}
+      {project.type !== "ux-breakdown" && <div style={{ height: 28 }} />}
 
       {/* Outcome */}
       {project.type !== "ux-breakdown" && project.outcome && (
@@ -353,14 +353,14 @@ export function MobileProjectDetail({ project, categories }: MobileProjectDetail
         </div>
       )}
 
-      {project.type !== "ux-breakdown" && project.outcome && <div style={{ height: 24 }} />}
+      {project.type !== "ux-breakdown" && project.outcome && <div style={{ height: 28 }} />}
 
       {/* Gallery — full width */}
       {project.type !== "ux-breakdown" && (
         <ProjectRenderer sections={project.sections} />
       )}
 
-      {project.type !== "ux-breakdown" && <div style={{ height: 24 }} />}
+      {project.type !== "ux-breakdown" && <div style={{ height: 28 }} />}
 
       {/* Note from the Creator */}
       {project.type !== "ux-breakdown" && (

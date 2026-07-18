@@ -256,7 +256,7 @@ export function ProjectDetailDesktop({ project, categories }: ProjectDetailDeskt
             {/* Editorial Sections for UX Breakdown */}
             {project.type === "ux-breakdown" && project.sections.filter(s => s.type === "editorial").map((section, i) => (
               <React.Fragment key={i}>
-                <div style={{ height: density.spacing(36) }} />
+                <div style={{ height: density.spacing(44) }} />
                 <SectionReveal>
                   <EditorialContainer density={density}>
                     <Contained>
@@ -286,7 +286,7 @@ export function ProjectDetailDesktop({ project, categories }: ProjectDetailDeskt
               </React.Fragment>
             ))}
 
-            <div style={{ height: density.spacing(36) }} />
+            <div style={{ height: density.spacing(44) }} />
 
             {/* Responsibilities */}
             <SectionReveal>
@@ -329,7 +329,7 @@ export function ProjectDetailDesktop({ project, categories }: ProjectDetailDeskt
               </EditorialContainer>
             </SectionReveal>
 
-            {project.type !== "ux-breakdown" && <div style={{ height: density.spacing(36) }} />}
+            {project.type !== "ux-breakdown" && <div style={{ height: density.spacing(44) }} />}
 
             {/* Contribution */}
             {project.type !== "ux-breakdown" && (
@@ -361,7 +361,7 @@ export function ProjectDetailDesktop({ project, categories }: ProjectDetailDeskt
               </SectionReveal>
             )}
 
-            {project.type !== "ux-breakdown" && <div style={{ height: density.spacing(36) }} />}
+            {project.type !== "ux-breakdown" && <div style={{ height: density.spacing(44) }} />}
 
             {/* Outcome */}
             {project.type !== "ux-breakdown" && project.outcome && (
@@ -419,7 +419,7 @@ export function ProjectDetailDesktop({ project, categories }: ProjectDetailDeskt
               </SectionReveal>
             )}
 
-            {project.type !== "ux-breakdown" && project.outcome && <div style={{ height: density.spacing(36) }} />}
+            {project.type !== "ux-breakdown" && project.outcome && <div style={{ height: density.spacing(44) }} />}
 
             {/* Gallery */}
             {project.type !== "ux-breakdown" && (
@@ -428,7 +428,7 @@ export function ProjectDetailDesktop({ project, categories }: ProjectDetailDeskt
               </EditorialContainer>
             )}
 
-            {project.type !== "ux-breakdown" && <div style={{ height: density.spacing(36) }} />}
+            {project.type !== "ux-breakdown" && <div style={{ height: density.spacing(44) }} />}
 
             {/* Note from the Creator */}
             {project.type !== "ux-breakdown" && (
