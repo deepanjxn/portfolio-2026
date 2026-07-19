@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeIn, fadeInUp } from "@/animations/variants";
 import { ProjectType } from "@/types";
@@ -17,6 +17,10 @@ const MOBILE_GAP = 48;
 export function MobileWorks() {
   const { theme } = useTheme();
   const [activeCategory, setActiveCategory] = useState<ProjectType | "all">("projects");
+  const handleCategoryChange = useCallback((category: ProjectType | "all") => {
+    sessionStorage.removeItem("works_carousel_index");
+    setActiveCategory(category);
+  }, []);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === "all") return PROJECTS;
@@ -73,7 +77,7 @@ export function MobileWorks() {
 
             <CategoryFilters
               activeCategory={activeCategory}
-              onCategoryChange={setActiveCategory}
+              onCategoryChange={handleCategoryChange}
               mobile
             />
 

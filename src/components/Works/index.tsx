@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { ProjectType } from "@/types";
 import { PROJECTS } from "@/constants/works";
@@ -18,6 +18,7 @@ export function Works() {
       const saved = sessionStorage.getItem("works_category");
       if (saved === "all" || saved === "projects" || saved === "ux-breakdown" || saved === "labs") {
         sessionStorage.removeItem("works_category");
+        sessionStorage.removeItem("works_carousel_index");
         return saved;
       }
     }
@@ -26,8 +27,12 @@ export function Works() {
 
   useEffect(() => {
     sessionStorage.setItem("works_category", activeCategory);
-    sessionStorage.removeItem("works_carousel_index");
   }, [activeCategory]);
+
+  const handleCategoryChange = useCallback((category: ProjectType | "all") => {
+    sessionStorage.removeItem("works_carousel_index");
+    setActiveCategory(category);
+  }, []);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === "all") return PROJECTS;
@@ -43,7 +48,7 @@ export function Works() {
       <div className="flex items-center justify-between">
         <CategoryFilters
           activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
+          onCategoryChange={handleCategoryChange}
         />
         <ProjectCounter count={filteredProjects.length} />
       </div>
