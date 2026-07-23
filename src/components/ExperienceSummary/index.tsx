@@ -113,11 +113,21 @@ export const ExperienceSummary = memo(function ExperienceSummary() {
         >
           FilterPixel
         </a>
-        .
+        . Recently, I&apos;ve also been building open-source products like{" "}
+        <a
+          href="https://stroke.d-s.me/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: theme.accent, display: "inline-flex", alignItems: "baseline", gap: 2 }}
+        >
+          <img src="/images/livestroke-icon.webp" alt="" style={{ width: "0.9em", height: "0.9em", flexShrink: 0, marginLeft: 4, marginTop: 1 }} />
+          LiveStrokes
+        </a>
+        , turning design ideas into tools that developers can use.
       </TextParagraph>
       <TextParagraph>
         Outside of work, I&apos;m usually building something with design, AI and
-        code or you&apos;ll find me in the gym, riding my motorcycle or planning
+        code, or you&apos;ll find me in the gym, riding my motorcycle or planning
         my next adventure.
       </TextParagraph>
     </motion.div>
