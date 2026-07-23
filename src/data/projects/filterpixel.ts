@@ -85,7 +85,7 @@ export const filterpixelProject: ProjectDetail = {
       body: "Once the core workflows were approved, I translated them into production-ready designs. This stage focused on refining interactions, improving usability, and creating a consistent experience that developers could implement with confidence.",
     },
     { type: "full-image", src: `${BASE}/gallery-10.webp`, alt: "FilterPixel responsive layout" },
-    { type: "full-image", src: `${BASE}/animated.gif`, alt: "FilterPixel hero animation" },
+    { type: "full-image", src: `${BASE}/animated.webm`, alt: "FilterPixel hero animation" },
     { type: "full-image", src: `${BASE}/gallery-11.webp`, alt: "FilterPixel final prototype" },
     {
       type: "editorial",

@@ -94,6 +94,20 @@ export function HeroMedia({ project, showControls = false }: HeroMediaProps) {
     );
   }
 
+  if (project.hero.endsWith('.webm')) {
+    return (
+      <video
+        src={project.hero}
+        muted
+        loop
+        playsInline
+        autoPlay
+        className="w-full h-auto block"
+        draggable={false}
+      />
+    );
+  }
+
   return (
     <img
       src={project.hero}

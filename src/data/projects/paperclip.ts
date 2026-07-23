@@ -60,7 +60,7 @@ export const paperclipProject: ProjectDetail = {
       body: "Instead of benchmarking visual design alone, I compared how each competitor handled the complete resale journey, from creating a listing to completing a sale. This made it easier to identify opportunities where Paperclip could differentiate itself through AI powered automation, a cleaner interface, and a more connected end to end experience.",
     },
     { type: "full-image", src: `${BASE}/gallery-6.webp`, alt: "Paperclip interaction design" },
-    { type: "full-image", src: `${BASE}/animated.gif`, alt: "Paperclip hero animation" },
+    { type: "full-image", src: `${BASE}/animated.webm`, alt: "Paperclip hero animation" },
     {
       type: "editorial",
       title: "Affinity Mapping",

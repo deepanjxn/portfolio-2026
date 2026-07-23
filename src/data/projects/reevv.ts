@@ -7,7 +7,7 @@ export const reevvProject: ProjectDetail = {
   title: "REEVV",
   description:
     "Visual identity and brand system for an AI-native company. Focused on building a confident and flexible design language that works across products, marketing, and future growth.",
-  hero: `${BASE}/animated.gif`,
+  hero: `${BASE}/animated.webm`,
   responsibilities: [
     "Brand strategy",
     "Visual identity exploration",
