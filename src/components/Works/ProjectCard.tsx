@@ -40,6 +40,7 @@ export function ProjectCard({
   const { theme } = useTheme();
   const interaction = useInteractionMode();
   const [gifLoaded, setGifLoaded] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const [hoverIntent, setHoverIntent] = useState(false);
   const hoverComplete = useRef(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -170,42 +171,91 @@ export function ProjectCard({
             }}
           />
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ padding: mobile ? "24px" : "48px" }}>
-            {distanceFromActive <= 1 && project.animatedPreview ? (
-              project.animatedPreview.endsWith('.webm') ? (
-                <video
-                  key="active-video"
-                  ref={videoRef}
-                  src={project.animatedPreview}
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  disablePictureInPicture
-                  disableRemotePlayback
-                  className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}
-                  style={{ opacity: gifLoaded ? 1 : 0 }}
-                  onLoadedData={() => {
-                    setGifLoaded(true);
-                    if (distanceFromActive === 0) {
-                      videoRef.current?.play().catch(() => {});
-                    }
-                  }}
-                  draggable={false}
-                />
-              ) : (
+            {project.animatedPreview?.endsWith('.webm') ? (
+              <div className="relative w-full h-full">
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  {project.thumbnailImage || project.backgroundImage ? (
+                    <img
+                      src={project.thumbnailImage || project.backgroundImage}
+                      alt={project.title}
+                      className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}
+                      style={{ opacity: (distanceFromActive === 0 && videoReady) ? 0 : 1 }}
+                      draggable={false}
+                    />
+                  ) : (
+                    <div
+                      className="w-[200px] h-[220px] flex items-center justify-center"
+                      style={{
+                        border: `1px solid ${theme.text}`,
+                        opacity: 0.15,
+                        borderRadius: 0,
+                      }}
+                    />
+                  )}
+                  {distanceFromActive <= 1 && project.animatedPreview && !project.animatedPreview.endsWith('.webm') && (
+                    <img
+                      src={gifLoaded ? project.animatedPreview : (project.thumbnailImage || project.backgroundImage || undefined)}
+                      alt={project.title}
+                      className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}
+                      style={{ opacity: (distanceFromActive === 0 && gifLoaded) ? 1 : 0 }}
+                      onLoad={() => setGifLoaded(true)}
+                      draggable={false}
+                    />
+                  )}
+                </div>
+                {distanceFromActive <= 1 && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <video
+                      ref={videoRef}
+                      src={project.animatedPreview}
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      disablePictureInPicture
+                      disableRemotePlayback
+                      className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}
+                      style={{ opacity: (distanceFromActive === 0 && videoReady) ? 1 : 0 }}
+                      onLoadedData={() => {
+                        setVideoReady(true);
+                        if (distanceFromActive === 0) {
+                          videoRef.current?.play().catch(() => {});
+                        }
+                      }}
+                      draggable={false}
+                    />
+                  </div>
+                )}
+              </div>
+            ) : project.animatedPreview ? (
+              distanceFromActive <= 1 ? (
                 <img
-                  key="active-media"
                   src={gifLoaded ? project.animatedPreview : (project.thumbnailImage || project.backgroundImage || undefined)}
                   alt={project.title}
                   className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}
-                  style={{ opacity: gifLoaded ? 1 : 0 }}
+                  style={{ opacity: (distanceFromActive === 0 && gifLoaded) ? 1 : 0 }}
                   onLoad={() => setGifLoaded(true)}
                   draggable={false}
+                />
+              ) : project.thumbnailImage || project.backgroundImage ? (
+                <img
+                  src={project.thumbnailImage || project.backgroundImage}
+                  alt={project.title}
+                  className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}
+                  draggable={false}
+                />
+              ) : (
+                <div
+                  className="w-[200px] h-[220px] flex items-center justify-center"
+                  style={{
+                    border: `1px solid ${theme.text}`,
+                    opacity: 0.15,
+                    borderRadius: 0,
+                  }}
                 />
               )
             ) : project.thumbnailImage || project.backgroundImage ? (
               <img
-                key="inactive-media"
                 src={project.thumbnailImage || project.backgroundImage}
                 alt={project.title}
                 className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}
