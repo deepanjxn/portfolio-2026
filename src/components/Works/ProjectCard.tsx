@@ -15,6 +15,7 @@ interface ProjectCardProps {
   index: number;
   originalIndex: number;
   isActive: boolean;
+  distanceFromActive: number;
   isWrapping: RefObject<boolean>;
   wasDragged: RefObject<boolean>;
   isDragging: RefObject<boolean>;
@@ -27,6 +28,7 @@ export function ProjectCard({
   project,
   originalIndex,
   isActive,
+  distanceFromActive,
   isWrapping,
   wasDragged,
   isDragging,
@@ -48,10 +50,11 @@ export function ProjectCard({
   const showMetadata = isActive && isHoverable && isHovered && !isDragging.current;
 
   useEffect(() => {
-    if (!project.animatedPreview) return;
+    if (!project.animatedPreview || distanceFromActive > 1) return;
+    if (project.animatedPreview.endsWith('.webm')) return;
     const img = new Image();
     img.src = project.animatedPreview;
-  }, [project.animatedPreview]);
+  }, [project.animatedPreview, distanceFromActive]);
 
   useEffect(() => {
     if (showMetadata) {
@@ -67,6 +70,16 @@ export function ProjectCard({
       hoverComplete.current = false;
     }
   }, [showMetadata]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (distanceFromActive === 0) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [distanceFromActive]);
 
   const cardStyle: React.CSSProperties = {
     height: Math.round(cardWidth * 5 / 8),
@@ -157,7 +170,7 @@ export function ProjectCard({
             }}
           />
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ padding: mobile ? "24px" : "48px" }}>
-            {isActive && project.animatedPreview ? (
+            {distanceFromActive <= 1 && project.animatedPreview ? (
               project.animatedPreview.endsWith('.webm') ? (
                 <video
                   key="active-video"
@@ -166,13 +179,17 @@ export function ProjectCard({
                   muted
                   loop
                   playsInline
-                  autoPlay
                   preload="metadata"
                   disablePictureInPicture
                   disableRemotePlayback
                   className={`${mobile ? "w-full h-full" : "max-w-full max-h-full"} object-contain`}
                   style={{ opacity: gifLoaded ? 1 : 0 }}
-                  onLoadedData={() => setGifLoaded(true)}
+                  onLoadedData={() => {
+                    setGifLoaded(true);
+                    if (distanceFromActive === 0) {
+                      videoRef.current?.play().catch(() => {});
+                    }
+                  }}
                   draggable={false}
                 />
               ) : (

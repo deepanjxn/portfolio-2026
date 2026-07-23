@@ -199,6 +199,7 @@ export function ProjectCarousel({
               index={index}
               originalIndex={n > 0 ? index % n : index}
               isActive={index === virtualIndex}
+              distanceFromActive={Math.abs(index - virtualIndex)}
               isWrapping={isWrapping}
               wasDragged={wasDragged}
               isDragging={isDragging}
