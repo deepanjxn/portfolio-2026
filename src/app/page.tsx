@@ -11,8 +11,7 @@ import { BottomNavigation } from "@/components/BottomNavigation";
 import { TabType } from "@/types";
 import { useTheme } from "@/context/ThemeContext";
 import { useNavigationState } from "@/context/NavigationStateContext";
-import { DensityProvider } from "@/context/DensityContext";
-import { useResponsiveScale } from "@/hooks/useResponsiveScale";
+import { DensityProvider, useDensity } from "@/context/DensityContext";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { OUTER_PADDING, HERO_BOTTOM_GAP } from "@/theme/tokens";
 
@@ -29,13 +28,72 @@ const slideTransition = {
   ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
 };
 
+function DesktopLayout({ showIntro, activeTab, direction, worksEntryCount, handleTabChange }: {
+  showIntro: boolean;
+  activeTab: TabType;
+  direction: number;
+  worksEntryCount: number;
+  handleTabChange: (tab: TabType) => void;
+}) {
+  const { theme } = useTheme();
+  const density = useDensity();
+  const scaledPadding = density.spacing(OUTER_PADDING);
+
+  return (
+    <motion.div
+      className="hidden lg:flex flex-col h-full w-full"
+      style={{
+        padding: scaledPadding,
+        backgroundColor: theme.surface,
+        gap: HERO_BOTTOM_GAP,
+      }}
+      initial={showIntro ? { opacity: 0 } : undefined}
+      animate={showIntro ? { opacity: 0 } : { opacity: 1 }}
+      transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
+    >
+      <DensityProvider>
+      <div className="flex-1 min-h-0 relative">
+        <AnimatePresence mode="popLayout" custom={direction} initial={false}>
+          {activeTab === "about" ? (
+            <motion.div
+              key="about"
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={slideTransition}
+              className="absolute inset-0"
+            >
+              <Hero />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="works"
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={slideTransition}
+              className="absolute inset-0"
+            >
+              <Works key={worksEntryCount} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+      <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
+      </DensityProvider>
+    </motion.div>
+  );
+}
+
 export default function Home() {
   const { activeTab, showIntro, setActiveTab, setShowIntro, worksEntryCount, incrementWorksEntry } = useNavigationState();
   const [direction, setDirection] = useState(() => activeTab === "works" ? 1 : -1);
 
   const { theme, toggleTheme } = useTheme();
-  const scale = useResponsiveScale();
-  const scaledPadding = Math.round(OUTER_PADDING * scale);
 
   const handleIntroComplete = useCallback(() => {
     setShowIntro(false);
@@ -57,53 +115,13 @@ export default function Home() {
   return (
     <>
       {showIntro && <IntroScreen onComplete={handleIntroComplete} />}
-      {/* Desktop Layout (≥1024px) */}
-      <motion.div
-        className="hidden lg:flex flex-col h-full w-full"
-        style={{
-          padding: scaledPadding,
-          backgroundColor: theme.surface,
-          gap: HERO_BOTTOM_GAP,
-        }}
-        initial={showIntro ? { opacity: 0 } : undefined}
-        animate={showIntro ? { opacity: 0 } : { opacity: 1 }}
-        transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
-      >
-        <DensityProvider>
-        <div className="flex-1 min-h-0 relative">
-          <AnimatePresence mode="popLayout" custom={direction} initial={false}>
-            {activeTab === "about" ? (
-              <motion.div
-                key="about"
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={slideTransition}
-                className="absolute inset-0"
-              >
-                <Hero />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="works"
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={slideTransition}
-                className="absolute inset-0"
-              >
-                <Works key={worksEntryCount} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-        <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
-        </DensityProvider>
-      </motion.div>
+      <DesktopLayout
+        showIntro={showIntro}
+        activeTab={activeTab}
+        direction={direction}
+        worksEntryCount={worksEntryCount}
+        handleTabChange={handleTabChange}
+      />
 
       {/* Mobile Layout (<1024px) */}
       <motion.div
@@ -113,6 +131,7 @@ export default function Home() {
         animate={showIntro ? { opacity: 0 } : { opacity: 1 }}
         transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
       >
+        <DensityProvider>
         {activeTab === "about" ? <MobileLayout /> : <MobileWorks key={worksEntryCount} />}
         <div
           style={{
@@ -125,6 +144,7 @@ export default function Home() {
         >
           <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} mobile />
         </div>
+        </DensityProvider>
       </motion.div>
     </>
   );

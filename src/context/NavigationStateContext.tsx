@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, useMemo, useCallback, type ReactNode } from "react";
 import { TabType } from "@/types";
 
 interface NavigationState {
@@ -26,19 +26,19 @@ export function NavigationStateProvider({ children }: { children: ReactNode }) {
   const [showIntro, setShowIntro] = useState(true);
   const [worksEntryCount, setWorksEntryCount] = useState(0);
 
-  const incrementWorksEntry = () => setWorksEntryCount((c) => c + 1);
+  const incrementWorksEntry = useCallback(() => setWorksEntryCount((c) => c + 1), []);
+
+  const value = useMemo(() => ({
+    activeTab,
+    showIntro,
+    setActiveTab,
+    setShowIntro,
+    worksEntryCount,
+    incrementWorksEntry,
+  }), [activeTab, showIntro, worksEntryCount, incrementWorksEntry]);
 
   return (
-    <NavigationStateContext.Provider
-      value={{
-        activeTab,
-        showIntro,
-        setActiveTab,
-        setShowIntro,
-        worksEntryCount,
-        incrementWorksEntry,
-      }}
-    >
+    <NavigationStateContext.Provider value={value}>
       {children}
     </NavigationStateContext.Provider>
   );

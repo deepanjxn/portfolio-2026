@@ -10,8 +10,6 @@ export const PROJECTS: Project[] = [
     categories: ["AI", "SaaS", "Product Design"],
     backgroundImage: `${BASE}/layer/background.jpg`,
     thumbnailImage: `${BASE}/layer/thumbnail.jpg`,
-    animatedPreview: `${BASE}/layer/animated.gif`,
-    heroImage: `${BASE}/layer/hero.jpg`,
     shortDescription:
       "End-to-end product design for an AI-powered SaaS platform. Led the design system, core workflows, and visual language.",
     longDescription:
@@ -32,8 +30,6 @@ export const PROJECTS: Project[] = [
     categories: ["Web Design", "Brand Identity"],
     backgroundImage: `${BASE}/tentwenty/background.jpg`,
     thumbnailImage: `${BASE}/tentwenty/thumbnail.jpg`,
-    animatedPreview: `${BASE}/tentwenty/animated.gif`,
-    heroImage: `${BASE}/tentwenty/hero.jpg`,
     shortDescription:
       "Brand identity and web experience for a digital product studio. Focused on bold typography and fluid motion.",
     longDescription:
@@ -54,8 +50,6 @@ export const PROJECTS: Project[] = [
     categories: ["FinTech", "Dashboard", "UX"],
     backgroundImage: `${BASE}/perfios/background.jpg`,
     thumbnailImage: `${BASE}/perfios/thumbnail.jpg`,
-    animatedPreview: `${BASE}/perfios/animated.gif`,
-    heroImage: `${BASE}/perfios/hero.jpg`,
     shortDescription:
       "Dashboard and data-visualisation design for a FinTech platform serving enterprise clients across banking and lending.",
     longDescription:
@@ -94,7 +88,6 @@ export const PROJECTS: Project[] = [
     backgroundImage: `${BASE}/filterpixel/background.webp`,
     thumbnailImage: `${BASE}/filterpixel/thumbnail.webp`,
     animatedPreview: `${BASE}/filterpixel/animated.webm`,
-    heroImage: `${BASE}/filterpixel/animated.gif`,
     shortDescription:
       "A comprehensive case study covering the end-to-end product design process for an AI-powered photo editing platform.",
     longDescription:
@@ -132,8 +125,6 @@ export const PROJECTS: Project[] = [
     categories: ["Experimental", "3D", "Concept"],
     backgroundImage: `${BASE}/void/background.jpg`,
     thumbnailImage: `${BASE}/void/thumbnail.jpg`,
-    animatedPreview: `${BASE}/void/animated.gif`,
-    heroImage: `${BASE}/void/hero.jpg`,
     shortDescription:
       "An experimental design exploration blending 3D environments with typographic systems.",
     longDescription:
@@ -152,8 +143,6 @@ export const PROJECTS: Project[] = [
     categories: ["Type Design", "Brand"],
     backgroundImage: `${BASE}/glyph/background.jpg`,
     thumbnailImage: `${BASE}/glyph/thumbnail.jpg`,
-    animatedPreview: `${BASE}/glyph/animated.gif`,
-    heroImage: `${BASE}/glyph/hero.jpg`,
     shortDescription:
       "A personal type-design and brand identity experiment exploring geometric sans letterforms.",
     longDescription:
@@ -172,8 +161,6 @@ export const PROJECTS: Project[] = [
     categories: ["Side Project", "HealthTech"],
     backgroundImage: `${BASE}/pulse/background.jpg`,
     thumbnailImage: `${BASE}/pulse/thumbnail.jpg`,
-    animatedPreview: `${BASE}/pulse/animated.gif`,
-    heroImage: `${BASE}/pulse/hero.jpg`,
     shortDescription:
       "Side-project exploring health-tech product patterns and wearable data visualisation.",
     longDescription:
@@ -254,8 +241,6 @@ export const PROJECTS: Project[] = [
     categories: ["Offer-Winning Assignments", "FinTech"],
     backgroundImage: `${BASE}/fintech-case-study/background.jpg`,
     thumbnailImage: `${BASE}/fintech-case-study/thumbnail.jpg`,
-    animatedPreview: `${BASE}/fintech-case-study/animated.gif`,
-    heroImage: `${BASE}/fintech-case-study/hero.jpg`,
     shortDescription:
       "A deep-dive case study analysing UX patterns in FinTech applications. Recorded live walkthrough with annotation.",
     longDescription:
@@ -275,8 +260,6 @@ export const PROJECTS: Project[] = [
     categories: ["Offer-Winning Assignments", "HealthTech"],
     backgroundImage: `${BASE}/healthtech-case-study/background.jpg`,
     thumbnailImage: `${BASE}/healthtech-case-study/thumbnail.jpg`,
-    animatedPreview: `${BASE}/healthtech-case-study/animated.gif`,
-    heroImage: `${BASE}/healthtech-case-study/hero.jpg`,
     shortDescription:
       "Live UX teardown of a HealthTech product, focusing on onboarding flows and trust-building design patterns.",
     longDescription:

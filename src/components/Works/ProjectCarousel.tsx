@@ -129,13 +129,6 @@ export function ProjectCarousel({
     [centerOffset, x, n]
   );
 
-  const handleCardSelect = useCallback(
-    (index: number) => {
-      snapToIndex(index);
-    },
-    [snapToIndex]
-  );
-
   const handleDragEnd = useCallback(
     (_event: PointerEvent, info: PanInfo) => {
       setTimeout(() => {
@@ -203,7 +196,7 @@ export function ProjectCarousel({
               isWrapping={isWrapping}
               wasDragged={wasDragged}
               isDragging={isDragging}
-              onSelect={() => handleCardSelect(index)}
+              onSelect={snapToIndex}
               cardWidth={CARD_WIDTH}
               mobile={mobile}
             />

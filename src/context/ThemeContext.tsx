@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, useCallback, useMemo, type ReactNode } from "react";
 import { ThemeTokens } from "@/types";
 import { lightTheme } from "@/theme/light";
 import { darkTheme } from "@/theme/dark";
@@ -82,8 +82,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const theme = resolved === "light" ? lightTheme : darkTheme;
 
+  const value = useMemo(() => ({ mode: resolved, theme, toggleTheme }), [resolved, theme, toggleTheme]);
+
   return (
-    <ThemeContext.Provider value={{ mode: resolved, theme, toggleTheme }}>
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, type RefObject } from "react";
+import { memo, useState, useRef, useEffect, useMemo, type RefObject } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Project } from "@/types";
@@ -19,13 +19,14 @@ interface ProjectCardProps {
   isWrapping: RefObject<boolean>;
   wasDragged: RefObject<boolean>;
   isDragging: RefObject<boolean>;
-  onSelect: () => void;
+  onSelect: (index: number) => void;
   cardWidth?: number;
   mobile?: boolean;
 }
 
-export function ProjectCard({
+const ProjectCard = memo(function ProjectCard({
   project,
+  index,
   originalIndex,
   isActive,
   distanceFromActive,
@@ -82,11 +83,11 @@ export function ProjectCard({
     }
   }, [distanceFromActive]);
 
-  const cardStyle: React.CSSProperties = {
+  const cardStyle = useMemo<React.CSSProperties>(() => ({
     height: Math.round(cardWidth * 5 / 8),
     boxShadow: isActive ? "0px 4px 12px rgba(0, 0, 0, 0.1)" : "0px 0px 0px rgba(0, 0, 0, 0)",
     transition: "box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-  };
+  }), [cardWidth, isActive]);
 
   return (
     <div className="relative flex-shrink-0" style={{ width: cardWidth }}>
@@ -139,7 +140,7 @@ export function ProjectCard({
             if (isHoverable && !hoverComplete.current) return;
             router.push(`/${project.id}`);
           } else {
-            onSelect();
+            onSelect(index);
           }
         }}
         onMouseEnter={isHoverable && isActive ? () => setHoverIntent(true) : undefined}
@@ -276,4 +277,6 @@ export function ProjectCard({
       </motion.div>
     </div>
   );
-}
+});
+
+export { ProjectCard };
