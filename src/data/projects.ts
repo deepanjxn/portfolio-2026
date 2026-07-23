@@ -76,7 +76,7 @@ export const PROJECTS: Project[] = [
     categories: ["Product Design", "App Design", "AI", "B2C", "C2C"],
     backgroundImage: `${BASE}/paperclip/background.webp`,
     thumbnailImage: `${BASE}/paperclip/thumbnail.webp`,
-    animatedPreview: `${BASE}/paperclip/animated.gif`,
+    animatedPreview: `${BASE}/paperclip/animated.webm`,
     shortDescription:
       "Mobile app design for a document intelligence platform. Focused on simplicity and speed in high-volume workflows.",
     longDescription:
@@ -93,7 +93,7 @@ export const PROJECTS: Project[] = [
     categories: ["Product Design", "Design System", "AI", "SaaS", "Software Design"],
     backgroundImage: `${BASE}/filterpixel/background.webp`,
     thumbnailImage: `${BASE}/filterpixel/thumbnail.webp`,
-    animatedPreview: `${BASE}/filterpixel/animated.gif`,
+    animatedPreview: `${BASE}/filterpixel/animated.webm`,
     heroImage: `${BASE}/filterpixel/animated.gif`,
     shortDescription:
       "A comprehensive case study covering the end-to-end product design process for an AI-powered photo editing platform.",
@@ -115,7 +115,7 @@ export const PROJECTS: Project[] = [
     categories: ["Brand Identity", "Logo Design", "Visual Identity", "Web Design"],
     backgroundImage: `${BASE}/reevv/background.png`,
     thumbnailImage: `${BASE}/reevv/thumbnail.png`,
-    animatedPreview: `${BASE}/reevv/animated.gif`,
+    animatedPreview: `${BASE}/reevv/animated.webm`,
     shortDescription:
       "Product design for a B2B research and analytics platform. Built scalable component libraries and research tooling.",
     longDescription:
@@ -192,7 +192,7 @@ export const PROJECTS: Project[] = [
     categories: ["Offer-Winning Assignments", "FinTech"],
     thumbnailImage: `${BASE}/fintech-ux-breakdown/thumbnail.webp`,
     backgroundImage: `${BASE}/fintech-ux-breakdown/background.webp`,
-    animatedPreview: `${BASE}/fintech-ux-breakdown/animated.gif`,
+    animatedPreview: `${BASE}/fintech-ux-breakdown/animated.webm`,
     shortDescription:
       "A deep-dive case study analysing UX patterns in FinTech applications. Recorded live walkthrough with annotation.",
     longDescription:
@@ -208,7 +208,7 @@ export const PROJECTS: Project[] = [
     categories: ["Offer-Winning Assignments", "FinTech"],
     thumbnailImage: `${BASE}/fintech-2-ux-breakdown/thumbnail.webp`,
     backgroundImage: `${BASE}/fintech-2-ux-breakdown/background.webp`,
-    animatedPreview: `${BASE}/fintech-2-ux-breakdown/animated.gif`,
+    animatedPreview: `${BASE}/fintech-2-ux-breakdown/animated.webm`,
     shortDescription:
       "A second deep-dive UX breakdown exploring advanced FinTech product patterns across lending, investment, and neo-banking platforms.",
     longDescription:
@@ -223,7 +223,7 @@ export const PROJECTS: Project[] = [
     categories: ["Offer-Winning Assignments", "HealthTech"],
     thumbnailImage: `${BASE}/healthtech-ux-breakdown/thumbnail.webp`,
     backgroundImage: `${BASE}/healthtech-ux-breakdown/background.webp`,
-    animatedPreview: `${BASE}/healthtech-ux-breakdown/animated.gif`,
+    animatedPreview: `${BASE}/healthtech-ux-breakdown/animated.webm`,
     shortDescription:
       "Live UX teardown of a HealthTech product, focusing on onboarding flows and trust-building design patterns.",
     longDescription:
@@ -239,7 +239,7 @@ export const PROJECTS: Project[] = [
     categories: ["Offer-Winning Assignments", "B2B SaaS"],
     thumbnailImage: `${BASE}/tentwenty-ux-breakdown/thumbnail.webp`,
     backgroundImage: `${BASE}/tentwenty-ux-breakdown/background.webp`,
-    animatedPreview: `${BASE}/tentwenty-ux-breakdown/animated.gif`,
+    animatedPreview: `${BASE}/tentwenty-ux-breakdown/animated.webm`,
     shortDescription:
       "A B2B SaaS dashboard and offer management assignment focused on helping multi-outlet businesses monitor performance, create promotional campaigns, and manage operations through a scalable interface.",
     longDescription:
